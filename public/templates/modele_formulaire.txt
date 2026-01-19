@@ -1,0 +1,14 @@
+Modèle de formulaire Forms - Inscriptions Rising Stars Tennis Day
+
+Champs recommandés :
+- Nom (texte, obligatoire)
+- Prénom (texte, obligatoire)
+- Email (texte, obligatoire, validation email)
+- Téléphone (texte, optionnel)
+- Type de participant (choix multiple : Joueur / Accompagnant / Spectateur)
+- Date de naissance (date, obligatoire si Joueur)
+- Niveau de jeu (choix multiple, si Joueur : Débutant / Intermédiaire / Avancé)
+- Besoins spécifiques (texte long, optionnel)
+
+Message de confirmation :
+"Merci pour votre inscription au Rising Stars Tennis Day ! Vous recevrez un email de confirmation sous peu."

@@ -1,0 +1,50 @@
+RÉCAPITULATIF DU PROJET - Rising Stars Tennis Day
+
+INFORMATIONS GÉNÉRALES
+- Nom du projet : Rising Stars Tennis Day
+- Date de création : [Date]
+- Responsable : [Nom]
+- Équipe : [Liste des membres]
+
+LIVRABLES
+
+1. DOCUMENTS EXCEL
+   - Base_Joueurs.xlsx
+     Emplacement : [Chemin OneDrive]
+     Responsable : [Nom]
+     Statut : ✓ Terminé
+   
+   - Planning.xlsx
+     Emplacement : [Chemin]
+     Responsable : [Nom]
+     Statut : ✓ Terminé
+   
+   - Statistiques.xlsx
+     Emplacement : [Chemin]
+     Responsable : [Nom]
+     Statut : ✓ Terminé
+
+2. DOCUMENTS WORD
+   - Dossier_Evenement.docx / .pdf
+     Emplacement : [Chemin]
+     Responsable : [Nom]
+     Statut : ✓ Terminé
+
+3. FORMULAIRES
+   - Formulaire d'inscription Forms
+     Lien : [URL]
+     Responsable : [Nom]
+     Statut : ✓ Actif
+
+4. ESPACES DE TRAVAIL
+   - Équipe Teams : [Nom de l'équipe]
+   - Dossier OneDrive : [Chemin]
+   - Dossier OneDrive : [Chemin]
+
+CONTACTS
+- Responsable projet : [Email]
+- Support technique : [Email]
+- Communication : [Email]
+
+NOTES IMPORTANTES
+[Ajoutez ici toute information pertinente pour la suite du projet]

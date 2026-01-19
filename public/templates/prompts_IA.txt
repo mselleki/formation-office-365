@@ -1,0 +1,22 @@
+Exemples de prompts pour utiliser l'IA efficacement :
+
+1. AMÉLIORATION D'EMAIL
+"Réécris cet email de manière plus formelle et professionnelle, en conservant le message principal : [texte]"
+
+2. RÉSUMÉ DE DOCUMENT
+"Résume ce document en 5 points clés maximum : [texte ou document]"
+
+3. GÉNÉRATION DE CHECKLIST
+"Crée une checklist des risques pour l'organisation d'un événement sportif, organisée par catégories (logistique, communication, technique)"
+
+4. AMÉLIORATION DE TEXTE
+"Rends ce paragraphe plus concis tout en conservant toutes les informations importantes : [texte]"
+
+5. GÉNÉRATION D'IDÉES
+"Génère 5 idées de posts pour promouvoir un événement tennis sur les réseaux sociaux, avec un ton enthousiaste mais professionnel"
+
+6. CORRECTION GRAMMATICALE
+"Corrige les fautes d'orthographe et de grammaire dans ce texte : [texte]"
+
+7. ADAPTATION DE TON
+"Adapte ce texte pour un public de jeunes joueurs (12-18 ans), en gardant un ton motivant : [texte]"

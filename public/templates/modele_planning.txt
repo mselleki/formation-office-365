@@ -1,0 +1,15 @@
+Structure recommandée pour le planning Excel :
+
+Colonnes :
+- Heure (format HH:MM)
+- Court (texte : Court 1, Court 2, etc.)
+- Joueur 1 (texte)
+- Joueur 2 (texte)
+- Type de match (liste : Match principal, Démonstration, Entraînement)
+- Durée estimée (calcul automatique en minutes)
+- Arbitre (texte)
+- Statut (liste : Planifié, En cours, Terminé)
+
+Formules utiles :
+- Durée estimée = SI(Type="Match principal"; 90; SI(Type="Démonstration"; 30; 20))
+- Total matchs par court = NB.SI(Court; "Court 1")

@@ -1,0 +1,24 @@
+Code VBA pour exporter une feuille Excel en PDF :
+
+Sub ExportToPDF()
+    Dim ws As Worksheet
+    Dim filePath As String
+    Dim fileName As String
+    
+    ' Définir la feuille active
+    Set ws = ActiveSheet
+    
+    ' Définir le chemin et le nom du fichier
+    fileName = "Planning_" & Format(Date, "yyyymmdd") & ".pdf"
+    filePath = ThisWorkbook.Path & "\" & fileName
+    
+    ' Exporter en PDF
+    ws.ExportAsFixedFormat Type:=xlTypePDF, _
+        fileName:=filePath, _
+        Quality:=xlQualityStandard, _
+        IncludeDocProperties:=True, _
+        IgnorePrintAreas:=False, _
+        OpenAfterPublish:=True
+    
+    MsgBox "Fichier PDF créé : " & filePath, vbInformation
+End Sub

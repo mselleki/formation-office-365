@@ -1,0 +1,41 @@
+CHECKLIST DE LIVRAISON FINALE - Rising Stars Tennis Day
+
+DOCUMENTS EXCEL
+☐ Base_Joueurs.xlsx - Liste complète des inscriptions
+☐ Planning.xlsx - Planning final validé
+☐ Statistiques.xlsx - Rapport d'analyse généré
+☐ Tous les fichiers Excel sont à jour et sans erreurs
+
+DOCUMENTS WORD
+☐ Dossier_Evenement.docx - Document complet et mis en forme
+☐ Dossier_Evenement.pdf - Version PDF exportée
+☐ Recapitulatif_Projet.docx - Document récapitulatif créé
+☐ Tous les documents ont une table des matières à jour
+
+PARTAGE ET PERMISSIONS
+☐ Tous les fichiers sont dans les bons dossiers OneDrive
+☐ Permissions configurées correctement (équipe en modification, intervenants en lecture)
+☐ Liens de partage testés et fonctionnels
+☐ Formulaire Forms accessible et fonctionnel
+
+RÉUNIONS ET COMMUNICATION
+☐ Réunion Teams planifiée et invitations envoyées
+☐ Ordre du jour partagé
+☐ Documents joints à la réunion
+☐ Emails d'invitation envoyés via Outlook
+
+AUTOMATISATIONS
+☐ Macros Excel testées et fonctionnelles
+☐ Scripts Python exécutés sans erreur
+☐ Exports PDF générés correctement
+
+SAUVEGARDE
+☐ Copie locale des fichiers importants (optionnel)
+☐ Vérification que tout est sauvegardé dans OneDrive
+☐ Documentation des emplacements des fichiers
+
+VALIDATION FINALE
+☐ Tous les livrables sont accessibles
+☐ Aucun fichier manquant
+☐ Toutes les fonctionnalités testées
+☐ Projet prêt pour la livraison

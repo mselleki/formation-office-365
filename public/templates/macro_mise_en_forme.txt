@@ -1,0 +1,35 @@
+Code VBA pour appliquer une mise en forme automatique :
+
+Sub MiseEnFormePlanning()
+    Dim ws As Worksheet
+    Dim rng As Range
+    
+    ' Définir la feuille active
+    Set ws = ActiveSheet
+    
+    ' Sélectionner la plage de données (ajustez selon vos besoins)
+    Set rng = ws.Range("A1").CurrentRegion
+    
+    ' Appliquer la mise en forme
+    With rng
+        ' En-têtes
+        With .Rows(1)
+            .Font.Bold = True
+            .Interior.Color = RGB(37, 99, 235) ' Bleu accent
+            .Font.Color = RGB(255, 255, 255) ' Blanc
+        End With
+        
+        ' Bordures
+        .Borders.LineStyle = xlContinuous
+        .Borders.Weight = xlThin
+        
+        ' Alignement
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+    End With
+    
+    ' Ajuster la largeur des colonnes
+    rng.Columns.AutoFit
+    
+    MsgBox "Mise en forme appliquée avec succès !", vbInformation
+End Sub

@@ -1,0 +1,16 @@
+Structure recommandée pour le dossier projet :
+
+Rising_Stars_Tennis_Day/
+├── Documents/
+│   ├── Dossier_Evenement.docx
+│   └── Recapitulatif_Projet.docx
+├── Planning/
+│   ├── Base_Joueurs.xlsx
+│   ├── Planning.xlsx
+│   └── Statistiques.xlsx
+├── Communication/
+│   ├── Emails/
+│   └── Reseaux_sociaux/
+└── Fichiers_finaux/
+    ├── PDF/
+    └── Exports/

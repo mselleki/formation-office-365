@@ -5,10 +5,9 @@ import { ProgressState } from '../App'
 
 interface EpisodesProps {
   progress: Record<number, ProgressState>
-  onUpdateProgress: (episodeId: number, status: EpisodeStatus) => void
 }
 
-export default function Episodes({ progress, onUpdateProgress }: EpisodesProps) {
+export default function Episodes({ progress }: EpisodesProps) {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedTools, setSelectedTools] = useState<Tool[]>([])
 

@@ -102,7 +102,6 @@ function App() {
               element={
                 <Episodes 
                   progress={appState.progress}
-                  onUpdateProgress={updateEpisodeProgress}
                 />
               } 
             />

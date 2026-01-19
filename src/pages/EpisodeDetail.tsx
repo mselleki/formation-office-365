@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { episodes, EpisodeStatus } from '../content/episodes'
 import { ProgressState } from '../App'
 
@@ -17,7 +17,6 @@ export default function EpisodeDetail({
   onUpdateNotes
 }: EpisodeDetailProps) {
   const { id } = useParams<{ id: string }>()
-  const navigate = useNavigate()
   const episode = episodes.find(e => e.id === parseInt(id || '0'))
 
   const [showHints, setShowHints] = useState(false)

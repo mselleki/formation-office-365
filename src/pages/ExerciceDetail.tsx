@@ -1,12 +1,12 @@
 import { useParams, Link } from 'react-router-dom'
-import { getExerciceById, categories } from '../content/exercices'
+import { getExerciceById } from '../content/exercices'
 
 interface ExerciceDetailProps {
   isTrainerMode: boolean
 }
 
 export default function ExerciceDetail({ isTrainerMode }: ExerciceDetailProps) {
-  const { category, id } = useParams<{ category: string; id: string }>()
+  const { id } = useParams<{ category: string; id: string }>()
   const exercice = id ? getExerciceById(id) : undefined
 
   if (!exercice) {

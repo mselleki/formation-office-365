@@ -20,6 +20,12 @@ export interface Exercice {
   deliverables: string[];
   reflectionQuestions?: string[];
   trainerScript?: string;
+  files?: {
+    name: string;
+    path: string;
+    type: 'download';
+    trainerOnly?: boolean;
+  }[];
 }
 
 export const exercices: Exercice[] = [
@@ -118,6 +124,91 @@ export const exercices: Exercice[] = [
       '• Aucune information manquante',
       '• Aucun bricolage visuel'
     ]
+  },
+  {
+    id: 'word-mise-en-forme-01',
+    category: 'Word',
+    title: 'Mise en forme d\'un document avec styles',
+    duration: '45 minutes',
+    objective: 'À la fin de l\'exercice, l\'apprenant doit savoir :\n• télécharger et ouvrir un document Word brut\n• appliquer des styles Word pour structurer le document\n• utiliser les listes à puces et numérotées\n• créer une mise en forme professionnelle et cohérente',
+    context: 'Vous recevez un document Word brut sans mise en forme. Votre mission est de le transformer en un document professionnel et structuré en utilisant les styles Word.',
+    generalInstructions: [
+      'Téléchargez le fichier "Exercice_1.docx" fourni',
+      'Travaillez uniquement avec Microsoft Word',
+      'Utilisez les styles Word plutôt que la mise en forme manuelle',
+      'Le document doit être clair, structuré et professionnel'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Télécharger et ouvrir le document',
+        duration: '5 min',
+        instructions: [
+          'Téléchargez le fichier "Exercice_1.docx" depuis la section fichiers ci-dessous',
+          'Ouvrez le document dans Microsoft Word',
+          'Observez l\'état initial du document (texte brut sans mise en forme)'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Appliquer les styles de titre',
+        duration: '15 min',
+        instructions: [
+          'Identifiez les titres principaux dans le document',
+          'Appliquez le style "Titre 1" aux titres principaux',
+          'Appliquez le style "Titre 2" aux sous-titres',
+          'Appliquez le style "Titre 3" si nécessaire pour les sous-sections',
+          '',
+          '💡 Astuce : Utilisez les raccourcis clavier (Ctrl+Alt+1 pour Titre 1, etc.)'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Structurer avec des listes',
+        duration: '15 min',
+        instructions: [
+          'Identifiez les éléments qui doivent être en liste',
+          'Créez des listes à puces pour les éléments non ordonnés',
+          'Créez des listes numérotées pour les étapes ou éléments ordonnés',
+          'Ajustez l\'indentation si nécessaire',
+          '',
+          '💡 Astuce : Sélectionnez le texte puis utilisez les boutons de liste dans l\'onglet Accueil'
+        ]
+      },
+      {
+        number: 4,
+        title: 'Mise en forme du texte',
+        duration: '10 min',
+        instructions: [
+          'Mettez en évidence les mots-clés importants (gras ou italique)',
+          'Vérifiez la cohérence des polices et tailles',
+          'Ajustez les espacements entre les paragraphes si nécessaire',
+          'Appliquez un style "Normal" cohérent au texte courant'
+        ]
+      }
+    ],
+    deliverables: [
+      'Un document Word mis en forme avec :',
+      '• Des styles de titre appliqués correctement',
+      '• Des listes structurées (puces et numérotées)',
+      '• Une mise en forme cohérente et professionnelle',
+      '• Un document prêt à être partagé'
+    ],
+    reflectionQuestions: [],
+    files: [
+      {
+        name: 'Exercice_1.docx',
+        path: '/templates/Exercice_1.docx',
+        type: 'download'
+      },
+      {
+        name: 'Exercice_1_Correction.docx',
+        path: '/templates/Exercice_1_Correction.docx',
+        type: 'download',
+        trainerOnly: true
+      }
+    ],
+    trainerScript: '💡 Points clés à aborder :\n\n• L\'importance d\'utiliser les styles plutôt que la mise en forme manuelle\n• Comment identifier les niveaux de titre dans un texte brut\n• La différence entre listes à puces et listes numérotées\n• Les raccourcis clavier pour appliquer rapidement les styles\n• Comment créer une structure hiérarchique claire\n\n🎯 Objectif pédagogique :\nFaire comprendre que la mise en forme avec styles est plus efficace et professionnelle que la mise en forme manuelle, et permet de générer automatiquement une table des matières.'
   },
   {
     id: 'onedrive-coffre-01',
@@ -340,6 +431,104 @@ export const exercices: Exercice[] = [
       'Est-ce une vraie sauvegarde ?'
     ],
     trainerScript: '⚠️ Opinion tranchée :\n\nOneDrive n\'est PAS une sauvegarde.\nC\'est une tolérance à l\'erreur, nuance vitale.\n\n📋 Explication détaillée - Étape 1 : Historique des versions\n\n(ce qui est censé se passer)\n\n✅ Ce que tu fais\n\n• Tu modifies 5 fois le même fichier Word\n  (ajout d\'une phrase, suppression, correction, etc.)\n• Le fichier est stocké sur OneDrive\n\n👀 Ce que tu observes\n\nDans OneDrive (web ou Word) :\n• clic droit sur le fichier\n• Historique des versions\n\nTu vois :\n• une liste chronologique\n• avec : date / heure, auteur, taille du fichier\n\n👉 Chaque modification importante crée une version\n(et parfois plusieurs si Word autosave).\n\n🔁 Restauration\n\nQuand tu restaures une ancienne version :\n\n❌ le fichier n\'est pas remplacé définitivement\n✅ la version restaurée devient la nouvelle version courante\n\nLes versions plus récentes :\n• ne disparaissent PAS\n• restent dans l\'historique\n\n🧠 Conclusion attendue :\n\nL\'historique n\'est pas une machine à remonter le temps destructrice.\nC\'est une pile de versions empilées.\n\n📋 Explication détaillée - Étape 2 : Suppression & récupération\n\n(là où tout le monde se trompe)\n\n🗑️ Suppression du fichier\n\nQuand tu supprimes le fichier :\n\n❌ il n\'est PAS détruit\n✅ il va dans la corbeille OneDrive\n\n👉 Il disparaît de ton dossier, mais existe toujours côté Microsoft.\n\n🗑️ Vidage de la corbeille (moment clé)\n\nQuand tu vides la corbeille OneDrive :\n\n❌ le fichier n\'est plus visible\n❌ il n\'est plus récupérable par l\'utilisateur\n❌ l\'historique des versions disparaît avec lui\n\n👉 Pour l\'utilisateur standard :\n💀 le fichier est mort\n\n❓ Tentative de récupération\n\nRésultat attendu :\n\n❌ Impossible de récupérer le fichier soi-même\n❌ aucune option dans OneDrive\n❌ aucune magie cachée\n\n🧠 Conclusion clé :\n\nL\'historique des versions ne protège PAS contre une suppression définitive.\n\n💣 Le message pédagogique (le plus important)\n\nVoici LA phrase que l\'exercice doit graver dans la tête :\n\n"OneDrive protège contre les erreurs de modification,\npas contre les erreurs de suppression."\n\nEt encore plus brutal :\n\n"OneDrive n\'est pas une sauvegarde.\nC\'est une illusion de sécurité."\n\n🧠 Ce que tu dois faire dire aux apprenants\n\nÀ la fin, ils doivent être capables de dire :\n\n✅ "Je peux revenir en arrière si je modifie mal"\n❌ "Je ne suis pas protégé si je supprime définitivement"\n⚠️ "Si quelqu\'un vide la corbeille, c\'est fini pour moi"\n\n🎓 Bonus formateur (impact max)\n\nPose cette question :\n\n"Qui, dans votre entreprise, peut récupérer ce fichier après suppression définitive ?"\n\nRéponse attendue :\n• Admin Microsoft 365\n• Sauvegarde externe\n• Pas OneDrive\n\nSilence. Prise de conscience. 🧠\n\n💡 Points clés à aborder :\n• Le système de versioning dans OneDrive\n• La durée de conservation des versions\n• Les limites de la corbeille OneDrive\n• La différence entre corbeille et sauvegarde\n• Pourquoi OneDrive n\'est pas une solution de backup\n• Les stratégies de récupération possibles\n• Les délais de rétention des données\n• Quand utiliser OneDrive vs une vraie solution de sauvegarde\n\n🎯 Objectif pédagogique :\nFaire comprendre que OneDrive offre une tolérance à l\'erreur limitée, mais ne remplace pas une vraie stratégie de sauvegarde. Nuancer le sentiment de sécurité que peut donner OneDrive.'
+  },
+  {
+    id: 'onedrive-partage-survie-01',
+    category: 'OneDrive',
+    title: 'Partage, collaboration et survie des données',
+    duration: '60 minutes',
+    objective: 'Comprendre :\n• la différence entre partage de fichiers et partage de dossiers\n• les risques de la co-édition sans cadre\n• et surtout : pourquoi une donnée ne doit jamais dépendre d\'une personne.',
+    context: 'Cet exercice en 3 parties vous permettra de comprendre les enjeux du partage et la pérennité des données dans OneDrive.',
+    generalInstructions: [],
+    steps: [
+      {
+        number: 1,
+        title: 'Mise en situation A – Partager des fichiers individuellement',
+        instructions: [
+          '📄 Scénario :',
+          'Anatole a créé deux documents (une évaluation de maths et son corrigé).',
+          'Il les déplace dans son OneDrive et partage chaque fichier individuellement avec Barnabé en lecture seule.',
+          '',
+          '🎯 Mission :',
+          '• Identifiez qui est propriétaire des fichiers',
+          '• Identifiez qui peut faire quoi',
+          '• Identifiez sur quoi porte exactement le partage',
+          '',
+          'Actions à réaliser :',
+          '1. Créez deux documents Word dans votre OneDrive',
+          '2. Partagez chaque fichier individuellement avec mselleki98@gmail.com en lecture seule',
+          '3. Vérifiez les permissions de chaque fichier',
+          '4. Modifiez ensuite les droits pour autoriser la modification',
+          '5. Testez la co-édition en temps réel'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Mise en situation B – Partager un dossier entier',
+        instructions: [
+          '📄 Scénario :',
+          'Barnabé crée un dossier "Evaluations avec Anatole" dans son OneDrive.',
+          'Il y place les documents de français et les documents de maths.',
+          'Il partage le dossier entier avec Anatole en modification.',
+          '',
+          '🎯 Mission :',
+          'Comparez le périmètre d\'accès avec la situation A.',
+          '',
+          'Actions à réaliser :',
+          '1. Créez un dossier "Evaluations" dans votre OneDrive',
+          '2. Placez-y plusieurs documents',
+          '3. Partagez le dossier entier avec mselleki98@gmail.com en modification',
+          '4. Testez la co-édition sur les documents du dossier',
+          '5. Ajoutez un nouveau fichier dans le dossier et observez l\'accès'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Mise en situation C – Le départ de Barnabé',
+        instructions: [
+          '📄 Scénario :',
+          'Barnabé part à la retraite.',
+          '30 jours plus tard, son compte Office 365 est désactivé.',
+          'Tous les documents partagés depuis son OneDrive disparaissent.',
+          '',
+          '🎯 Mission :',
+          'Trouvez une solution pour que les documents survivent au départ de Barnabé.',
+          '',
+          '🔧 Contraintes :',
+          '• Les documents doivent rester accessibles à Anatole',
+          '• Même après la suppression du compte de Barnabé',
+          '',
+          'Actions à réaliser :',
+          '1. Identifiez le problème : que se passe-t-il si le propriétaire part ?',
+          '2. Déplacez le dossier vers le OneDrive d\'Anatole (mselleki98@gmail.com)',
+          '3. Vérifiez que les permissions sont conservées',
+          '4. Simulez la suppression du dossier côté Barnabé',
+          '5. Vérifiez qu\'Anatole a toujours accès aux documents'
+        ]
+      }
+    ],
+    deliverables: [
+      'Compréhension de la différence entre partage de fichier et partage de dossier',
+      'Awareness des risques liés à la dépendance d\'une personne',
+      'Solution mise en place pour la pérennité des données'
+    ],
+    reflectionQuestions: [
+      'Situation A :',
+      '• Qu\'est-ce que Barnabé peut voir exactement ?',
+      '• Peut-il voir d\'autres fichiers du OneDrive d\'Anatole ?',
+      '• Quel est le périmètre précis de l\'accès ?',
+      '',
+      'Situation B :',
+      '• À quoi Anatole a-t-il accès exactement ?',
+      '• Que se passera-t-il si Barnabé ajoute un nouveau fichier dans ce dossier demain ?',
+      '• Quelle est la différence de risque entre A et B ?',
+      '',
+      'Situation C :',
+      '• Où doivent vivre ces documents pour être durables ?',
+      '• Qui doit en être propriétaire ?',
+      '• Que se passe-t-il si on ne fait rien ?'
+    ],
+    trainerScript: '🧨 Messages clés de l\'exercice :\n\nSituation A :\n"Partager un fichier limite précisément le périmètre d\'accès."\n\nSituation B :\n"Partager un dossier donne accès à tout ce qu\'il contient aujourd\'hui et à tout ce qu\'il contiendra demain."\n\nSituation C (le plus important) :\n"Une donnée importante ne doit jamais vivre dans le OneDrive personnel de quelqu\'un."\n\n💡 Points clés à aborder :\n\nSituation A - Partage de fichiers :\n• Le périmètre d\'accès est limité au fichier uniquement\n• Le propriétaire garde le contrôle total\n• Les autres fichiers du OneDrive restent privés\n• Avantage : sécurité et contrôle précis\n• Inconvénient : gestion plus lourde si beaucoup de fichiers\n\nSituation B - Partage de dossier :\n• Le périmètre d\'accès s\'étend à tout le dossier\n• Les nouveaux fichiers ajoutés sont automatiquement partagés\n• Risque : exposition involontaire de fichiers futurs\n• Avantage : simplicité pour partager plusieurs fichiers\n• Inconvénient : moins de contrôle granulaire\n\nSituation C - Survie des données :\n• Le problème fondamental : dépendance à une personne\n• Quand le compte est désactivé, tout disparaît\n• Solution : déplacer vers OneDrive d\'une autre personne ou SharePoint\n• Principe : les données importantes doivent être indépendantes des individus\n• Alternative : utiliser SharePoint/Teams pour les données d\'équipe\n\n🎯 Objectif pédagogique global :\n\nFaire comprendre que :\n1. Le partage de fichier vs dossier a des implications différentes\n2. La co-édition nécessite un cadre et des règles\n3. Le point le plus critique : une donnée ne doit jamais dépendre d\'une personne\n4. OneDrive personnel n\'est pas adapté pour les données d\'équipe pérennes\n\n💣 Phrase finale à graver :\n\n"Une donnée importante ne doit jamais vivre dans le OneDrive personnel de quelqu\'un."\n\nCette phrase doit être répétée et comprise comme un principe fondamental de gestion des données.'
   },
   {
     id: 'onenote-structure-01',

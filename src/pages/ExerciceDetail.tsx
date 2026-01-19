@@ -184,6 +184,48 @@ export default function ExerciceDetail({ isTrainerMode }: ExerciceDetailProps) {
         </div>
       )}
 
+      {exercice.files && exercice.files.length > 0 && (
+        <div className="bg-white rounded-lg shadow-sm p-8 mb-6">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+            📎 Fichiers à télécharger
+          </h2>
+          <div className="space-y-2">
+            {exercice.files.map((file, index) => {
+              // Ne pas afficher les fichiers réservés au formateur si on n'est pas en mode formateur
+              if (file.trainerOnly && !isTrainerMode) {
+                return null
+              }
+              
+              return (
+                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded border border-gray-200">
+                  <div className="flex items-center">
+                    <span className="text-gray-700 mr-3">{file.name}</span>
+                    {file.trainerOnly && (
+                      <span className="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded">
+                        Formateur uniquement
+                      </span>
+                    )}
+                  </div>
+                  <button
+                    onClick={() => {
+                      const link = document.createElement('a')
+                      link.href = file.path
+                      link.download = file.name
+                      document.body.appendChild(link)
+                      link.click()
+                      document.body.removeChild(link)
+                    }}
+                    className="px-4 py-2 bg-accent text-white rounded-md hover:bg-accent-dark transition-colors text-sm font-medium"
+                  >
+                    Télécharger
+                  </button>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      )}
+
       {isTrainerMode && exercice.trainerScript && (
         <div className="bg-yellow-50 border-2 border-yellow-300 rounded-lg shadow-sm p-8 mb-6">
           <h2 className="text-2xl font-semibold text-yellow-900 mb-4">

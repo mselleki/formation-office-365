@@ -21,10 +21,20 @@ export interface AppState {
 }
 
 function App() {
+  // Vérifier l'authentification formateur
+  const isTrainerAuthenticated = () => {
+    return localStorage.getItem('formation365-trainer-auth') === 'true'
+  }
+
   const [appState, setAppState] = useState<AppState>(() => {
     const saved = localStorage.getItem('formation365-state')
     if (saved) {
-      return JSON.parse(saved)
+      const parsed = JSON.parse(saved)
+      // Vérifier que l'utilisateur est toujours authentifié
+      if (parsed.isTrainerMode && !isTrainerAuthenticated()) {
+        parsed.isTrainerMode = false
+      }
+      return parsed
     }
     return {
       isTrainerMode: false,
@@ -37,9 +47,22 @@ function App() {
   }, [appState])
 
   const toggleTrainerMode = () => {
+    // Si on essaie d'activer le mode formateur, vérifier l'authentification
+    if (!appState.isTrainerMode && !isTrainerAuthenticated()) {
+      // L'authentification sera gérée par le Header avec la modale
+      return
+    }
+    
     setAppState(prev => ({
       ...prev,
       isTrainerMode: !prev.isTrainerMode
+    }))
+  }
+
+  const handleTrainerAuthSuccess = () => {
+    setAppState(prev => ({
+      ...prev,
+      isTrainerMode: true
     }))
   }
 
@@ -83,6 +106,7 @@ function App() {
         <Header 
           isTrainerMode={appState.isTrainerMode}
           onToggleTrainerMode={toggleTrainerMode}
+          onTrainerAuthSuccess={handleTrainerAuthSuccess}
         />
         <main className="container mx-auto px-4 py-8">
           <Routes>

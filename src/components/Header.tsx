@@ -1,11 +1,35 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import PasswordModal from './PasswordModal'
 
 interface HeaderProps {
   isTrainerMode: boolean
   onToggleTrainerMode: () => void
+  onTrainerAuthSuccess: () => void
 }
 
-export default function Header({ isTrainerMode, onToggleTrainerMode }: HeaderProps) {
+export default function Header({ isTrainerMode, onToggleTrainerMode, onTrainerAuthSuccess }: HeaderProps) {
+  const [showPasswordModal, setShowPasswordModal] = useState(false)
+
+  const isTrainerAuthenticated = () => {
+    return localStorage.getItem('formation365-trainer-auth') === 'true'
+  }
+
+  const handleTrainerButtonClick = () => {
+    if (isTrainerMode) {
+      // Désactiver le mode formateur (pas besoin de mot de passe)
+      onToggleTrainerMode()
+    } else {
+      // Activer le mode formateur
+      if (isTrainerAuthenticated()) {
+        // Déjà authentifié, activer directement
+        onToggleTrainerMode()
+      } else {
+        // Pas encore authentifié, afficher la modale
+        setShowPasswordModal(true)
+      }
+    }
+  }
   return (
     <header className="bg-white border-b border-gray-200">
       <div className="container mx-auto px-4 py-4">
@@ -36,7 +60,7 @@ export default function Header({ isTrainerMode, onToggleTrainerMode }: HeaderPro
               Paramètres
             </Link>
             <button
-              onClick={onToggleTrainerMode}
+              onClick={handleTrainerButtonClick}
               className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                 isTrainerMode
                   ? 'bg-accent text-white'
@@ -48,6 +72,11 @@ export default function Header({ isTrainerMode, onToggleTrainerMode }: HeaderPro
           </nav>
         </div>
       </div>
+      <PasswordModal
+        isOpen={showPasswordModal}
+        onClose={() => setShowPasswordModal(false)}
+        onSuccess={onTrainerAuthSuccess}
+      />
     </header>
   )
 }

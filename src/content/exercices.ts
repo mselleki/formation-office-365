@@ -1,4 +1,4 @@
-export type ExerciceCategory = 'Word' | 'Excel' | 'Outlook' | 'OneDrive' | 'OneNote';
+export type ExerciceCategory = 'Word' | 'Excel' | 'Outlook' | 'OneDrive' | 'OneNote' | 'PowerQuery';
 
 export type ExerciceStatus = 'not_started' | 'in_progress' | 'completed';
 
@@ -1151,10 +1151,306 @@ export const exercices: Exercice[] = [
     ],
     reflectionQuestions: [],
     trainerScript: '💣 Opinion clivante :\n\n"Le vrai pouvoir des macros commence quand tu automatises des ensembles, pas des cellules."\n\n🧠 Ce que tu apprends :\n\n• Boucles sur objets\n• Automatisation à l\'échelle du classeur\n• Comptage\n• Logique de traitement batch\n\n📋 Correction détaillée :\n\n```vba\nSub FormatToutesLesFeuilles()\n    Dim ws As Worksheet\n    Dim tbl As Range\n    Dim lastRow As Long\n    Dim lastCol As Long\n    Dim compteur As Integer\n    \n    compteur = 0\n    \n    \' Parcourt toutes les feuilles\n    For Each ws In Worksheets\n        \' Vérifie si A1 est vide\n        If Not IsEmpty(ws.Range("A1")) Then\n            \' Détection dynamique sur cette feuille\n            lastRow = ws.Cells(ws.Rows.Count, 1).End(xlUp).Row\n            lastCol = ws.Cells(1, ws.Columns.Count).End(xlToLeft).Column\n            Set tbl = ws.Range(ws.Cells(1, 1), ws.Cells(lastRow, lastCol))\n            \n            \' Formatage\n            tbl.Rows(1).Font.Color = RGB(64, 64, 64)  \' Gris foncé\n            tbl.Rows(1).Font.Bold = True\n            tbl.Borders.LineStyle = xlContinuous\n            tbl.Borders.Weight = xlThin\n            tbl.Columns.AutoFit\n            \n            \' Incrémente le compteur\n            compteur = compteur + 1\n        End If\n    Next ws\n    \n    \' Message final\n    MsgBox compteur & " feuilles traitées avec succès", vbInformation, "Résultat"\nEnd Sub\n```\n\n💡 Explication détaillée :\n\n1. `For Each ws In Worksheets`\n   → Parcourt toutes les feuilles du classeur\n   → ws = variable qui représente chaque feuille\n   → Worksheets = collection de toutes les feuilles\n\n2. `If Not IsEmpty(ws.Range("A1")) Then`\n   → Vérifie si A1 de cette feuille est vide\n   → Not = inverse la condition (si NON vide)\n   → ws.Range() = range sur la feuille spécifique\n\n3. `ws.Cells(ws.Rows.Count, 1)`\n   → Accède aux cellules de la feuille ws\n   → Important : toujours préfixer avec ws. pour cibler la bonne feuille\n\n4. `compteur = compteur + 1`\n   → Incrémente le compteur à chaque feuille traitée\n   → Permet de compter combien de feuilles ont été formatées\n\n5. `Next ws`\n   → Passe à la feuille suivante dans la boucle\n\n6. `MsgBox compteur & " feuilles traitées..."`\n   → Affiche le nombre de feuilles traitées\n   → & = concaténation de texte\n\n🎯 Points pédagogiques :\n\n• Expliquer la boucle For Each sur une collection\n• Insister sur l\'importance de préfixer avec ws.\n• Montrer comment compter dans une boucle\n• Expliquer pourquoi on ignore les feuilles vides\n• Comparer avec une macro qui ne traite qu\'une feuille\n• Montrer la puissance de l\'automatisation batch\n\n💡 Variante avancée (bonus) :\n\nPour traiter seulement certaines feuilles :\n\n```vba\nFor Each ws In Worksheets\n    If ws.Name Like "Janvier*" Or ws.Name Like "Février*" Then\n        \' Traiter seulement les feuilles qui commencent par Janvier ou Février\n    End If\nNext ws\n```'
+  },
+  {
+    id: 'powerquery-nettoyage-01',
+    category: 'PowerQuery',
+    title: 'Nettoyage de base et typage',
+    duration: '30 minutes',
+    objective: '🎯 Compétence travaillée\n\n• Importer un fichier\n• Comprendre les types de données\n• Supprimer lignes vides et erreurs simples\n\n🧠 Ce que l\'apprenant doit comprendre\n\n• Rôle fondamental du typage\n• Différence entre :\n  - Remplacer les valeurs\n  - Remplacer les erreurs\n• Principe : corriger à la source, pas masquer après coup\n\n💣 Opinion clivante pédagogique :\n\nTant que les types ne sont pas propres, toute analyse est fausse.',
+    context: 'Tu reçois un fichier avec les colonnes :\n• Nom\n• Prénom\n• Salaire (texte)\n• Date_embauche (formats mixtes)\n• Service\n\nProblèmes identifiés :\n• Salaire est en texte\n• Certaines dates sont invalides\n• Il y a au moins une ligne vide',
+    generalInstructions: [
+      'Travaillez dans Power Query (Excel → Données → Obtenir des données)',
+      'Ne modifiez pas le fichier source directement',
+      'Chaque étape doit être nommée clairement',
+      'Vérifiez les types de données après chaque transformation'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Importer le fichier',
+        duration: '5 min',
+        instructions: [
+          'Ouvrez Excel',
+          'Allez dans Données → Obtenir des données → Depuis un fichier → Depuis un texte/CSV',
+          'Sélectionnez le fichier PowerQuery_Ex1_DonneesBrutes.csv',
+          'Dans l\'aperçu, vérifiez que les colonnes sont détectées',
+          'Cliquez sur Charger'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Supprimer les lignes vides',
+        duration: '5 min',
+        instructions: [
+          'Dans l\'éditeur Power Query, sélectionnez toutes les colonnes',
+          'Allez dans Accueil → Réduire les lignes → Supprimer les lignes vides',
+          'Vérifiez que les lignes totalement vides ont disparu'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Convertir Salaire en nombre',
+        duration: '5 min',
+        instructions: [
+          'Sélectionnez la colonne Salaire',
+          'Cliquez sur le type de données (icône "ABC" ou "123")',
+          'Choisissez Nombre entier ou Nombre décimal',
+          'Si des erreurs apparaissent, utilisez Remplacer les erreurs → null',
+          'Vérifiez que l\'icône de type est maintenant "123"'
+        ]
+      },
+      {
+        number: 4,
+        title: 'Convertir Date_embauche en date',
+        duration: '10 min',
+        instructions: [
+          'Sélectionnez la colonne Date_embauche',
+          'Changez le type en Date',
+          'Power Query va détecter automatiquement les formats valides',
+          'Pour les dates invalides, utilisez Remplacer les erreurs → null',
+          'Vérifiez que l\'icône de type est maintenant un calendrier',
+          'Les dates valides doivent être au format cohérent'
+        ]
+      },
+      {
+        number: 5,
+        title: 'Vérification finale',
+        duration: '5 min',
+        instructions: [
+          'Parcourez toutes les colonnes',
+          'Vérifiez qu\'il n\'y a plus aucune cellule "Erreur"',
+          'Vérifiez les icônes de type :',
+          '  • Salaire → 123',
+          '  • Date_embauche → calendrier',
+          'Chargez le résultat dans Excel'
+        ]
+      }
+    ],
+    deliverables: [
+      'Un tableau sans lignes vides',
+      'Colonne Salaire en type Nombre',
+      'Colonne Date_embauche en type Date',
+      'Toutes les erreurs remplacées par null',
+      'Aucune cellule "Erreur" visible'
+    ],
+    reflectionQuestions: [
+      'Pourquoi est-il important de corriger les types avant de faire des calculs ?',
+      'Quelle est la différence entre "Remplacer les valeurs" et "Remplacer les erreurs" ?',
+      'Que se passe-t-il si vous gardez Salaire en texte et essayez de faire une moyenne ?'
+    ],
+    files: [
+      {
+        name: 'PowerQuery_Ex1_DonneesBrutes.csv',
+        path: '/templates/PowerQuery_Ex1_DonneesBrutes.csv',
+        type: 'download'
+      }
+    ],
+    trainerScript: '💣 Message pédagogique clé :\n\n"Tant que les types ne sont pas propres, toute analyse est fausse."\n\n🧠 Ce que l\'apprenant apprend :\n\n• Rôle fondamental du typage\n• Différence entre remplacer les valeurs et remplacer les erreurs\n• Principe : corriger à la source, pas masquer après coup\n\n📋 Correction détaillée étape par étape :\n\n**Étape 1 – Import**\n\n• Données → Obtenir des données → Depuis un fichier → Depuis un texte/CSV\n• Sélectionner PowerQuery_Ex1_DonneesBrutes.csv\n• Dans l\'aperçu, vérifier le délimiteur (virgule)\n• Encodage : UTF-8\n• Cliquer sur Charger\n\n**Étape 2 – Supprimer lignes vides**\n\n• Sélectionner toutes les colonnes (Ctrl+A ou clic sur en-tête)\n• Accueil → Réduire les lignes → Supprimer les lignes vides\n• ⚠️ Important : cette action supprime uniquement les lignes où TOUTES les colonnes sont vides\n• Vérifier que la ligne 7 (vide) a disparu\n\n**Étape 3 – Convertir Salaire en nombre**\n\n• Cliquer sur l\'icône "ABC" en haut de la colonne Salaire\n• Choisir "Nombre entier" ou "Nombre décimal"\n• Power Query va convertir :\n  - "3200" → 3200 ✓\n  - "abc" → Erreur ✗\n• Pour gérer l\'erreur :\n  - Clic droit sur la colonne → Remplacer les erreurs\n  - Valeur de remplacement : null\n• Résultat : toutes les valeurs textes invalides deviennent null\n• Vérifier l\'icône de type : doit être "123"\n\n**Étape 4 – Convertir Date_embauche en date**\n\n• Cliquer sur l\'icône de type de la colonne Date_embauche\n• Choisir "Date"\n• Power Query va détecter automatiquement :\n  - 12/03/2020 → 12/03/2020 ✓\n  - 2020-09-10 → 10/09/2020 ✓\n  - invalid-date → Erreur ✗\n  - (vide) → null\n• Pour les erreurs : Remplacer les erreurs → null\n• Vérifier l\'icône de type : doit être un calendrier 📅\n\n**Étape 5 – Vérification finale**\n\n• Parcourir toutes les colonnes\n• Vérifier qu\'il n\'y a plus aucune cellule "Erreur"\n• Vérifier les types :\n  - Nom, Prénom, Service → Texte (ABC)\n  - Salaire → Nombre (123)\n  - Date_embauche → Date (calendrier)\n• Charger dans Excel\n\n🎯 Points pédagogiques à aborder :\n\n1. **Pourquoi le typage est fondamental**\n   → Une moyenne sur du texte = erreur\n   → Un tri de dates en texte = faux ordre\n   → Un filtre sur des nombres en texte = ne fonctionne pas\n\n2. **Remplacer les valeurs vs Remplacer les erreurs**\n   → Remplacer les valeurs : remplace des valeurs spécifiques (ex: "N/A" → null)\n   → Remplacer les erreurs : remplace TOUTES les erreurs (ex: conversion impossible)\n   → ⚠️ Ne pas confondre : une erreur n\'est pas une valeur\n\n3. **Corriger à la source**\n   → Mieux vaut nettoyer dans Power Query que masquer dans Excel\n   → Les transformations sont reproductibles\n   → Si le fichier source change, le nettoyage se refait automatiquement\n\n💡 Erreurs fréquentes des apprenants :\n\n• Oublier de supprimer les lignes vides avant la conversion\n• Confondre "Remplacer les valeurs" et "Remplacer les erreurs"\n• Ne pas vérifier les types après conversion\n• Essayer de corriger manuellement dans Excel au lieu de Power Query\n\n🔍 Questions à poser pendant l\'exercice :\n\n• "Pourquoi Salaire est-il en texte dans le fichier source ?" (souvent export depuis un système)\n• "Que se passerait-il si vous gardiez Salaire en texte et faisiez une moyenne ?" (erreur #VALEUR!)\n• "Pourquoi certaines dates sont-elles invalides ?" (formats mixtes, saisie manuelle)\n• "Quelle est la différence entre une cellule vide et une cellule avec null ?" (null = valeur manquante connue, vide = peut être accidentel)\n\n💣 Phrase d\'impact à dire :\n\n"Un fichier avec des types propres, c\'est comme une maison avec des fondations solides. Sans ça, tout s\'effondre au premier calcul."'
+  },
+  {
+    id: 'powerquery-transformation-02',
+    category: 'PowerQuery',
+    title: 'Transformation logique + colonne métier',
+    duration: '35 minutes',
+    objective: '🎯 Compétence travaillée\n\n• Ajouter une colonne calculée\n• Utiliser une logique conditionnelle\n• Lire une étape M simple\n\n🧠 Ce que l\'apprenant apprend\n\n• Logique conditionnelle dans Power Query\n• Notion de règle métier encodée\n• Lecture du M généré\n\n💣 Opinion clivante :\n\nPower Query est un moteur de règles, pas un simple outil de nettoyage.',
+    context: 'À partir d\'un tableau propre contenant :\n• Nom\n• Salaire (nombre)\n• Service\n\nTu dois créer une colonne Catégorie_salaire selon la règle métier :\n\n• Salaire < 2500 → "Bas"\n• 2500 ≤ Salaire < 3500 → "Moyen"\n• Salaire ≥ 3500 → "Élevé"',
+    generalInstructions: [
+      'Utilisez le fichier PowerQuery_Ex2_DonneesPropres.csv',
+      'Travaillez dans Power Query',
+      'Nommez proprement chaque étape',
+      'Vérifiez la logique conditionnelle avant de charger'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Importer le fichier propre',
+        duration: '5 min',
+        instructions: [
+          'Ouvrez Excel',
+          'Données → Obtenir des données → Depuis un fichier → Depuis un texte/CSV',
+          'Sélectionnez PowerQuery_Ex2_DonneesPropres.csv',
+          'Vérifiez que les types sont corrects (Salaire en nombre)',
+          'Chargez dans l\'éditeur Power Query'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Ajouter une colonne personnalisée',
+        duration: '10 min',
+        instructions: [
+          'Allez dans Ajouter une colonne → Colonne personnalisée',
+          'Nom de la colonne : Catégorie_salaire',
+          'Formule :',
+          '= if [Salaire] < 2500 then "Bas"',
+          '  else if [Salaire] < 3500 then "Moyen"',
+          '  else "Élevé"',
+          '⚠️ Attention à la syntaxe : if ... then ... else',
+          'Cliquez sur OK'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Vérifier la logique',
+        duration: '10 min',
+        instructions: [
+          'Parcourez les résultats',
+          'Vérifiez que chaque salaire a la bonne catégorie :',
+          '  • Salaire < 2500 → "Bas"',
+          '  • 2500 ≤ Salaire < 3500 → "Moyen"',
+          '  • Salaire ≥ 3500 → "Élevé"',
+          'Si une catégorie est incorrecte, modifiez la formule'
+        ]
+      },
+      {
+        number: 4,
+        title: 'Nommer l\'étape',
+        duration: '5 min',
+        instructions: [
+          'Dans le volet Appliquer les étapes, trouvez l\'étape "Colonne personnalisée ajoutée"',
+          'Renommez-la : "Ajout catégorie salaire"',
+          'Un nom clair facilite la maintenance'
+        ]
+      },
+      {
+        number: 5,
+        title: 'Charger le résultat',
+        duration: '5 min',
+        instructions: [
+          'Vérifiez qu\'il n\'y a pas d\'erreurs',
+          'Cliquez sur Fermer et charger',
+          'Le tableau final doit contenir :',
+          '  • Les colonnes originales',
+          '  • La nouvelle colonne Catégorie_salaire',
+          'Toutes les valeurs doivent être correctes'
+        ]
+      }
+    ],
+    deliverables: [
+      'Une colonne Catégorie_salaire correctement remplie',
+      'Formule conditionnelle sans erreur',
+      'Étape clairement nommée',
+      'Tableau final chargé dans Excel'
+    ],
+    reflectionQuestions: [
+      'Pourquoi utiliser une formule conditionnelle plutôt que de créer la colonne manuellement ?',
+      'Que se passe-t-il si vous modifiez la règle métier ? (ex: seuil à 3000 au lieu de 3500)',
+      'Comment pourriez-vous ajouter une quatrième catégorie (ex: "Très élevé" pour Salaire ≥ 5000) ?'
+    ],
+    files: [
+      {
+        name: 'PowerQuery_Ex2_DonneesPropres.csv',
+        path: '/templates/PowerQuery_Ex2_DonneesPropres.csv',
+        type: 'download'
+      }
+    ],
+    trainerScript: '💣 Message pédagogique clé :\n\n"Power Query est un moteur de règles, pas un simple outil de nettoyage."\n\n🧠 Ce que l\'apprenant apprend :\n\n• Logique conditionnelle dans Power Query\n• Notion de règle métier encodée\n• Lecture du M généré\n\n📋 Correction détaillée étape par étape :\n\n**Étape 1 – Import**\n\n• Données → Obtenir des données → Depuis un fichier → Depuis un texte/CSV\n• Sélectionner PowerQuery_Ex2_DonneesPropres.csv\n• Vérifier les types : Salaire doit être en nombre\n• Charger dans l\'éditeur Power Query\n\n**Étape 2 – Ajouter colonne personnalisée**\n\n• Ajouter une colonne → Colonne personnalisée\n• Nom : Catégorie_salaire\n• Formule M :\n\n```m\n= if [Salaire] < 2500 then "Bas"\n  else if [Salaire] < 3500 then "Moyen"\n  else "Élevé"\n```\n\n⚠️ **Syntaxe importante** :\n• `if` en minuscules\n• `then` obligatoire\n• `else` pour les cas suivants\n• Crochets `[]` pour référencer une colonne\n• Guillemets `""` pour les textes\n• Pas de point-virgule à la fin\n\n**Explication de la logique** :\n\n1. Si Salaire < 2500 → "Bas"\n2. Sinon, si Salaire < 3500 → "Moyen" (donc entre 2500 et 3499)\n3. Sinon → "Élevé" (donc ≥ 3500)\n\n**Vérification des résultats** :\n\n• 2800 → "Moyen" ✓ (2800 ≥ 2500 et < 3500)\n• 3200 → "Moyen" ✓\n• 3800 → "Élevé" ✓ (≥ 3500)\n• 4100 → "Élevé" ✓\n• 4500 → "Élevé" ✓\n\n**Étape 3 – Nommer l\'étape**\n\n• Dans le volet Appliquer les étapes (à droite)\n• Trouver "Colonne personnalisée ajoutée"\n• Clic droit → Renommer\n• Nouveau nom : "Ajout catégorie salaire"\n• ⚠️ Un nom clair facilite la maintenance future\n\n**Étape 4 – Vérification finale**\n\n• Parcourir toutes les lignes\n• Vérifier que chaque salaire a la bonne catégorie\n• Vérifier qu\'il n\'y a pas d\'erreurs\n• Charger dans Excel\n\n🎯 Points pédagogiques à aborder :\n\n1. **Pourquoi une formule plutôt que manuel ?**\n   → Reproductible si le fichier source change\n   → Règle métier encodée une seule fois\n   → Pas d\'erreur de saisie\n   → Facile à modifier si la règle change\n\n2. **Lecture du M généré**\n   → Power Query génère automatiquement du code M\n   → On peut le voir dans la barre de formule\n   → Comprendre le M permet de débugger\n   → Exemple : `Table.AddColumn(Source, "Catégorie_salaire", each if [Salaire] < 2500 then "Bas" else ...)`\n\n3. **Logique conditionnelle imbriquée**\n   → `if ... then ... else if ... then ... else`\n   → L\'ordre des conditions est important\n   → La première condition vraie gagne\n   → ⚠️ Ne pas inverser l\'ordre (ex: tester ≥ 3500 avant < 2500)\n\n💡 Erreurs fréquentes des apprenants :\n\n• Oublier `then` après `if`\n• Mettre des points-virgules à la fin\n• Utiliser `=` au lieu de `==` (M utilise `=` pour comparaison)\n• Oublier les guillemets autour des textes\n• Inverser l\'ordre des conditions\n• Ne pas nommer l\'étape\n\n🔍 Questions à poser pendant l\'exercice :\n\n• "Pourquoi utiliser une formule plutôt que de créer la colonne manuellement dans Excel ?" (reproductibilité)\n• "Que se passerait-il si vous modifiez le fichier source et rechargez ?" (la colonne se recalcule automatiquement)\n• "Comment ajouteriez-vous une quatrième catégorie ?" (ajouter un `else if`)\n• "Pourquoi l\'ordre des conditions est-il important ?" (la première vraie gagne)\n\n💣 Variante avancée (bonus) :\n\nPour ajouter une catégorie "Très élevé" (≥ 5000) :\n\n```m\n= if [Salaire] < 2500 then "Bas"\n  else if [Salaire] < 3500 then "Moyen"\n  else if [Salaire] < 5000 then "Élevé"\n  else "Très élevé"\n```\n\n💣 Phrase d\'impact à dire :\n\n"Power Query transforme une règle métier en code. Une fois codée, la règle devient automatique, reproductible et auditable."'
+  },
+  {
+    id: 'powerquery-fusion-03',
+    category: 'PowerQuery',
+    title: 'Fusion de deux tables',
+    duration: '40 minutes',
+    objective: '🎯 Compétence travaillée\n\n• Comprendre une jointure\n• Fusionner deux sources\n• Gérer les clés\n\n🧠 Ce que l\'apprenant apprend\n\n• Principe des clés\n• Différence entre :\n  - jointure gauche (Left outer)\n  - droite (Right outer)\n  - interne (Inner)\n• Risque des types incohérents\n\n💣 Opinion clivante :\n\nUn mauvais type sur une clé détruit une jointure sans prévenir.',
+    context: 'Tu as deux fichiers :\n\n**Fichier 1 – Employés**\n• Matricule\n• Nom\n• Service\n\n**Fichier 2 – Salaires**\n• Matricule\n• Salaire\n\n**Objectif** :\nProduire une table finale avec : Matricule | Nom | Service | Salaire',
+    generalInstructions: [
+      'Importez les deux fichiers CSV',
+      'Vérifiez que Matricule est du même type dans les deux tables',
+      'Utilisez Fusionner des requêtes',
+      'Choisissez le bon type de jointure',
+      'Développez la colonne fusionnée'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Importer les deux fichiers',
+        duration: '10 min',
+        instructions: [
+          'Importez PowerQuery_Ex3_Employes.csv',
+          'Importez PowerQuery_Ex3_Salaires.csv',
+          'Vérifiez que chaque fichier est chargé comme une requête séparée',
+          'Vérifiez les types de données de chaque colonne'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Vérifier les types des clés',
+        duration: '5 min',
+        instructions: [
+          'Dans la requête Employés, vérifiez que Matricule est en texte',
+          'Dans la requête Salaires, vérifiez que Matricule est en texte',
+          '⚠️ Si les types sont différents, convertissez-les pour qu\'ils correspondent',
+          'Les types doivent être identiques pour une jointure réussie'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Fusionner les requêtes',
+        duration: '10 min',
+        instructions: [
+          'Sélectionnez la requête Employés',
+          'Allez dans Accueil → Fusionner des requêtes',
+          'Sélectionnez la requête Salaires dans la liste déroulante',
+          'Sélectionnez la colonne Matricule dans les deux tables',
+          'Type de jointure : Gauche (Left outer)',
+          'Cliquez sur OK'
+        ]
+      },
+      {
+        number: 4,
+        title: 'Développer la colonne fusionnée',
+        duration: '5 min',
+        instructions: [
+          'Une nouvelle colonne "Salaires" apparaît',
+          'Cliquez sur l\'icône de développement (flèche double) en haut de la colonne',
+          'Décochez "Matricule" (déjà présent)',
+          'Cochez "Salaire"',
+          'Cliquez sur OK'
+        ]
+      },
+      {
+        number: 5,
+        title: 'Vérification finale',
+        duration: '10 min',
+        instructions: [
+          'Vérifiez que chaque employé a son salaire',
+          'Vérifiez qu\'il n\'y a pas de doublons inattendus',
+          'Vérifiez qu\'aucun salaire n\'est décalé (mauvais employé)',
+          'Le tableau final doit contenir : Matricule | Nom | Service | Salaire',
+          'Chargez le résultat dans Excel'
+        ]
+      }
+    ],
+    deliverables: [
+      'Deux requêtes importées correctement',
+      'Types de clés cohérents',
+      'Jointure gauche réussie',
+      'Colonne fusionnée développée',
+      'Tableau final avec toutes les colonnes attendues'
+    ],
+    reflectionQuestions: [
+      'Pourquoi est-il crucial que Matricule soit du même type dans les deux tables ?',
+      'Quelle est la différence entre une jointure gauche, droite et interne ?',
+      'Que se passerait-il si un employé n\'avait pas de salaire dans le fichier Salaires ?',
+      'Que se passerait-il si un salaire n\'avait pas d\'employé correspondant ?'
+    ],
+    files: [
+      {
+        name: 'PowerQuery_Ex3_Employes.csv',
+        path: '/templates/PowerQuery_Ex3_Employes.csv',
+        type: 'download'
+      },
+      {
+        name: 'PowerQuery_Ex3_Salaires.csv',
+        path: '/templates/PowerQuery_Ex3_Salaires.csv',
+        type: 'download'
+      }
+    ],
+    trainerScript: '💣 Message pédagogique clé :\n\n"Un mauvais type sur une clé détruit une jointure sans prévenir."\n\n🧠 Ce que l\'apprenant apprend :\n\n• Principe des clés\n• Différence entre jointure gauche, droite et interne\n• Risque des types incohérents\n\n📋 Correction détaillée étape par étape :\n\n**Étape 1 – Importer les deux fichiers**\n\n• Données → Obtenir des données → Depuis un fichier → Depuis un texte/CSV\n• Importer PowerQuery_Ex3_Employes.csv\n  → Renommer la requête : "Employes"\n  → Colonnes : Matricule, Nom, Service\n• Importer PowerQuery_Ex3_Salaires.csv\n  → Renommer la requête : "Salaires"\n  → Colonnes : Matricule, Salaire\n• ⚠️ Important : chaque fichier devient une requête séparée\n• Vérifier que les deux requêtes apparaissent dans le volet gauche\n\n**Étape 2 – Vérifier les types des clés**\n\n• Dans la requête Employes :\n  → Vérifier que Matricule est en texte (icône ABC)\n  → Si ce n\'est pas le cas : changer le type → Texte\n• Dans la requête Salaires :\n  → Vérifier que Matricule est en texte (icône ABC)\n  → Si ce n\'est pas le cas : changer le type → Texte\n• ⚠️ **CRUCIAL** : Les deux colonnes Matricule doivent avoir le même type\n• Si un Matricule est "E001" (texte) et l\'autre 1 (nombre), la jointure échouera\n\n**Étape 3 – Fusionner les requêtes**\n\n• Sélectionner la requête "Employes" (table de gauche)\n• Accueil → Fusionner des requêtes\n• Dans la fenêtre de fusion :\n  → Table supérieure : Employes\n  → Table inférieure : Salaires\n  → Sélectionner la colonne Matricule dans les deux tables\n  → Type de jointure : **Gauche (Left outer)**\n  → ⚠️ Gauche = garde tous les employés, même sans salaire\n• Cliquer sur OK\n• Résultat : une nouvelle colonne "Salaires" apparaît (de type Table)\n\n**Explication des types de jointure** :\n\n• **Gauche (Left outer)** :\n  → Garde toutes les lignes de la table de gauche (Employes)\n  → Ajoute les colonnes de la table de droite (Salaires) si correspondance\n  → Si pas de correspondance → valeurs null\n  → ✅ Utilisé ici : on veut tous les employés\n\n• **Droite (Right outer)** :\n  → Garde toutes les lignes de la table de droite (Salaires)\n  → Ajoute les colonnes de la table de gauche (Employes) si correspondance\n  → Si pas de correspondance → valeurs null\n\n• **Interne (Inner)** :\n  → Garde uniquement les lignes avec correspondance dans les deux tables\n  → Si un employé n\'a pas de salaire → exclu\n  → Si un salaire n\'a pas d\'employé → exclu\n\n**Étape 4 – Développer la colonne fusionnée**\n\n• La colonne "Salaires" contient des tables (icône de table)\n• Cliquer sur l\'icône de développement (flèche double) en haut de la colonne\n• Dans la fenêtre :\n  → Décocher "Matricule" (déjà présent dans la table)\n  → Cocher "Salaire"\n  → Décocher "Utiliser le nom de colonne d\'origine comme préfixe"\n  → Cliquer sur OK\n• Résultat : la colonne "Salaires" disparaît, remplacée par "Salaire"\n\n**Étape 5 – Vérification finale**\n\n• Le tableau final doit contenir :\n  → Matricule | Nom | Service | Salaire\n• Vérifier que chaque employé a son salaire :\n  → E001 → 3200 ✓\n  → E002 → 4100 ✓\n  → E003 → 3800 ✓\n  → etc.\n• Vérifier qu\'il n\'y a pas de doublons\n• Vérifier qu\'aucun salaire n\'est décalé\n• Charger dans Excel\n\n🎯 Points pédagogiques à aborder :\n\n1. **Pourquoi les types doivent être identiques ?**\n   → Power Query compare les valeurs pour faire la jointure\n   → "E001" (texte) ≠ 1 (nombre)\n   → Même si visuellement similaires, types différents = pas de correspondance\n   → ⚠️ Erreur silencieuse : la jointure semble réussir mais ne trouve rien\n\n2. **Jointure gauche vs droite vs interne**\n   → Gauche : tous les employés, même sans salaire\n   → Droite : tous les salaires, même sans employé\n   → Interne : seulement les correspondances\n   → Le choix dépend du besoin métier\n\n3. **Clé primaire et clé étrangère**\n   → Matricule = clé primaire dans Employes (unique)\n   → Matricule = clé étrangère dans Salaires (référence)\n   → Une clé doit être unique dans la table principale\n   → ⚠️ Si un Matricule apparaît deux fois dans Employes → doublons dans le résultat\n\n💡 Erreurs fréquentes des apprenants :\n\n• Oublier de vérifier les types avant la fusion\n• Choisir le mauvais type de jointure\n• Oublier de développer la colonne fusionnée\n• Ne pas décocher "Matricule" lors du développement (doublon)\n• Ne pas vérifier que les salaires correspondent aux bons employés\n\n🔍 Questions à poser pendant l\'exercice :\n\n• "Pourquoi Matricule doit-il être du même type dans les deux tables ?" (comparaison)\n• "Que se passerait-il si un employé n\'avait pas de salaire ?" (null avec jointure gauche)\n• "Que se passerait-il si un salaire n\'avait pas d\'employé correspondant ?" (exclu avec jointure gauche)\n• "Pourquoi choisir une jointure gauche plutôt qu\'interne ?" (garder tous les employés)\n\n💣 Scénario de test (bonus) :\n\nPour tester la jointure gauche :\n• Ajouter un employé E008 sans salaire dans le fichier Employes\n• Recharger la requête\n• Vérifier que E008 apparaît avec Salaire = null\n\nPour tester la jointure interne :\n• Changer le type de jointure en Interne\n• Vérifier que E008 disparaît (pas de correspondance)\n\n💣 Phrase d\'impact à dire :\n\n"Une jointure, c\'est comme un mariage : il faut que les clés correspondent, sinon ça ne matche pas. Et un mauvais type, c\'est comme un nom mal orthographié : ça ressemble, mais ça ne fonctionne pas."'
   }
 ];
 
-export const categories: ExerciceCategory[] = ['Word', 'Excel', 'Outlook', 'OneDrive', 'OneNote'];
+export const categories: ExerciceCategory[] = ['Word', 'Excel', 'Outlook', 'OneDrive', 'OneNote', 'PowerQuery'];
 
 export const getExercicesByCategory = (category: ExerciceCategory): Exercice[] => {
   return exercices.filter(ex => ex.category === category);

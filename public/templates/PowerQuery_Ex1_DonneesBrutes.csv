@@ -1,0 +1,10 @@
+Nom,Prénom,Salaire,Date_embauche,Service
+Martin,Claire,"3200",12/03/2020,RH
+Bernard,Luc,"4100",01/07/2019,IT
+Dupont,Alice,"3800",15/01/2021,Finance
+Martin,Paul,"3900",2020-09-10,IT
+Leroy,Sophie,"3000",05/06/2018,RH
+Dubois,Pierre,"abc",invalid-date,IT
+,,
+Moreau,Marie,"4500",25/12/2022,Finance
+Petit,Jean,"2800",,RH

@@ -15,7 +15,8 @@ export default function ExercicesList() {
       Excel: 'bg-green-100 text-green-800',
       Outlook: 'bg-purple-100 text-purple-800',
       OneDrive: 'bg-cyan-100 text-cyan-800',
-      OneNote: 'bg-pink-100 text-pink-800'
+      OneNote: 'bg-pink-100 text-pink-800',
+      PowerQuery: 'bg-orange-100 text-orange-800'
     }
     return colors[category]
   }

@@ -1155,15 +1155,15 @@ export const exercices: Exercice[] = [
   {
     id: 'excel-tcd-01',
     category: 'Excel',
-    title: 'Tableau Croisé Dynamique (TCD) analytique',
-    duration: '40 minutes',
-    objective: '🎯 Compétences travaillées\n\n• Créer un TCD propre\n• Choisir les bons champs\n• Comprendre :\n  - lignes\n  - colonnes\n  - valeurs\n  - filtres\n• Paramétrer les agrégations',
-    context: 'Tu dois produire un TCD qui montre :\n\n• En lignes : Service\n• En valeurs :\n  - Salaire moyen\n  - Nombre d\'employés\n• Trier les services par salaire moyen décroissant\n• Ajouter un filtre sur Date_embauche pour ne garder que les employés embauchés après 2021',
+    title: 'Analyse de la saison d\'un club de football avec un TCD',
+    duration: '60 minutes',
+    objective: '🎯 Objectif pédagogique\n\nApprendre à :\n• Construire un TCD à partir d\'une base réaliste\n• Choisir les bons axes (lignes / colonnes / filtres)\n• Utiliser :\n  - Sommes\n  - Moyennes\n  - Comptages\n  - Champs calculés\n• Interpréter les résultats comme un analyste sportif, pas comme un comptable.',
+    context: 'Tu es analyste sportif pour un club de football. Tu dois analyser la saison complète à l\'aide de Tableaux Croisés Dynamiques.\n\nLe fichier contient tous les matchs de la saison avec :\n• Date, Journée\n• Domicile/Extérieur\n• Adversaire\n• Buts pour, Buts contre\n• Résultat (Victoire/Nul/Défaite)\n• Buteur principal\n• Minutes jouées',
     generalInstructions: [
-      'Importez le fichier Excel_TCD_Donnees.csv',
+      'Importez le fichier Excel_TCD_Football_Matchs.csv',
       'Transformez-le en Table Excel',
-      'Créez un TCD à partir de cette table',
-      'Configurez correctement les agrégations'
+      'Créez plusieurs TCD pour répondre aux questions d\'analyse',
+      'Interprétez les résultats comme un analyste sportif'
     ],
     steps: [
       {
@@ -1171,108 +1171,147 @@ export const exercices: Exercice[] = [
         title: 'Préparer les données',
         duration: '5 min',
         instructions: [
-          'Importez le fichier Excel_TCD_Donnees.csv',
+          'Importez le fichier Excel_TCD_Football_Matchs.csv',
           'Transformez la plage en Table Excel (Insertion → Tableau)',
           'Vérifiez que toutes les colonnes sont correctement typées :',
-          '  • Service → Texte',
-          '  • Nom → Texte',
-          '  • Salaire → Nombre',
-          '  • Date_embauche → Date'
+          '  • Date → Date',
+          '  • Journée → Texte',
+          '  • Domicile/Extérieur → Texte',
+          '  • Adversaire → Texte',
+          '  • Buts pour, Buts contre → Nombre',
+          '  • Résultat → Texte',
+          '  • Buteur principal → Texte',
+          '  • Minutes jouées → Nombre'
         ]
       },
       {
         number: 2,
-        title: 'Créer le TCD',
+        title: 'Partie 1 : TCD de base - Répartition des résultats',
         duration: '10 min',
         instructions: [
-          'Sélectionnez une cellule dans le tableau',
-          'Allez dans Insertion → Tableau croisé dynamique',
-          'Vérifiez que la plage est correctement détectée',
-          'Choisissez "Nouvelle feuille de calcul"',
-          'Cliquez sur OK'
+          'Créez un premier TCD :',
+          '• En lignes : Résultat (Victoire / Nul / Défaite)',
+          '• En valeurs : Nombre de matchs',
+          '',
+          '🎯 Question : Quelle est la répartition Victoires / Nuls / Défaites sur la saison ?',
+          '',
+          'Pour compter les matchs :',
+          '• Glissez Résultat dans Valeurs',
+          '• Clic droit → Paramètres de champ de valeur',
+          '• Changer de "Somme" à "Nombre"',
+          '• Nom personnalisé : "Nombre de matchs"'
         ]
       },
       {
         number: 3,
-        title: 'Configurer les champs',
+        title: 'Partie 2 : Domicile vs Extérieur',
         duration: '10 min',
         instructions: [
-          'Dans le volet Champs de tableau croisé dynamique :',
-          '• Glissez Service dans Lignes',
-          '• Glissez Salaire dans Valeurs',
-          '• Glissez Nom dans Valeurs',
-          '• Glissez Date_embauche dans Filtres',
+          'Créez un second TCD :',
+          '• En lignes : Domicile/Extérieur',
+          '• En colonnes : Résultat',
+          '• En valeurs : Nombre de matchs',
           '',
-          '⚠️ Par défaut, Salaire sera en Somme. Il faut changer cela !'
+          '🎯 Questions :',
+          '• L\'équipe est-elle plus performante à domicile ?',
+          '• Y a-t-il plus de défaites à l\'extérieur ?',
+          '',
+          'Pour ajouter Résultat en colonnes :',
+          '• Glissez Résultat dans Colonnes',
+          '• Glissez Résultat dans Valeurs (Nombre)'
         ]
       },
       {
         number: 4,
-        title: 'Paramétrer les agrégations',
+        title: 'Partie 3 : Analyse offensive',
         duration: '10 min',
         instructions: [
-          'Pour Salaire :',
-          '• Clic droit sur "Somme de Salaire" → Paramètres de champ de valeur',
-          '• Changer de "Somme" à "Moyenne"',
-          '• Nom personnalisé : "Salaire moyen"',
+          'Créez un troisième TCD :',
+          '• En lignes : Adversaire',
+          '• En valeurs :',
+          '  - Somme de Buts pour',
+          '  - Moyenne de Buts pour',
           '',
-          'Pour Nom :',
-          '• Clic droit sur "Somme de Nom" → Paramètres de champ de valeur',
-          '• Changer de "Somme" à "Nombre"',
-          '• Nom personnalisé : "Nombre d\'employés"',
+          'Triez par moyenne décroissante',
           '',
-          '⚠️ Attention : "Nombre" compte toutes les valeurs, "Nombre distinct" compte les valeurs uniques'
+          '🎯 Questions :',
+          '• Contre quels adversaires marque-t-on le plus ?',
+          '• Est-ce lié au niveau de l\'adversaire ou au style de jeu ?',
+          '',
+          'Pour la moyenne :',
+          '• Glissez Buts pour dans Valeurs (deux fois)',
+          '• Clic droit sur le second → Paramètres → Moyenne',
+          '• Nom personnalisé : "Moyenne de Buts pour"'
         ]
       },
       {
         number: 5,
-        title: 'Appliquer le filtre',
-        duration: '5 min',
+        title: 'Partie 4 : Joueur clé',
+        duration: '15 min',
         instructions: [
-          'Dans le TCD, cliquez sur la flèche du filtre Date_embauche',
-          'Sélectionnez Filtres → Après',
-          'Date : 01/01/2022',
-          'Cliquez sur OK',
+          'Créez un quatrième TCD :',
+          '• En lignes : Buteur principal',
+          '• En valeurs :',
+          '  - Somme de Buts pour',
+          '  - Nombre de matchs',
           '',
-          'Vérifiez que seuls les employés embauchés après 2021 apparaissent'
+          'Ajoutez un champ calculé :',
+          '• Clic droit sur le TCD → Champs, éléments et ensembles → Champ calculé',
+          '• Nom : "Buts par match"',
+          '• Formule : = "Buts pour" / "Nombre de matchs"',
+          '',
+          '🎯 Questions :',
+          '• Qui est vraiment décisif ?',
+          '• Un joueur qui marque beaucoup mais joue peu est-il plus précieux qu\'un titulaire régulier ?',
+          '',
+          '⚠️ Attention : Filtrer les lignes où Buteur principal = "—" (pas de buteur)'
         ]
       },
       {
         number: 6,
-        title: 'Trier les résultats',
-        duration: '5 min',
+        title: 'Partie 5 : Filtres et lecture stratégique',
+        duration: '10 min',
         instructions: [
-          'Clic droit sur une cellule dans la colonne "Salaire moyen"',
-          'Trier → Trier de Z à A',
-          'Les services doivent être triés par salaire moyen décroissant',
+          'Ajoutez des filtres sur votre TCD préféré :',
+          '• Domicile/Extérieur → Filtres',
+          '• Résultat → Filtres',
           '',
-          'Vérifiez que le tri fonctionne correctement'
+          'Testez différents scénarios :',
+          '• Affichez uniquement les défaites',
+          '• Analysez :',
+          '  - Où elles ont lieu (Domicile/Extérieur)',
+          '  - Contre qui (Adversaire)',
+          '  - Avec quel buteur (Buteur principal)',
+          '',
+          '🎯 Question de synthèse :',
+          'Si tu étais l\'entraîneur, sur quoi tu travaillerais en priorité ?'
         ]
       }
     ],
     deliverables: [
-      'Un TCD avec Service en lignes',
-      'Deux indicateurs en valeurs :',
-      '  • Salaire moyen',
-      '  • Nombre d\'employés',
-      'Filtre Date_embauche fonctionnel',
-      'Services triés par salaire moyen décroissant',
-      'Aucun champ mal agrégé'
+      'Cinq TCD différents répondant aux questions d\'analyse :',
+      '  • Répartition Victoires/Nuls/Défaites',
+      '  • Performance Domicile vs Extérieur',
+      '  • Analyse offensive par adversaire',
+      '  • Analyse des buteurs avec champ calculé',
+      '  • Analyse stratégique avec filtres',
+      'Interprétation des résultats comme un analyste sportif'
     ],
     reflectionQuestions: [
-      'Pourquoi la somme du salaire n\'a pas de sens ici ?',
-      'Quelle est la différence entre "Nombre" et "Nombre distinct" ?',
-      'Que se passe-t-il si Salaire est en texte au lieu de nombre ?',
-      'Pourquoi est-il important de choisir la bonne agrégation ?'
+      'Quelle est la répartition Victoires / Nuls / Défaites sur la saison ?',
+      'L\'équipe est-elle plus performante à domicile ? Pourquoi ?',
+      'Contre quels adversaires marque-t-on le plus ? Est-ce lié au niveau ou au style de jeu ?',
+      'Qui est vraiment décisif ? Le meilleur buteur est-il toujours le joueur le plus important ?',
+      'Si tu étais l\'entraîneur, sur quoi travaillerais-tu en priorité ?'
     ],
     files: [
       {
-        name: 'Excel_TCD_Donnees.csv',
-        path: '/templates/Excel_TCD_Donnees.csv',
+        name: 'Excel_TCD_Football_Matchs.csv',
+        path: '/templates/Excel_TCD_Football_Matchs.csv',
         type: 'download'
       }
     ],
-    trainerScript: '💣 Opinion clivante pédagogique :\n\n"Un TCD mal paramétré donne une illusion de rigueur avec des chiffres faux."\n\n🧠 Ce que l\'apprenant apprend :\n\n• Créer un TCD propre\n• Choisir les bons champs\n• Comprendre lignes, colonnes, valeurs, filtres\n• Paramétrer les agrégations\n\n📋 Correction détaillée étape par étape :\n\n**Étape 1 – Préparer les données**\n\n• Importer Excel_TCD_Donnees.csv\n• Transformer en Table Excel (Insertion → Tableau)\n• Vérifier les types :\n  → Service, Nom → Texte\n  → Salaire → Nombre\n  → Date_embauche → Date\n• ⚠️ Si Salaire est en texte, le TCD ne pourra pas calculer la moyenne\n\n**Étape 2 – Créer le TCD**\n\n• Sélectionner une cellule dans le tableau\n• Insertion → Tableau croisé dynamique\n• Vérifier la plage (doit inclure toutes les colonnes)\n• Nouvelle feuille de calcul\n• OK\n\n**Étape 3 – Configurer les champs**\n\n• Service → Lignes\n• Salaire → Valeurs (par défaut : Somme)\n• Nom → Valeurs (par défaut : Somme)\n• Date_embauche → Filtres\n\n⚠️ **Piège classique** : Par défaut, Excel met "Somme" pour tout. Il faut changer !\n\n**Étape 4 – Paramétrer les agrégations**\n\n**Pour Salaire :**\n\n• Clic droit sur "Somme de Salaire" → Paramètres de champ de valeur\n• Résumer par : Moyenne\n• Nom personnalisé : "Salaire moyen"\n• OK\n\n**Pour Nom :**\n\n• Clic droit sur "Somme de Nom" → Paramètres de champ de valeur\n• Résumer par : Nombre\n• Nom personnalisé : "Nombre d\'employés"\n• OK\n\n⚠️ **Différence cruciale** :\n• Nombre = compte toutes les valeurs (y compris doublons)\n• Nombre distinct = compte les valeurs uniques\n• Ici, on veut "Nombre" car chaque ligne = un employé\n\n**Étape 5 – Appliquer le filtre**\n\n• Clic sur la flèche du filtre Date_embauche\n• Filtres → Après\n• Date : 01/01/2022\n• OK\n\n**Résultat attendu** :\n\nSeuls les employés embauchés après 2021 apparaissent :\n• IT : Paul (2022-07-03)\n• RH : Marie (2023-01-12)\n• Finance : Amina (2021-11-30) → ⚠️ Attention, 2021-11-30 est après 2021, donc inclus\n• Sales : Carlos (2022-02-30) → ⚠️ Date invalide, mais Excel peut l\'accepter\n• Ops : Emma (2023-08-07)\n\n**Étape 6 – Trier les résultats**\n\n• Clic droit sur une cellule dans "Salaire moyen"\n• Trier → Trier de Z à A\n• Les services doivent être triés par salaire moyen décroissant\n\n**Résultat final attendu** :\n\n| Service | Salaire moyen | Nombre d\'employés |\n|---------|---------------|-------------------|\n| Ops     | 3100         | 1                 |\n| Finance | 4200         | 1                 |\n| RH      | 3200         | 1                 |\n| Sales   | 2800         | 1                 |\n| IT      | 2800         | 1                 |\n\n🎯 Points pédagogiques à aborder :\n\n1. **Pourquoi la somme n\'a pas de sens**\n   → La somme des salaires ne donne aucune information utile\n   → On veut la moyenne pour comparer les services\n   → La moyenne permet de comparer des groupes de tailles différentes\n\n2. **Différence entre Nombre et Nombre distinct**\n   → Nombre : compte toutes les lignes (ex: 5 employés = 5)\n   → Nombre distinct : compte les valeurs uniques (ex: 5 noms différents = 5, mais si doublon = 4)\n   → Ici, on veut "Nombre" car chaque ligne = un employé unique\n\n3. **Que se passe-t-il si Salaire est en texte ?**\n   → Le TCD ne pourra pas calculer la moyenne\n   → Il affichera "Somme" mais avec des valeurs incorrectes\n   → ⚠️ Erreur silencieuse : le TCD semble fonctionner mais les chiffres sont faux\n\n4. **L\'importance du bon agrégation**\n   → Somme : pour les totaux (ex: chiffre d\'affaires)\n   → Moyenne : pour les comparaisons (ex: salaire moyen)\n   → Nombre : pour compter les occurrences\n   → Min/Max : pour les extrêmes\n\n💡 Erreurs fréquentes des apprenants :\n\n• Oublier de changer "Somme" en "Moyenne" pour Salaire\n• Confondre "Nombre" et "Nombre distinct"\n• Ne pas vérifier les types de données avant de créer le TCD\n• Mettre Date_embauche en valeurs au lieu de filtres\n• Ne pas trier les résultats\n• Ne pas vérifier que le filtre fonctionne\n\n🔍 Questions à poser pendant l\'exercice :\n\n• "Pourquoi la somme du salaire n\'a pas de sens ici ?" (pas d\'information utile)\n• "Quelle est la différence entre Nombre et Nombre distinct ?" (toutes vs uniques)\n• "Que se passerait-il si Salaire était en texte ?" (erreur silencieuse)\n• "Pourquoi mettre Date_embauche en filtres plutôt qu\'en lignes ?" (pour filtrer, pas pour grouper)\n\n💣 Pièges volontaires dans les données :\n\n• Date invalide : 2022-02-30 (février n\'a que 28/29 jours)\n• Formats de date différents (mais Excel les gère)\n• Salaire en nombre (correct, mais si c\'était en texte, ça casserait)\n\n💣 Phrase d\'impact à dire :\n\n"Un TCD mal paramétré donne une illusion de rigueur avec des chiffres faux. La moyenne d\'un salaire en texte, c\'est comme diviser par zéro : ça ne marche pas, mais Excel ne te le dit pas toujours clairement."'
+    trainerScript: '💣 Opinions clivantes pédagogiques :\n\n"Un club qui dépend trop de son terrain est un club fragile."\n\n"Le meilleur buteur n\'est pas toujours le joueur le plus important."\n\n🧠 Ce que l\'apprenant apprend :\n\n• Construire un TCD à partir d\'une base réaliste\n• Choisir les bons axes (lignes / colonnes / filtres)\n• Utiliser Sommes, Moyennes, Comptages, Champs calculés\n• Interpréter les résultats comme un analyste sportif\n\n📋 Correction détaillée partie par partie :\n\n**Partie 1 – TCD de base : Répartition des résultats**\n\n**Configuration :**\n• Résultat → Lignes\n• Résultat → Valeurs (Nombre)\n• Nom personnalisé : "Nombre de matchs"\n\n**Résultat attendu :**\n\n| Résultat | Nombre de matchs |\n|----------|------------------|\n| Victoire | ~18-20           |\n| Nul      | ~8-10            |\n| Défaite  | ~8-10            |\n\n**Interprétation :**\n• Bilan global de la saison\n• Taux de victoire : ~50%\n• Taux de défaite : ~25%\n• ⚠️ Question clé : Est-ce suffisant pour les objectifs du club ?\n\n**Partie 2 – Domicile vs Extérieur**\n\n**Configuration :**\n• Domicile/Extérieur → Lignes\n• Résultat → Colonnes\n• Résultat → Valeurs (Nombre)\n\n**Résultat attendu (exemple) :**\n\n|            | Victoire | Nul | Défaite | Total |\n|------------|----------|-----|---------|-------|\n| Domicile   | 12       | 4   | 2       | 18    |\n| Extérieur  | 6        | 6   | 8       | 20    |\n\n**Interprétation :**\n• Performance domicile : ~67% de victoires\n• Performance extérieur : ~30% de victoires\n• ⚠️ **Opinion clivante** : "Un club qui dépend trop de son terrain est un club fragile."\n• Question : Pourquoi cette différence ? (public, confort, pression)\n\n**Partie 3 – Analyse offensive**\n\n**Configuration :**\n• Adversaire → Lignes\n• Buts pour → Valeurs (Somme)\n• Buts pour → Valeurs (Moyenne)\n• Trier par moyenne décroissante\n\n**Résultat attendu (exemple) :**\n\n| Adversaire | Somme Buts pour | Moyenne Buts pour |\n|------------|----------------|-------------------|\n| Angers     | 4              | 2.0               |\n| Clermont   | 2              | 1.0               |\n| Lyon       | 3              | 1.0               |\n\n**Interprétation :**\n• Contre qui marque-t-on le plus ?\n• Est-ce lié au niveau de l\'adversaire ? (équipes plus faibles)\n• Ou au style de jeu ? (défense ouverte vs fermée)\n• ⚠️ Question stratégique : Faut-il adapter le style selon l\'adversaire ?\n\n**Partie 4 – Joueur clé**\n\n**Configuration :**\n• Buteur principal → Lignes\n• Buts pour → Valeurs (Somme)\n• Résultat → Valeurs (Nombre) pour compter les matchs\n• Champ calculé : "Buts par match" = Buts pour / Nombre de matchs\n• Filtrer "—" (pas de buteur)\n\n**Résultat attendu (exemple) :**\n\n| Buteur | Buts totaux | Matchs | Buts/match |\n|--------|-------------|--------|------------|\n| Martin | 15          | 20     | 0.75       |\n| Dupont | 8           | 12     | 0.67       |\n| Bernard| 6           | 15     | 0.40       |\n\n**Interprétation :**\n• Martin = meilleur buteur total (15 buts)\n• Mais Dupont = meilleur ratio (0.67 buts/match)\n• ⚠️ **Opinion provocatrice** : "Le meilleur buteur n\'est pas toujours le joueur le plus important."\n• Question : Un joueur qui marque beaucoup mais joue peu est-il plus précieux qu\'un titulaire régulier ?\n• Analyse : Martin joue plus (20 matchs), donc plus d\'impact global\n• Mais Dupont est plus décisif par match joué\n\n**Partie 5 – Filtres et lecture stratégique**\n\n**Configuration :**\n• Prendre le TCD de la Partie 4\n• Ajouter Domicile/Extérieur → Filtres\n• Ajouter Résultat → Filtres\n\n**Scénario 1 : Analyser les défaites**\n\n• Filtrer Résultat = Défaite\n• Observer :\n  → Où ont-elles lieu ? (Domicile/Extérieur)\n  → Contre qui ? (Adversaire)\n  → Avec quel buteur ? (Buteur principal)\n\n**Résultat attendu (exemple) :**\n\n| Buteur | Défaites | Domicile | Extérieur |\n|--------|----------|----------|-----------|\n| —      | 5        | 1        | 4         |\n| Martin | 2        | 0        | 2         |\n| Bernard| 2        | 1        | 1         |\n\n**Interprétation :**\n• 5 défaites sans buteur marqué → problème offensif\n• Plus de défaites à l\'extérieur → problème mental/tactique\n• ⚠️ Question de synthèse : "Si tu étais l\'entraîneur, sur quoi tu travaillerais en priorité ?"\n\n**Réponses possibles :**\n• Travail offensif (trop de matchs sans buteur)\n• Mentalité extérieur (trop de défaites à l\'extérieur)\n• Tactique défensive (trop de buts encaissés)\n• Gestion des buteurs (rotation, efficacité)\n\n🎯 Points pédagogiques à aborder :\n\n1. **Interpréter comme un analyste, pas un comptable**\n   → Les chiffres racontent une histoire\n   → Il faut comprendre le contexte sportif\n   → Les moyennes sont plus parlantes que les totaux\n\n2. **Champs calculés**\n   → Permettent de créer des indicateurs métier\n   → Buts/match = indicateur d\'efficacité\n   → Plus parlant que le total de buts seul\n\n3. **Filtres pour l\'analyse stratégique**\n   → Permettent de zoomer sur des situations précises\n   → Défaites = zone de progrès\n   → Analyse des causes pour améliorer\n\n4. **Lignes vs Colonnes**\n   → Lignes = dimension principale d\'analyse\n   → Colonnes = dimension secondaire (comparaison)\n   → Exemple : Domicile/Extérieur en lignes, Résultat en colonnes = comparaison claire\n\n💡 Erreurs fréquentes des apprenants :\n\n• Oublier de changer "Somme" en "Nombre" pour compter les matchs\n• Ne pas créer le champ calculé "Buts par match"\n• Oublier de filtrer "—" dans l\'analyse des buteurs\n• Ne pas trier les résultats par moyenne\n• Ne pas interpréter les résultats (juste faire les calculs)\n• Confondre Somme et Moyenne (quand utiliser quoi ?)\n\n🔍 Questions à poser pendant l\'exercice :\n\n• "Pourquoi utiliser la moyenne plutôt que la somme pour les buts par adversaire ?" (comparaison équitable)\n• "Un joueur qui marque 10 buts en 5 matchs est-il meilleur qu\'un qui marque 15 buts en 30 matchs ?" (ratio vs total)\n• "Pourquoi analyser les défaites séparément ?" (identifier les faiblesses)\n• "Si tu étais l\'entraîneur, sur quoi travaillerais-tu en priorité ?" (synthèse stratégique)\n\n💣 Pièges volontaires dans les données :\n\n• Buteur principal = "—" pour certains matchs (pas de buteur marqué)\n• Mix de résultats pour tester les filtres\n• Différences Domicile/Extérieur marquées\n• Buteurs avec ratios différents (total vs efficacité)\n\n💣 Phrases d\'impact à dire :\n\n"Un club qui dépend trop de son terrain est un club fragile. Les grands clubs gagnent partout."\n\n"Le meilleur buteur n\'est pas toujours le joueur le plus important. L\'efficacité compte plus que le total."\n\n"Analyser les défaites, c\'est identifier les faiblesses. Analyser les victoires, c\'est confirmer les forces."\n\n"Un TCD bien fait, c\'est comme un rapport d\'analyste sportif : les chiffres racontent une histoire, pas juste des totaux."'
   },
   {
     id: 'excel-recherche-01',

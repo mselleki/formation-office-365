@@ -1153,6 +1153,251 @@ export const exercices: Exercice[] = [
     trainerScript: '💣 Opinion clivante :\n\n"Le vrai pouvoir des macros commence quand tu automatises des ensembles, pas des cellules."\n\n🧠 Ce que tu apprends :\n\n• Boucles sur objets\n• Automatisation à l\'échelle du classeur\n• Comptage\n• Logique de traitement batch\n\n📋 Correction détaillée :\n\n```vba\nSub FormatToutesLesFeuilles()\n    Dim ws As Worksheet\n    Dim tbl As Range\n    Dim lastRow As Long\n    Dim lastCol As Long\n    Dim compteur As Integer\n    \n    compteur = 0\n    \n    \' Parcourt toutes les feuilles\n    For Each ws In Worksheets\n        \' Vérifie si A1 est vide\n        If Not IsEmpty(ws.Range("A1")) Then\n            \' Détection dynamique sur cette feuille\n            lastRow = ws.Cells(ws.Rows.Count, 1).End(xlUp).Row\n            lastCol = ws.Cells(1, ws.Columns.Count).End(xlToLeft).Column\n            Set tbl = ws.Range(ws.Cells(1, 1), ws.Cells(lastRow, lastCol))\n            \n            \' Formatage\n            tbl.Rows(1).Font.Color = RGB(64, 64, 64)  \' Gris foncé\n            tbl.Rows(1).Font.Bold = True\n            tbl.Borders.LineStyle = xlContinuous\n            tbl.Borders.Weight = xlThin\n            tbl.Columns.AutoFit\n            \n            \' Incrémente le compteur\n            compteur = compteur + 1\n        End If\n    Next ws\n    \n    \' Message final\n    MsgBox compteur & " feuilles traitées avec succès", vbInformation, "Résultat"\nEnd Sub\n```\n\n💡 Explication détaillée :\n\n1. `For Each ws In Worksheets`\n   → Parcourt toutes les feuilles du classeur\n   → ws = variable qui représente chaque feuille\n   → Worksheets = collection de toutes les feuilles\n\n2. `If Not IsEmpty(ws.Range("A1")) Then`\n   → Vérifie si A1 de cette feuille est vide\n   → Not = inverse la condition (si NON vide)\n   → ws.Range() = range sur la feuille spécifique\n\n3. `ws.Cells(ws.Rows.Count, 1)`\n   → Accède aux cellules de la feuille ws\n   → Important : toujours préfixer avec ws. pour cibler la bonne feuille\n\n4. `compteur = compteur + 1`\n   → Incrémente le compteur à chaque feuille traitée\n   → Permet de compter combien de feuilles ont été formatées\n\n5. `Next ws`\n   → Passe à la feuille suivante dans la boucle\n\n6. `MsgBox compteur & " feuilles traitées..."`\n   → Affiche le nombre de feuilles traitées\n   → & = concaténation de texte\n\n🎯 Points pédagogiques :\n\n• Expliquer la boucle For Each sur une collection\n• Insister sur l\'importance de préfixer avec ws.\n• Montrer comment compter dans une boucle\n• Expliquer pourquoi on ignore les feuilles vides\n• Comparer avec une macro qui ne traite qu\'une feuille\n• Montrer la puissance de l\'automatisation batch\n\n💡 Variante avancée (bonus) :\n\nPour traiter seulement certaines feuilles :\n\n```vba\nFor Each ws In Worksheets\n    If ws.Name Like "Janvier*" Or ws.Name Like "Février*" Then\n        \' Traiter seulement les feuilles qui commencent par Janvier ou Février\n    End If\nNext ws\n```'
   },
   {
+    id: 'excel-tcd-01',
+    category: 'Excel',
+    title: 'Tableau Croisé Dynamique (TCD) analytique',
+    duration: '40 minutes',
+    objective: '🎯 Compétences travaillées\n\n• Créer un TCD propre\n• Choisir les bons champs\n• Comprendre :\n  - lignes\n  - colonnes\n  - valeurs\n  - filtres\n• Paramétrer les agrégations',
+    context: 'Tu dois produire un TCD qui montre :\n\n• En lignes : Service\n• En valeurs :\n  - Salaire moyen\n  - Nombre d\'employés\n• Trier les services par salaire moyen décroissant\n• Ajouter un filtre sur Date_embauche pour ne garder que les employés embauchés après 2021',
+    generalInstructions: [
+      'Importez le fichier Excel_TCD_Donnees.csv',
+      'Transformez-le en Table Excel',
+      'Créez un TCD à partir de cette table',
+      'Configurez correctement les agrégations'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Préparer les données',
+        duration: '5 min',
+        instructions: [
+          'Importez le fichier Excel_TCD_Donnees.csv',
+          'Transformez la plage en Table Excel (Insertion → Tableau)',
+          'Vérifiez que toutes les colonnes sont correctement typées :',
+          '  • Service → Texte',
+          '  • Nom → Texte',
+          '  • Salaire → Nombre',
+          '  • Date_embauche → Date'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Créer le TCD',
+        duration: '10 min',
+        instructions: [
+          'Sélectionnez une cellule dans le tableau',
+          'Allez dans Insertion → Tableau croisé dynamique',
+          'Vérifiez que la plage est correctement détectée',
+          'Choisissez "Nouvelle feuille de calcul"',
+          'Cliquez sur OK'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Configurer les champs',
+        duration: '10 min',
+        instructions: [
+          'Dans le volet Champs de tableau croisé dynamique :',
+          '• Glissez Service dans Lignes',
+          '• Glissez Salaire dans Valeurs',
+          '• Glissez Nom dans Valeurs',
+          '• Glissez Date_embauche dans Filtres',
+          '',
+          '⚠️ Par défaut, Salaire sera en Somme. Il faut changer cela !'
+        ]
+      },
+      {
+        number: 4,
+        title: 'Paramétrer les agrégations',
+        duration: '10 min',
+        instructions: [
+          'Pour Salaire :',
+          '• Clic droit sur "Somme de Salaire" → Paramètres de champ de valeur',
+          '• Changer de "Somme" à "Moyenne"',
+          '• Nom personnalisé : "Salaire moyen"',
+          '',
+          'Pour Nom :',
+          '• Clic droit sur "Somme de Nom" → Paramètres de champ de valeur',
+          '• Changer de "Somme" à "Nombre"',
+          '• Nom personnalisé : "Nombre d\'employés"',
+          '',
+          '⚠️ Attention : "Nombre" compte toutes les valeurs, "Nombre distinct" compte les valeurs uniques'
+        ]
+      },
+      {
+        number: 5,
+        title: 'Appliquer le filtre',
+        duration: '5 min',
+        instructions: [
+          'Dans le TCD, cliquez sur la flèche du filtre Date_embauche',
+          'Sélectionnez Filtres → Après',
+          'Date : 01/01/2022',
+          'Cliquez sur OK',
+          '',
+          'Vérifiez que seuls les employés embauchés après 2021 apparaissent'
+        ]
+      },
+      {
+        number: 6,
+        title: 'Trier les résultats',
+        duration: '5 min',
+        instructions: [
+          'Clic droit sur une cellule dans la colonne "Salaire moyen"',
+          'Trier → Trier de Z à A',
+          'Les services doivent être triés par salaire moyen décroissant',
+          '',
+          'Vérifiez que le tri fonctionne correctement'
+        ]
+      }
+    ],
+    deliverables: [
+      'Un TCD avec Service en lignes',
+      'Deux indicateurs en valeurs :',
+      '  • Salaire moyen',
+      '  • Nombre d\'employés',
+      'Filtre Date_embauche fonctionnel',
+      'Services triés par salaire moyen décroissant',
+      'Aucun champ mal agrégé'
+    ],
+    reflectionQuestions: [
+      'Pourquoi la somme du salaire n\'a pas de sens ici ?',
+      'Quelle est la différence entre "Nombre" et "Nombre distinct" ?',
+      'Que se passe-t-il si Salaire est en texte au lieu de nombre ?',
+      'Pourquoi est-il important de choisir la bonne agrégation ?'
+    ],
+    files: [
+      {
+        name: 'Excel_TCD_Donnees.csv',
+        path: '/templates/Excel_TCD_Donnees.csv',
+        type: 'download'
+      }
+    ],
+    trainerScript: '💣 Opinion clivante pédagogique :\n\n"Un TCD mal paramétré donne une illusion de rigueur avec des chiffres faux."\n\n🧠 Ce que l\'apprenant apprend :\n\n• Créer un TCD propre\n• Choisir les bons champs\n• Comprendre lignes, colonnes, valeurs, filtres\n• Paramétrer les agrégations\n\n📋 Correction détaillée étape par étape :\n\n**Étape 1 – Préparer les données**\n\n• Importer Excel_TCD_Donnees.csv\n• Transformer en Table Excel (Insertion → Tableau)\n• Vérifier les types :\n  → Service, Nom → Texte\n  → Salaire → Nombre\n  → Date_embauche → Date\n• ⚠️ Si Salaire est en texte, le TCD ne pourra pas calculer la moyenne\n\n**Étape 2 – Créer le TCD**\n\n• Sélectionner une cellule dans le tableau\n• Insertion → Tableau croisé dynamique\n• Vérifier la plage (doit inclure toutes les colonnes)\n• Nouvelle feuille de calcul\n• OK\n\n**Étape 3 – Configurer les champs**\n\n• Service → Lignes\n• Salaire → Valeurs (par défaut : Somme)\n• Nom → Valeurs (par défaut : Somme)\n• Date_embauche → Filtres\n\n⚠️ **Piège classique** : Par défaut, Excel met "Somme" pour tout. Il faut changer !\n\n**Étape 4 – Paramétrer les agrégations**\n\n**Pour Salaire :**\n\n• Clic droit sur "Somme de Salaire" → Paramètres de champ de valeur\n• Résumer par : Moyenne\n• Nom personnalisé : "Salaire moyen"\n• OK\n\n**Pour Nom :**\n\n• Clic droit sur "Somme de Nom" → Paramètres de champ de valeur\n• Résumer par : Nombre\n• Nom personnalisé : "Nombre d\'employés"\n• OK\n\n⚠️ **Différence cruciale** :\n• Nombre = compte toutes les valeurs (y compris doublons)\n• Nombre distinct = compte les valeurs uniques\n• Ici, on veut "Nombre" car chaque ligne = un employé\n\n**Étape 5 – Appliquer le filtre**\n\n• Clic sur la flèche du filtre Date_embauche\n• Filtres → Après\n• Date : 01/01/2022\n• OK\n\n**Résultat attendu** :\n\nSeuls les employés embauchés après 2021 apparaissent :\n• IT : Paul (2022-07-03)\n• RH : Marie (2023-01-12)\n• Finance : Amina (2021-11-30) → ⚠️ Attention, 2021-11-30 est après 2021, donc inclus\n• Sales : Carlos (2022-02-30) → ⚠️ Date invalide, mais Excel peut l\'accepter\n• Ops : Emma (2023-08-07)\n\n**Étape 6 – Trier les résultats**\n\n• Clic droit sur une cellule dans "Salaire moyen"\n• Trier → Trier de Z à A\n• Les services doivent être triés par salaire moyen décroissant\n\n**Résultat final attendu** :\n\n| Service | Salaire moyen | Nombre d\'employés |\n|---------|---------------|-------------------|\n| Ops     | 3100         | 1                 |\n| Finance | 4200         | 1                 |\n| RH      | 3200         | 1                 |\n| Sales   | 2800         | 1                 |\n| IT      | 2800         | 1                 |\n\n🎯 Points pédagogiques à aborder :\n\n1. **Pourquoi la somme n\'a pas de sens**\n   → La somme des salaires ne donne aucune information utile\n   → On veut la moyenne pour comparer les services\n   → La moyenne permet de comparer des groupes de tailles différentes\n\n2. **Différence entre Nombre et Nombre distinct**\n   → Nombre : compte toutes les lignes (ex: 5 employés = 5)\n   → Nombre distinct : compte les valeurs uniques (ex: 5 noms différents = 5, mais si doublon = 4)\n   → Ici, on veut "Nombre" car chaque ligne = un employé unique\n\n3. **Que se passe-t-il si Salaire est en texte ?**\n   → Le TCD ne pourra pas calculer la moyenne\n   → Il affichera "Somme" mais avec des valeurs incorrectes\n   → ⚠️ Erreur silencieuse : le TCD semble fonctionner mais les chiffres sont faux\n\n4. **L\'importance du bon agrégation**\n   → Somme : pour les totaux (ex: chiffre d\'affaires)\n   → Moyenne : pour les comparaisons (ex: salaire moyen)\n   → Nombre : pour compter les occurrences\n   → Min/Max : pour les extrêmes\n\n💡 Erreurs fréquentes des apprenants :\n\n• Oublier de changer "Somme" en "Moyenne" pour Salaire\n• Confondre "Nombre" et "Nombre distinct"\n• Ne pas vérifier les types de données avant de créer le TCD\n• Mettre Date_embauche en valeurs au lieu de filtres\n• Ne pas trier les résultats\n• Ne pas vérifier que le filtre fonctionne\n\n🔍 Questions à poser pendant l\'exercice :\n\n• "Pourquoi la somme du salaire n\'a pas de sens ici ?" (pas d\'information utile)\n• "Quelle est la différence entre Nombre et Nombre distinct ?" (toutes vs uniques)\n• "Que se passerait-il si Salaire était en texte ?" (erreur silencieuse)\n• "Pourquoi mettre Date_embauche en filtres plutôt qu\'en lignes ?" (pour filtrer, pas pour grouper)\n\n💣 Pièges volontaires dans les données :\n\n• Date invalide : 2022-02-30 (février n\'a que 28/29 jours)\n• Formats de date différents (mais Excel les gère)\n• Salaire en nombre (correct, mais si c\'était en texte, ça casserait)\n\n💣 Phrase d\'impact à dire :\n\n"Un TCD mal paramétré donne une illusion de rigueur avec des chiffres faux. La moyenne d\'un salaire en texte, c\'est comme diviser par zéro : ça ne marche pas, mais Excel ne te le dit pas toujours clairement."'
+  },
+  {
+    id: 'excel-recherche-01',
+    category: 'Excel',
+    title: 'Recherches et références avancées',
+    duration: '45 minutes',
+    objective: '🎯 Compétences travaillées\n\n• Comprendre une clé\n• Utiliser :\n  - RECHERCHEX\n  - RECHERCHEV\n  - INDEX / EQUIV\n• Gérer les erreurs et les cas manquants',
+    context: 'Tu as deux tables :\n\n**Table A – Employés**\n• Matricule, Nom, Service\n\n**Table B – Salaires**\n• Matricule, Salaire\n\n⚠️ **Piège volontaire** :\n• E005 n\'a pas de salaire dans Table B\n• E006 n\'existe pas dans Table A\n\n**Objectif** :\nDans la table Employés, ajouter une colonne Salaire en recherchant dans Table B à partir du Matricule.\n\nTu dois produire 3 formules différentes.',
+    generalInstructions: [
+      'Importez les deux fichiers CSV',
+      'Transformez-les en Tables Excel',
+      'Créez 3 formules de recherche différentes',
+      'Gérez les erreurs avec SIERREUR',
+      'Testez avec les cas limites (E005, E006)'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Préparer les données',
+        duration: '10 min',
+        instructions: [
+          'Importez Excel_Recherche_Employes.csv',
+          'Importez Excel_Recherche_Salaires.csv',
+          'Transformez chaque fichier en Table Excel',
+          'Nommez les tables :',
+          '  • TableEmployes',
+          '  • TableSalaires',
+          'Vérifiez que Matricule est du même type dans les deux tables (texte)'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Formule 1 : RECHERCHEX (moderne)',
+        duration: '10 min',
+        instructions: [
+          'Dans TableEmployes, ajoutez une colonne "Salaire_RECHERCHEX"',
+          'Formule :',
+          '=RECHERCHEX([@Matricule]; TableSalaires[Matricule]; TableSalaires[Salaire]; "Non trouvé")',
+          '',
+          '⚠️ Syntaxe RECHERCHEX :',
+          'RECHERCHEX(valeur_cherchée; plage_recherche; plage_retour; [si_non_trouvé])',
+          '',
+          'Vérifiez que E005 affiche "Non trouvé"'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Formule 2 : RECHERCHEV (ancienne école)',
+        duration: '10 min',
+        instructions: [
+          'Ajoutez une colonne "Salaire_RECHERCHEV"',
+          'Formule :',
+          '=SIERREUR(RECHERCHEV([@Matricule]; TableSalaires; 2; FAUX); "Non trouvé")',
+          '',
+          '⚠️ Syntaxe RECHERCHEV :',
+          'RECHERCHEV(valeur; table; index_colonne; correspondance_exacte)',
+          '',
+          '⚠️ Contrainte : la colonne clé (Matricule) doit être la première colonne de TableSalaires',
+          '',
+          'Vérifiez que E005 affiche "Non trouvé"'
+        ]
+      },
+      {
+        number: 4,
+        title: 'Formule 3 : INDEX / EQUIV (méthode robuste)',
+        duration: '10 min',
+        instructions: [
+          'Ajoutez une colonne "Salaire_INDEX_EQUIV"',
+          'Formule :',
+          '=SIERREUR(INDEX(TableSalaires[Salaire]; EQUIV([@Matricule]; TableSalaires[Matricule]; 0)); "Non trouvé")',
+          '',
+          '⚠️ Syntaxe :',
+          'INDEX(plage; ligne) → renvoie la valeur à la ligne donnée',
+          'EQUIV(valeur; plage; 0) → renvoie la position de la valeur',
+          '',
+          'Vérifiez que E005 affiche "Non trouvé"'
+        ]
+      },
+      {
+        number: 5,
+        title: 'Tester les cas limites',
+        duration: '5 min',
+        instructions: [
+          'Vérifiez que :',
+          '• E001, E002, E003, E004 → affichent leur salaire',
+          '• E005 → affiche "Non trouvé" (pas de salaire dans Table B)',
+          '',
+          'Dans TableSalaires, vérifiez que :',
+          '• E006 → existe mais n\'a pas d\'employé correspondant (normal)',
+          '',
+          'Toutes les formules doivent gérer correctement ces cas'
+        ]
+      }
+    ],
+    deliverables: [
+      'Deux tables Excel nommées',
+      'Trois colonnes Salaire avec formules différentes :',
+      '  • RECHERCHEX',
+      '  • RECHERCHEV',
+      '  • INDEX / EQUIV',
+      'Gestion des erreurs avec SIERREUR',
+      'Cas limites correctement gérés'
+    ],
+    reflectionQuestions: [
+      'Pourquoi RECHERCHEV est fragile ? (colonne clé obligatoirement à gauche)',
+      'Pourquoi INDEX/EQUIV est plus robuste que RECHERCHEV ?',
+      'Pourquoi RECHERCHEX est supérieur aux deux autres ?',
+      'Que se passe-t-il si Matricule est en nombre dans une table et en texte dans l\'autre ?',
+      'Que se passe-t-il s\'il y a un doublon de Matricule dans TableSalaires ?'
+    ],
+    files: [
+      {
+        name: 'Excel_Recherche_Employes.csv',
+        path: '/templates/Excel_Recherche_Employes.csv',
+        type: 'download'
+      },
+      {
+        name: 'Excel_Recherche_Salaires.csv',
+        path: '/templates/Excel_Recherche_Salaires.csv',
+        type: 'download'
+      }
+    ],
+    trainerScript: '💣 Opinion clivante :\n\n"Continuer à enseigner uniquement RECHERCHEV en 2026, c\'est enseigner un outil déjà obsolète."\n\n🧠 Ce que l\'apprenant apprend :\n\n• Comprendre une clé\n• Utiliser RECHERCHEX, RECHERCHEV, INDEX/EQUIV\n• Gérer les erreurs et les cas manquants\n\n📋 Correction détaillée étape par étape :\n\n**Étape 1 – Préparer les données**\n\n• Importer Excel_Recherche_Employes.csv\n• Importer Excel_Recherche_Salaires.csv\n• Transformer chaque fichier en Table Excel\n• Nommer les tables :\n  → TableEmployes\n  → TableSalaires\n• ⚠️ **CRUCIAL** : Vérifier que Matricule est du même type dans les deux tables\n  → Si un Matricule est "E001" (texte) et l\'autre 1 (nombre), les recherches échoueront\n  → Convertir en texte si nécessaire\n\n**Étape 2 – Formule 1 : RECHERCHEX (moderne)**\n\n**Syntaxe complète :**\n\n```excel\n=RECHERCHEX([@Matricule]; TableSalaires[Matricule]; TableSalaires[Salaire]; "Non trouvé")\n```\n\n**Explication :**\n\n• `[@Matricule]` = valeur à chercher (dans la ligne courante de TableEmployes)\n• `TableSalaires[Matricule]` = plage où chercher\n• `TableSalaires[Salaire]` = plage à retourner\n• `"Non trouvé"` = valeur si non trouvé (optionnel, mais recommandé)\n\n**Avantages de RECHERCHEX :**\n\n✅ Pas besoin que la colonne clé soit à gauche\n✅ Syntaxe claire et lisible\n✅ Gestion native des erreurs (4e paramètre)\n✅ Plus rapide que RECHERCHEV\n✅ Fonction moderne (Excel 365, 2021)\n\n**Résultat attendu :**\n\n• E001 → 2800\n• E002 → 3200\n• E003 → 3500\n• E004 → 2900\n• E005 → "Non trouvé" (pas de salaire dans TableSalaires)\n\n**Étape 3 – Formule 2 : RECHERCHEV (ancienne école)**\n\n**Syntaxe complète :**\n\n```excel\n=SIERREUR(RECHERCHEV([@Matricule]; TableSalaires; 2; FAUX); "Non trouvé")\n```\n\n**Explication :**\n\n• `[@Matricule]` = valeur à chercher\n• `TableSalaires` = table complète (doit avoir Matricule en 1ère colonne)\n• `2` = index de la colonne à retourner (Salaire = colonne 2)\n• `FAUX` = correspondance exacte (obligatoire)\n• `SIERREUR(...)` = gère les erreurs #N/A\n\n**⚠️ Contraintes de RECHERCHEV :**\n\n❌ La colonne clé (Matricule) DOIT être la première colonne de la table\n❌ Si on inverse les colonnes, ça ne marche plus\n❌ Syntaxe moins claire\n❌ Nécessite SIERREUR pour gérer les erreurs\n❌ Plus lent que RECHERCHEX\n\n**Pourquoi RECHERCHEV est fragile :**\n\n• Si quelqu\'un ajoute une colonne avant Matricule dans TableSalaires, l\'index change\n• Si quelqu\'un réorganise les colonnes, ça casse\n• La dépendance à la position est un risque\n\n**Étape 4 – Formule 3 : INDEX / EQUIV (méthode robuste)**\n\n**Syntaxe complète :**\n\n```excel\n=SIERREUR(\n    INDEX(TableSalaires[Salaire];\n          EQUIV([@Matricule]; TableSalaires[Matricule]; 0)\n    );\n    "Non trouvé"\n)\n```\n\n**Explication détaillée :**\n\n1. `EQUIV([@Matricule]; TableSalaires[Matricule]; 0)`\n   → Cherche [@Matricule] dans TableSalaires[Matricule]\n   → Retourne la position (ligne) si trouvé\n   → Retourne #N/A si non trouvé\n   → `0` = correspondance exacte\n\n2. `INDEX(TableSalaires[Salaire]; ...)`\n   → Prend la plage TableSalaires[Salaire]\n   → Retourne la valeur à la ligne trouvée par EQUIV\n\n3. `SIERREUR(...)`\n   → Si EQUIV retourne #N/A, INDEX retourne #N/A\n   → SIERREUR remplace #N/A par "Non trouvé"\n\n**Avantages de INDEX/EQUIV :**\n\n✅ Pas de contrainte sur la position des colonnes\n✅ Plus flexible que RECHERCHEV\n✅ Fonctionne dans toutes les versions d\'Excel\n✅ Contrôle total sur la logique\n\n**Inconvénients :**\n\n❌ Syntaxe plus complexe\n❌ Nécessite SIERREUR pour gérer les erreurs\n❌ Moins lisible que RECHERCHEX\n\n**Étape 5 – Tester les cas limites**\n\n**Cas normaux :**\n\n• E001 → 2800 ✓\n• E002 → 3200 ✓\n• E003 → 3500 ✓\n• E004 → 2900 ✓\n\n**Cas limite 1 : E005 n\'a pas de salaire**\n\n• E005 existe dans TableEmployes\n• E005 n\'existe PAS dans TableSalaires\n• Résultat attendu : "Non trouvé" ✓\n• Toutes les formules doivent gérer cela correctement\n\n**Cas limite 2 : E006 n\'existe pas dans TableEmployes**\n\n• E006 existe dans TableSalaires\n• E006 n\'existe PAS dans TableEmployes\n• C\'est normal : on cherche depuis TableEmployes vers TableSalaires\n• E006 n\'apparaîtra pas dans les résultats (normal)\n\n**🎯 Points pédagogiques à aborder :**\n\n1. **Pourquoi RECHERCHEV est fragile ?**\n   → La colonne clé DOIT être à gauche\n   → Si quelqu\'un réorganise les colonnes, ça casse\n   → Dépendance à la position = risque\n   → Exemple : si on ajoute une colonne avant Matricule, l\'index change\n\n2. **Pourquoi INDEX/EQUIV est plus robuste ?**\n   → Pas de contrainte sur la position\n   → On spécifie explicitement les plages\n   → Moins fragile aux réorganisations\n   → Mais syntaxe plus complexe\n\n3. **Pourquoi RECHERCHEX est supérieur ?**\n   → Syntaxe claire et lisible\n   → Pas de contrainte sur la position\n   → Gestion native des erreurs\n   → Plus rapide\n   → Fonction moderne (Excel 365, 2021)\n   → ⚠️ Mais pas disponible dans Excel 2019 et antérieur\n\n4. **Gestion des erreurs**\n   → Sans SIERREUR, les formules retournent #N/A si non trouvé\n   → #N/A casse les calculs suivants\n   → SIERREUR permet de remplacer #N/A par une valeur contrôlée\n   → RECHERCHEX a un paramètre intégré pour ça\n\n💡 Erreurs fréquentes des apprenants :\n\n• Oublier SIERREUR avec RECHERCHEV et INDEX/EQUIV\n• Mettre VRAI au lieu de FAUX dans RECHERCHEV (correspondance approximative)\n• Oublier que la colonne clé doit être à gauche avec RECHERCHEV\n• Confondre les plages dans RECHERCHEX\n• Ne pas vérifier que les types de Matricule sont identiques\n• Ne pas tester les cas limites\n\n🔍 Questions à poser pendant l\'exercice :\n\n• "Pourquoi RECHERCHEV est fragile ?" (colonne clé à gauche)\n• "Que se passerait-il si on inversait les colonnes dans TableSalaires ?" (RECHERCHEV casse, RECHERCHEX et INDEX/EQUIV fonctionnent)\n• "Pourquoi RECHERCHEX est supérieur ?" (syntaxe claire, pas de contrainte, gestion erreurs)\n• "Que se passe-t-il si Matricule est en nombre dans une table et en texte dans l\'autre ?" (recherche échoue)\n• "Que se passe-t-il s\'il y a un doublon de Matricule dans TableSalaires ?" (RECHERCHEX retourne le premier trouvé)\n\n⚠️ Pièges volontaires à introduire en formation :\n\n**Piège 1 : Inverser les colonnes**\n• Dans TableSalaires, mettre Salaire avant Matricule\n• RECHERCHEV casse (index change)\n• RECHERCHEX et INDEX/EQUIV fonctionnent toujours\n\n**Piège 2 : Types différents**\n• Matricule en texte dans TableEmployes\n• Matricule en nombre dans TableSalaires\n• Toutes les recherches échouent\n• Solution : convertir en même type\n\n**Piège 3 : Supprimer une clé**\n• Supprimer E001 de TableSalaires\n• E001 dans TableEmployes retourne "Non trouvé"\n• Vérifier que SIERREUR fonctionne\n\n**Piège 4 : Ajouter un doublon**\n• Ajouter E001 deux fois dans TableSalaires avec salaires différents\n• RECHERCHEX retourne le premier trouvé\n• Expliquer le risque des doublons\n\n💣 Phrase d\'impact à dire :\n\n"Le TCD sert à résumer une table. Les fonctions de recherche servent à relier des tables. Un bon analyste maîtrise les deux."\n\nEt aussi :\n\n"RECHERCHEV, c\'est comme un couteau suisse : ça marche, mais c\'est fragile. RECHERCHEX, c\'est comme un outil moderne : ça marche mieux, plus vite, et c\'est plus sûr."'
+  },
+  {
     id: 'powerquery-nettoyage-01',
     category: 'PowerQuery',
     title: 'Nettoyage de base et typage',

@@ -904,6 +904,253 @@ export const exercices: Exercice[] = [
     ],
     reflectionQuestions: [],
     trainerScript: '🧠 Ce que l\'exercice teste vraiment :\n\n👉 Compréhension de la logique conditionnelle\n👉 Capacité à anticiper l\'usage réel\n\n💡 Points clés à aborder :\n• L\'implémentation de règles métier dans Excel\n• L\'utilisation des formules conditionnelles (SI, ET)\n• La mise en forme conditionnelle pour la lisibilité\n• Les validations de données pour éviter les erreurs\n• Comment rendre un fichier robuste et réutilisable\n• L\'anticipation des erreurs humaines\n• La différence entre fichier "qui marche" et fichier "robuste"\n\n🎯 Objectif pédagogique :\nFaire comprendre que Excel peut implémenter de la logique métier et que la robustesse d\'un fichier dépend de l\'anticipation des erreurs et des usages réels.'
+  },
+  {
+    id: 'excel-macro-01',
+    category: 'Excel',
+    title: 'Macro enregistrée simple',
+    duration: '30 minutes',
+    objective: 'Découvrir :\n• l\'enregistrement d\'une macro\n• l\'exécution\n• la lecture d\'un code très simple',
+    context: 'Dans un tableau en A1:D?, crée une macro qui met en forme la ligne d\'en-tête.',
+    generalInstructions: [
+      'Activez l\'onglet Développeur dans Excel',
+      'Utilisez l\'enregistrement de macro',
+      'Ouvrez ensuite le code pour comprendre ce qui a été généré'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Préparer le tableau',
+        instructions: [
+          'Créez un tableau dans la plage A1:D10 (ou plus)',
+          'Remplissez la première ligne avec des en-têtes',
+          'Ajoutez quelques lignes de données'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Enregistrer la macro',
+        instructions: [
+          'Cliquez sur Développeur > Enregistrer une macro',
+          'Donnez-lui un nom (ex: "FormatEnTete")',
+          'Effectuez les actions suivantes :',
+          '• Sélectionnez la ligne 1',
+          '• Mettez-la en gras',
+          '• Appliquez un fond gris clair',
+          '• Ajustez la largeur des colonnes (AutoFit)',
+          'Arrêtez l\'enregistrement'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Lire le code généré',
+        instructions: [
+          'Ouvrez l\'éditeur VBA (Alt+F11)',
+          'Trouvez votre macro dans les modules',
+          'Identifiez les lignes qui correspondent à :',
+          '• La sélection de la ligne 1',
+          '• La mise en gras',
+          '• Le fond gris clair',
+          '• L\'ajustement des colonnes'
+        ]
+      },
+      {
+        number: 4,
+        title: 'Tester la macro',
+        instructions: [
+          'Créez un nouveau tableau sur une autre feuille',
+          'Exécutez votre macro',
+          'Vérifiez que les actions sont reproduites'
+        ]
+      }
+    ],
+    deliverables: [
+      'Une macro enregistrée fonctionnelle',
+      'Compréhension du code VBA généré',
+      'Capacité à identifier les actions dans le code'
+    ],
+    reflectionQuestions: [],
+    trainerScript: '🧠 Ce que tu apprends :\n\n• Enregistrer une macro\n• Comprendre Rows("1:1"), AutoFit\n• Lien entre actions et code\n\n📋 Correction détaillée :\n\nCode attendu après enregistrement :\n\n```vba\nSub FormatEnTete()\n    Rows("1:1").Select\n    Selection.Font.Bold = True\n    Selection.Interior.Color = RGB(217, 217, 217)\n    Columns("A:D").Select\n    Selection.Columns.AutoFit\nEnd Sub\n```\n\n💡 Explication ligne par ligne :\n\n1. `Rows("1:1").Select`\n   → Sélectionne la ligne 1 entière\n   → "1:1" signifie ligne 1 de la colonne 1 à la dernière colonne\n\n2. `Selection.Font.Bold = True`\n   → Met en gras la sélection (la ligne 1)\n   → Font.Bold est une propriété booléenne\n\n3. `Selection.Interior.Color = RGB(217, 217, 217)`\n   → Applique un fond gris clair\n   → RGB(217, 217, 217) = gris clair\n   → Interior = intérieur de la cellule\n\n4. `Columns("A:D").Select`\n   → Sélectionne les colonnes A à D\n\n5. `Selection.Columns.AutoFit`\n   → Ajuste automatiquement la largeur des colonnes\n   → AutoFit = s\'adapter au contenu\n\n🎯 Points pédagogiques :\n\n• Montrer que l\'enregistrement génère du code "lisible"\n• Expliquer la syntaxe VBA de base (Select, Selection)\n• Faire comprendre que chaque action Excel = lignes de code\n• Introduire les notions de propriétés (Font.Bold, Interior.Color)\n• Montrer comment tester et déboguer une macro simple'
+  },
+  {
+    id: 'excel-macro-02',
+    category: 'Excel',
+    title: 'Macro avec plage dynamique',
+    duration: '40 minutes',
+    objective: 'Ne plus écrire de plage en dur.\nDétecter automatiquement le tableau.',
+    context: 'Écris une macro qui détecte automatiquement ton tableau à partir de A1 et le formate.',
+    generalInstructions: [
+      'Interdit d\'utiliser Range("A1:D10")',
+      'Tu dois calculer la plage avec CurrentRegion ou lastRow / lastCol',
+      'La macro doit fonctionner quelle que soit la taille du tableau'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Créer un tableau de test',
+        instructions: [
+          'Créez un tableau dans A1 avec des données',
+          'Le tableau peut avoir différentes tailles',
+          'Testez avec 5 lignes, puis avec 20 lignes'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Détecter la plage dynamiquement',
+        instructions: [
+          'Option 1 : Utilisez CurrentRegion',
+          '  → Range("A1").CurrentRegion',
+          '',
+          'Option 2 : Calculez lastRow et lastCol',
+          '  → lastRow = Cells(Rows.Count, 1).End(xlUp).Row',
+          '  → lastCol = Cells(1, Columns.Count).End(xlToLeft).Column',
+          '  → Range(Cells(1, 1), Cells(lastRow, lastCol))'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Créer la macro',
+        instructions: [
+          'Écrivez une macro qui :',
+          '• Détecte automatiquement le tableau à partir de A1',
+          '• Met la ligne d\'en-tête en bleu',
+          '• Met des bordures sur tout le tableau',
+          '• Ajuste les colonnes',
+          '',
+          'Testez avec des tableaux de tailles différentes'
+        ]
+      }
+    ],
+    deliverables: [
+      'Une macro avec détection dynamique de plage',
+      'Code qui fonctionne quelle que soit la taille du tableau',
+      'Compréhension de CurrentRegion ou lastRow/lastCol'
+    ],
+    reflectionQuestions: [],
+    trainerScript: '💣 Opinion clivante :\n\n"Tant que tu codes des plages fixes, tu n\'automatises rien.\nTu scripts un scénario fragile."\n\n🧠 Ce que tu apprends :\n\n• Détection dynamique\n• Notion de plage variable (Range(ws.Cells...))\n• Robustesse minimale\n\n📋 Correction détaillée - Méthode 1 : CurrentRegion\n\n```vba\nSub FormatTableauDynamique()\n    Dim tbl As Range\n    \n    \' Détecte automatiquement le tableau à partir de A1\n    Set tbl = Range("A1").CurrentRegion\n    \n    \' Met l\'en-tête en bleu\n    tbl.Rows(1).Font.Color = RGB(0, 0, 255)\n    tbl.Rows(1).Font.Bold = True\n    \n    \' Met des bordures sur tout le tableau\n    tbl.Borders.LineStyle = xlContinuous\n    tbl.Borders.Weight = xlThin\n    \n    \' Ajuste les colonnes\n    tbl.Columns.AutoFit\nEnd Sub\n```\n\n💡 Explication :\n\n• `CurrentRegion` : détecte automatiquement la zone contiguë autour de A1\n• Fonctionne même si le tableau change de taille\n• Plus simple mais moins flexible que lastRow/lastCol\n\n📋 Correction détaillée - Méthode 2 : lastRow / lastCol\n\n```vba\nSub FormatTableauDynamiqueV2()\n    Dim lastRow As Long\n    Dim lastCol As Long\n    Dim tbl As Range\n    \n    \' Trouve la dernière ligne avec données dans la colonne A\n    lastRow = Cells(Rows.Count, 1).End(xlUp).Row\n    \n    \' Trouve la dernière colonne avec données dans la ligne 1\n    lastCol = Cells(1, Columns.Count).End(xlToLeft).Column\n    \n    \' Définit la plage du tableau\n    Set tbl = Range(Cells(1, 1), Cells(lastRow, lastCol))\n    \n    \' Met l\'en-tête en bleu\n    tbl.Rows(1).Font.Color = RGB(0, 0, 255)\n    tbl.Rows(1).Font.Bold = True\n    \n    \' Met des bordures\n    tbl.Borders.LineStyle = xlContinuous\n    tbl.Borders.Weight = xlThin\n    \n    \' Ajuste les colonnes\n    tbl.Columns.AutoFit\nEnd Sub\n```\n\n💡 Explication détaillée :\n\n1. `Cells(Rows.Count, 1).End(xlUp).Row`\n   → Va à la dernière ligne de la colonne A\n   → Remonte jusqu\'à trouver une cellule avec données\n   → Retourne le numéro de ligne\n\n2. `Cells(1, Columns.Count).End(xlToLeft).Column`\n   → Va à la dernière colonne de la ligne 1\n   → Va à gauche jusqu\'à trouver une cellule avec données\n   → Retourne le numéro de colonne\n\n3. `Range(Cells(1, 1), Cells(lastRow, lastCol))`\n   → Crée une plage de A1 jusqu\'à la dernière cellule\n   → S\'adapte automatiquement à la taille réelle\n\n🎯 Points pédagogiques :\n\n• Expliquer pourquoi les plages fixes sont fragiles\n• Montrer les deux méthodes de détection dynamique\n• Faire comprendre End(xlUp) et End(xlToLeft)\n• Insister sur la robustesse : la macro doit fonctionner avec n\'importe quelle taille\n• Comparer CurrentRegion vs lastRow/lastCol (avantages/inconvénients)'
+  },
+  {
+    id: 'excel-macro-03',
+    category: 'Excel',
+    title: 'Macro avec bouton + message + contrôle',
+    duration: '50 minutes',
+    objective: 'Interaction avec l\'utilisateur + sécurisation.\nAjouter des contrôles d\'erreur.',
+    context: 'Crée une macro sécurisée qui vérifie la présence d\'un tableau avant de le formater.',
+    generalInstructions: [
+      'Utiliser If ... Then ... Exit Sub',
+      'Utiliser MsgBox au début et à la fin',
+      'Ajouter un bouton sur la feuille',
+      'Associer la macro au bouton'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Créer la macro avec contrôles',
+        instructions: [
+          'Écrivez une macro qui :',
+          '• Vérifie si A1 est vide',
+          '• Si oui → affiche "Aucun tableau détecté" et stoppe',
+          '• Sinon :',
+          '  - détecte la plage dynamique',
+          '  - met l\'en-tête en vert',
+          '  - met un fond jaune clair sur le tableau',
+          '  - ajoute des bordures intérieures',
+          '  - affiche un message final avec la plage formatée'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Ajouter le bouton',
+        instructions: [
+          'Dans Excel, allez dans Développeur > Insérer > Bouton',
+          'Dessinez le bouton sur la feuille',
+          'Assignez votre macro au bouton',
+          'Renommez le bouton (ex: "Formater le tableau")'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Tester les cas d\'erreur',
+        instructions: [
+          'Testez avec A1 vide → doit afficher le message d\'erreur',
+          'Testez avec un tableau → doit formater et afficher le message de succès',
+          'Vérifiez que le bouton fonctionne correctement'
+        ]
+      }
+    ],
+    deliverables: [
+      'Une macro avec contrôles d\'erreur',
+      'Un bouton fonctionnel sur la feuille',
+      'Messages informatifs pour l\'utilisateur'
+    ],
+    reflectionQuestions: [],
+    trainerScript: '💣 Opinion clivante :\n\n"Une macro sans contrôle d\'erreur est un piège à utilisateurs."\n\n🧠 Ce que tu apprends :\n\n• Tests conditionnels\n• Arrêt propre d\'une macro\n• Interaction utilisateur\n• Déploiement via bouton\n\n📋 Correction détaillée :\n\n```vba\nSub FormatTableauSecurise()\n    Dim tbl As Range\n    Dim lastRow As Long\n    Dim lastCol As Long\n    Dim plage As String\n    \n    \' Vérification : A1 est-il vide ?\n    If IsEmpty(Range("A1")) Then\n        MsgBox "Aucun tableau détecté", vbExclamation, "Erreur"\n        Exit Sub\n    End If\n    \n    \' Détection dynamique de la plage\n    lastRow = Cells(Rows.Count, 1).End(xlUp).Row\n    lastCol = Cells(1, Columns.Count).End(xlToLeft).Column\n    Set tbl = Range(Cells(1, 1), Cells(lastRow, lastCol))\n    \n    \' Formatage\n    tbl.Rows(1).Font.Color = RGB(0, 128, 0)  \' Vert\n    tbl.Rows(1).Font.Bold = True\n    tbl.Interior.Color = RGB(255, 255, 200)  \' Jaune clair\n    \n    \' Bordures intérieures uniquement\n    tbl.Borders(xlInsideHorizontal).LineStyle = xlContinuous\n    tbl.Borders(xlInsideVertical).LineStyle = xlContinuous\n    tbl.Borders(xlInsideHorizontal).Weight = xlThin\n    tbl.Borders(xlInsideVertical).Weight = xlThin\n    \n    \' Construire le message avec la plage\n    plage = "A1:" & Cells(lastRow, lastCol).Address(False, False)\n    \n    \' Message de succès\n    MsgBox "Tableau formaté: " & plage, vbInformation, "Succès"\nEnd Sub\n```\n\n💡 Explication ligne par ligne :\n\n1. `If IsEmpty(Range("A1")) Then`\n   → Vérifie si A1 est vide\n   → IsEmpty() détecte les cellules vraiment vides\n\n2. `MsgBox "Aucun tableau détecté", vbExclamation, "Erreur"`\n   → Affiche un message d\'erreur\n   → vbExclamation = icône d\'avertissement\n\n3. `Exit Sub`\n   → Arrête immédiatement la macro\n   → Important : ne pas continuer si erreur\n\n4. `tbl.Borders(xlInsideHorizontal)`\n   → Bordures intérieures horizontales uniquement\n   → xlInsideVertical pour les verticales\n   → Pas de bordures extérieures\n\n5. `Cells(lastRow, lastCol).Address(False, False)`\n   → Convertit la cellule en adresse texte (ex: "D12")\n   → False, False = format relatif sans $\n\n🎯 Points pédagogiques :\n\n• Insister sur l\'importance des contrôles d\'erreur\n• Expliquer Exit Sub vs End Sub\n• Montrer les différents types de MsgBox (vbInformation, vbExclamation)\n• Expliquer la différence entre bordures intérieures et extérieures\n• Montrer comment construire des messages dynamiques\n• Expliquer l\'assignation de macro à un bouton'
+  },
+  {
+    id: 'excel-macro-04',
+    category: 'Excel',
+    title: 'Macro multi-feuilles',
+    duration: '60 minutes',
+    objective: 'Travailler sur plusieurs feuilles automatiquement.\nAutomatiser à l\'échelle du classeur.',
+    context: 'Tu as 3 feuilles (Janvier, Février, Mars). Sur chacune, un tableau commence en A1. Écris une macro qui formate automatiquement tous les tableaux.',
+    generalInstructions: [
+      'Utiliser For Each ws In Worksheets',
+      'Compter le nombre de feuilles traitées',
+      'Un seul MsgBox final',
+      'Ignorer les feuilles où A1 est vide'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Préparer les feuilles',
+        instructions: [
+          'Créez 3 feuilles : Janvier, Février, Mars',
+          'Sur chaque feuille, créez un tableau commençant en A1',
+          'Les tableaux peuvent avoir des tailles différentes',
+          'Laissez une feuille vide pour tester'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Créer la boucle sur les feuilles',
+        instructions: [
+          'Utilisez For Each ws In Worksheets',
+          'Pour chaque feuille :',
+          '• Vérifiez si A1 est vide → ignorer',
+          '• Sinon : détecter le tableau et le formater',
+          '• Compter les feuilles traitées'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Formatage uniforme',
+        instructions: [
+          'Pour chaque tableau trouvé :',
+          '• Mettre l\'en-tête en gris foncé',
+          '• Mettre des bordures',
+          '• Ajuster les colonnes',
+          '',
+          'Le formatage doit être identique sur toutes les feuilles'
+        ]
+      },
+      {
+        number: 4,
+        title: 'Message final',
+        instructions: [
+          'À la fin, affichez un message :',
+          '"X feuilles traitées avec succès"',
+          '',
+          'X doit correspondre au nombre réel de feuilles formatées'
+        ]
+      }
+    ],
+    deliverables: [
+      'Une macro qui traite toutes les feuilles automatiquement',
+      'Comptage correct des feuilles traitées',
+      'Message final informatif'
+    ],
+    reflectionQuestions: [],
+    trainerScript: '💣 Opinion clivante :\n\n"Le vrai pouvoir des macros commence quand tu automatises des ensembles, pas des cellules."\n\n🧠 Ce que tu apprends :\n\n• Boucles sur objets\n• Automatisation à l\'échelle du classeur\n• Comptage\n• Logique de traitement batch\n\n📋 Correction détaillée :\n\n```vba\nSub FormatToutesLesFeuilles()\n    Dim ws As Worksheet\n    Dim tbl As Range\n    Dim lastRow As Long\n    Dim lastCol As Long\n    Dim compteur As Integer\n    \n    compteur = 0\n    \n    \' Parcourt toutes les feuilles\n    For Each ws In Worksheets\n        \' Vérifie si A1 est vide\n        If Not IsEmpty(ws.Range("A1")) Then\n            \' Détection dynamique sur cette feuille\n            lastRow = ws.Cells(ws.Rows.Count, 1).End(xlUp).Row\n            lastCol = ws.Cells(1, ws.Columns.Count).End(xlToLeft).Column\n            Set tbl = ws.Range(ws.Cells(1, 1), ws.Cells(lastRow, lastCol))\n            \n            \' Formatage\n            tbl.Rows(1).Font.Color = RGB(64, 64, 64)  \' Gris foncé\n            tbl.Rows(1).Font.Bold = True\n            tbl.Borders.LineStyle = xlContinuous\n            tbl.Borders.Weight = xlThin\n            tbl.Columns.AutoFit\n            \n            \' Incrémente le compteur\n            compteur = compteur + 1\n        End If\n    Next ws\n    \n    \' Message final\n    MsgBox compteur & " feuilles traitées avec succès", vbInformation, "Résultat"\nEnd Sub\n```\n\n💡 Explication détaillée :\n\n1. `For Each ws In Worksheets`\n   → Parcourt toutes les feuilles du classeur\n   → ws = variable qui représente chaque feuille\n   → Worksheets = collection de toutes les feuilles\n\n2. `If Not IsEmpty(ws.Range("A1")) Then`\n   → Vérifie si A1 de cette feuille est vide\n   → Not = inverse la condition (si NON vide)\n   → ws.Range() = range sur la feuille spécifique\n\n3. `ws.Cells(ws.Rows.Count, 1)`\n   → Accède aux cellules de la feuille ws\n   → Important : toujours préfixer avec ws. pour cibler la bonne feuille\n\n4. `compteur = compteur + 1`\n   → Incrémente le compteur à chaque feuille traitée\n   → Permet de compter combien de feuilles ont été formatées\n\n5. `Next ws`\n   → Passe à la feuille suivante dans la boucle\n\n6. `MsgBox compteur & " feuilles traitées..."`\n   → Affiche le nombre de feuilles traitées\n   → & = concaténation de texte\n\n🎯 Points pédagogiques :\n\n• Expliquer la boucle For Each sur une collection\n• Insister sur l\'importance de préfixer avec ws.\n• Montrer comment compter dans une boucle\n• Expliquer pourquoi on ignore les feuilles vides\n• Comparer avec une macro qui ne traite qu\'une feuille\n• Montrer la puissance de l\'automatisation batch\n\n💡 Variante avancée (bonus) :\n\nPour traiter seulement certaines feuilles :\n\n```vba\nFor Each ws In Worksheets\n    If ws.Name Like "Janvier*" Or ws.Name Like "Février*" Then\n        \' Traiter seulement les feuilles qui commencent par Janvier ou Février\n    End If\nNext ws\n```'
   }
 ];
 

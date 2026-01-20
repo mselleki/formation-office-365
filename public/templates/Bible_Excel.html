@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bible Excel - Référence complète des formules</title>
+    <style>
+        @media print {
+            body { margin: 0; }
+            .page-break { page-break-before: always; }
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+        }
+        h1 {
+            color: #1f2937;
+            border-bottom: 3px solid #3b82f6;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #374151;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        h3 {
+            color: #4b5563;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        .formula {
+            background-color: #f3f4f6;
+            padding: 12px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            margin: 10px 0;
+            border-left: 4px solid #3b82f6;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .function-block {
+            margin-bottom: 25px;
+            padding-left: 15px;
+            border-left: 4px solid #3b82f6;
+        }
+        .role {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+        .explanation {
+            color: #4b5563;
+            margin-top: 8px;
+        }
+        .conclusion {
+            background-color: #fef3c7;
+            border: 2px solid #fbbf24;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        .conclusion h2 {
+            color: #92400e;
+            border-bottom: none;
+        }
+        .conclusion p {
+            color: #78350f;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>📚 Bible Excel</h1>
+    <p style="font-size: 18px; color: #6b7280; margin-bottom: 40px;">Référence complète des formules Excel utiles</p>
+
+    <div class="section">
+        <h2>1) Logique, erreurs, tests</h2>
+        
+        <div class="function-block">
+            <h3>SI</h3>
+            <div class="role">Rôle :</div>
+            <p>renvoie un résultat différent selon qu'une condition est vraie ou fausse.</p>
+            <div class="formula">SI(condition, valeur_si_vrai, valeur_si_faux)</div>
+            <div class="explanation">Excel évalue la condition logique puis renvoie soit la valeur prévue pour le cas vrai soit celle prévue pour le cas faux.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>SI.CONDITIONS</h3>
+            <div class="role">Rôle :</div>
+            <p>gère plusieurs conditions successives sans imbriquer plusieurs SI.</p>
+            <div class="formula">SI.CONDITIONS(condition1, valeur1, condition2, valeur2, …)</div>
+            <div class="explanation">Excel teste les conditions dans l'ordre et renvoie la valeur associée à la première condition vraie.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>ET</h3>
+            <div class="role">Rôle :</div>
+            <p>vérifie que toutes les conditions sont vraies simultanément.</p>
+            <div class="formula">ET(condition1, condition2, …)</div>
+            <div class="explanation">Excel renvoie VRAI uniquement si toutes les conditions logiques fournies sont vraies.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>OU</h3>
+            <div class="role">Rôle :</div>
+            <p>vérifie qu'au moins une condition est vraie.</p>
+            <div class="formula">OU(condition1, condition2, …)</div>
+            <div class="explanation">Excel renvoie VRAI dès qu'une des conditions logiques est vraie.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>NON</h3>
+            <div class="role">Rôle :</div>
+            <p>inverse un résultat logique.</p>
+            <div class="formula">NON(condition)</div>
+            <div class="explanation">Excel renvoie FAUX si la condition est vraie et VRAI si elle est fausse.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>XOU</h3>
+            <div class="role">Rôle :</div>
+            <p>renvoie VRAI si une seule condition est vraie, mais pas plusieurs.</p>
+            <div class="formula">XOU(condition1, condition2, …)</div>
+            <div class="explanation">Excel compte le nombre de conditions vraies et renvoie VRAI uniquement si ce nombre est impair.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>SIERREUR</h3>
+            <div class="role">Rôle :</div>
+            <p>remplace toute erreur par une valeur contrôlée.</p>
+            <div class="formula">SIERREUR(valeur, valeur_si_erreur)</div>
+            <div class="explanation">Excel tente d'évaluer la valeur et renvoie la valeur de remplacement si une erreur survient.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>ESTVIDE</h3>
+            <div class="role">Rôle :</div>
+            <p>teste si une cellule est totalement vide.</p>
+            <div class="formula">ESTVIDE(cellule)</div>
+            <div class="explanation">Excel vérifie l'absence totale de contenu dans la cellule ciblée.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>ESTNUM</h3>
+            <div class="role">Rôle :</div>
+            <p>vérifie si une cellule contient un nombre.</p>
+            <div class="formula">ESTNUM(valeur)</div>
+            <div class="explanation">Excel analyse le type de donnée et renvoie VRAI si la valeur est numérique.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>ESTTEXTE</h3>
+            <div class="role">Rôle :</div>
+            <p>vérifie si une cellule contient du texte.</p>
+            <div class="formula">ESTTEXTE(valeur)</div>
+            <div class="explanation">Excel teste si la valeur est stockée comme texte.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>ESTERREUR</h3>
+            <div class="role">Rôle :</div>
+            <p>détecte toute erreur Excel.</p>
+            <div class="formula">ESTERREUR(valeur)</div>
+            <div class="explanation">Excel renvoie VRAI si la valeur correspond à une erreur (#DIV/0!, #N/A, etc.).</div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+    <div class="section">
+        <h2>2) Recherche & référence</h2>
+        
+        <div class="function-block">
+            <h3>RECHERCHEX</h3>
+            <div class="role">Rôle :</div>
+            <p>recherche une valeur et renvoie une correspondance dans une autre plage.</p>
+            <div class="formula">RECHERCHEX(valeur_cherchée, plage_recherche, plage_retour, [si_non_trouvé])</div>
+            <div class="explanation">Excel cherche la valeur dans la plage de recherche et renvoie la valeur correspondante de la plage de retour.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>FILTRE</h3>
+            <div class="role">Rôle :</div>
+            <p>extrait dynamiquement des lignes ou colonnes selon une condition.</p>
+            <div class="formula">FILTRE(plage, condition, [valeur_si_vide])</div>
+            <div class="explanation">Excel conserve uniquement les éléments de la plage qui respectent la condition logique.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>TRIER</h3>
+            <div class="role">Rôle :</div>
+            <p>trie dynamiquement des données.</p>
+            <div class="formula">TRIER(plage, [index_tri], [ordre])</div>
+            <div class="explanation">Excel trie la plage selon une colonne donnée et un ordre croissant ou décroissant.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>TRIERPAR</h3>
+            <div class="role">Rôle :</div>
+            <p>trie une plage selon une autre plage.</p>
+            <div class="formula">TRIERPAR(plage, plage_tri, [ordre])</div>
+            <div class="explanation">Excel utilise une plage externe comme clé de tri.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>UNIQUE</h3>
+            <div class="role">Rôle :</div>
+            <p>extrait les valeurs distinctes d'une plage.</p>
+            <div class="formula">UNIQUE(plage)</div>
+            <div class="explanation">Excel élimine automatiquement les doublons dans la plage fournie.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>CHOISIRCOLS</h3>
+            <div class="role">Rôle :</div>
+            <p>sélectionne certaines colonnes d'une plage.</p>
+            <div class="formula">CHOISIRCOLS(plage, index_colonne1, index_colonne2, …)</div>
+            <div class="explanation">Excel reconstruit une nouvelle plage à partir des colonnes sélectionnées.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>CHOISIRLIGNES</h3>
+            <div class="role">Rôle :</div>
+            <p>sélectionne certaines lignes d'une plage.</p>
+            <div class="formula">CHOISIRLIGNES(plage, index_ligne1, index_ligne2, …)</div>
+            <div class="explanation">Excel extrait uniquement les lignes spécifiées.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>LET</h3>
+            <div class="role">Rôle :</div>
+            <p>rend les formules lisibles et plus performantes.</p>
+            <div class="formula">LET(nom1, valeur1, nom2, valeur2, calcul_final)</div>
+            <div class="explanation">Excel stocke des résultats intermédiaires sous forme de variables utilisées dans le calcul final.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>INDEX</h3>
+            <div class="role">Rôle :</div>
+            <p>renvoie une valeur à une position précise.</p>
+            <div class="formula">INDEX(plage, numero_ligne, [numero_colonne])</div>
+            <div class="explanation">Excel accède directement à l'intersection ligne/colonne demandée.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>EQUIV</h3>
+            <div class="role">Rôle :</div>
+            <p>renvoie la position d'une valeur dans une plage.</p>
+            <div class="formula">EQUIV(valeur, plage, type)</div>
+            <div class="explanation">Excel cherche la valeur et renvoie son rang dans la plage.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>RECHERCHEV</h3>
+            <div class="role">Rôle :</div>
+            <p>recherche verticale dans un tableau.</p>
+            <div class="formula">RECHERCHEV(valeur, table, index_colonne, correspondance)</div>
+            <div class="explanation">Excel cherche la valeur dans la première colonne puis renvoie la valeur de la colonne demandée.</div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+    <div class="section">
+        <h2>3) Agrégation & statistiques</h2>
+        
+        <div class="function-block">
+            <h3>SOMME</h3>
+            <div class="role">Rôle :</div>
+            <p>additionne des valeurs numériques.</p>
+            <div class="formula">SOMME(plage)</div>
+            <div class="explanation">Excel additionne toutes les valeurs numériques de la plage.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>SOMME.SI.ENS</h3>
+            <div class="role">Rôle :</div>
+            <p>additionne selon plusieurs critères.</p>
+            <div class="formula">SOMME.SI.ENS(plage_somme, plage_critère1, critère1, …)</div>
+            <div class="explanation">Excel additionne uniquement les valeurs dont toutes les conditions sont respectées.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>NB.SI.ENS</h3>
+            <div class="role">Rôle :</div>
+            <p>compte les lignes répondant à plusieurs critères.</p>
+            <div class="formula">NB.SI.ENS(plage_critère1, critère1, …)</div>
+            <div class="explanation">Excel incrémente le compteur lorsque toutes les conditions sont vraies.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>MOYENNE.SI.ENS</h3>
+            <div class="role">Rôle :</div>
+            <p>calcule une moyenne conditionnelle multiple.</p>
+            <div class="formula">MOYENNE.SI.ENS(plage_moyenne, plage_critère1, critère1, …)</div>
+            <div class="explanation">Excel calcule la moyenne uniquement sur les valeurs répondant à tous les critères.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>AGREGAT</h3>
+            <div class="role">Rôle :</div>
+            <p>réalise des calculs robustes sur des données imparfaites.</p>
+            <div class="formula">AGREGAT(numero_fonction, options, plage)</div>
+            <div class="explanation">Excel applique une fonction (somme, moyenne, etc.) en ignorant erreurs et lignes masquées selon les options.</div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+    <div class="section">
+        <h2>4) Dates & temps</h2>
+        
+        <div class="function-block">
+            <h3>DATE</h3>
+            <div class="role">Rôle :</div>
+            <p>construit une date valide Excel.</p>
+            <div class="formula">DATE(année, mois, jour)</div>
+            <div class="explanation">Excel assemble les composantes pour produire une date exploitable.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>FIN.MOIS</h3>
+            <div class="role">Rôle :</div>
+            <p>renvoie le dernier jour d'un mois.</p>
+            <div class="formula">FIN.MOIS(date, décalage_mois)</div>
+            <div class="explanation">Excel se projette dans le mois cible puis renvoie sa date de fin.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>NB.JOURS.OUVRES.INTL</h3>
+            <div class="role">Rôle :</div>
+            <p>calcule des jours ouvrés personnalisés.</p>
+            <div class="formula">NB.JOURS.OUVRES.INTL(date_début, date_fin, week_end, [jours_fériés])</div>
+            <div class="explanation">Excel compte les jours travaillés en excluant week-ends et jours fériés.</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>5) Texte</h2>
+        
+        <div class="function-block">
+            <h3>SUBSTITUE</h3>
+            <div class="role">Rôle :</div>
+            <p>remplace un texte par un autre.</p>
+            <div class="formula">SUBSTITUE(texte, ancien, nouveau)</div>
+            <div class="explanation">Excel remplace toutes les occurrences du texte ciblé.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>SUPPRESPACE</h3>
+            <div class="role">Rôle :</div>
+            <p>nettoie les espaces inutiles.</p>
+            <div class="formula">SUPPRESPACE(texte)</div>
+            <div class="explanation">Excel supprime les espaces superflus en début, fin et doublons internes.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>JOINDRE.TEXTE</h3>
+            <div class="role">Rôle :</div>
+            <p>concatène une plage avec un séparateur.</p>
+            <div class="formula">JOINDRE.TEXTE(séparateur, ignorer_vide, plage)</div>
+            <div class="explanation">Excel assemble les textes en insérant le séparateur entre chaque valeur.</div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+    <div class="section">
+        <h2>7) Tableaux dynamiques</h2>
+        
+        <div class="function-block">
+            <h3>SEQUENCE</h3>
+            <div class="role">Rôle :</div>
+            <p>génère une suite numérique dynamique.</p>
+            <div class="formula">SEQUENCE(lignes, [colonnes], [début], [pas])</div>
+            <div class="explanation">Excel crée automatiquement une série numérique structurée.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>LAMBDA</h3>
+            <div class="role">Rôle :</div>
+            <p>crée une fonction personnalisée sans VBA.</p>
+            <div class="formula">LAMBDA(paramètre1, paramètre2, calcul)</div>
+            <div class="explanation">Excel transforme une formule en fonction réutilisable.</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>8) Conversions & formats</h2>
+        
+        <div class="function-block">
+            <h3>NUMBERVALUE</h3>
+            <div class="role">Rôle :</div>
+            <p>convertit un nombre texte en nombre réel.</p>
+            <div class="formula">NUMBERVALUE(texte, séparateur_décimal, séparateur_millier)</div>
+            <div class="explanation">Excel interprète correctement les séparateurs pour produire un nombre exploitable.</div>
+        </div>
+
+        <div class="function-block">
+            <h3>TEXTE</h3>
+            <div class="role">Rôle :</div>
+            <p>transforme une valeur en texte formaté.</p>
+            <div class="formula">TEXTE(valeur, format)</div>
+            <div class="explanation">Excel applique un format d'affichage tout en conservant la valeur d'origine.</div>
+        </div>
+    </div>
+
+    <div class="conclusion">
+        <h2>Conclusion tranchée</h2>
+        <p>
+            MonSeigneur, savoir utiliser Excel c'est bien,<br>
+            savoir expliquer le patron d'une fonction, c'est le niveau au-dessus.<br>
+            À partir d'ici, tu peux enseigner, auditer, ou démonter n'importe quel fichier bancal sans lever la voix.
+        </p>
+    </div>
+</body>
+</html>

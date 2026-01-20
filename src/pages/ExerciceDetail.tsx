@@ -58,13 +58,25 @@ export default function ExerciceDetail({ isTrainerMode }: ExerciceDetailProps) {
           </div>
         </div>
         {exercice.category === 'Excel' && (
-          <div className="mt-4 pt-4 border-t border-gray-200">
+          <div className="mt-4 pt-4 border-t border-gray-200 space-y-3">
             <Link
               to="/exercices/excel/bible"
               className="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors text-sm font-medium"
             >
               📚 Ouvrir la Bible Excel
             </Link>
+            <div>
+              <a
+                href="/templates/Bible_Excel.html"
+                download="Bible_Excel.html"
+                className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors text-sm font-medium ml-3"
+              >
+                📥 Télécharger la Bible Excel (HTML/PDF)
+              </a>
+              <p className="text-xs text-gray-500 mt-2 ml-3">
+                Ouvrez le fichier HTML dans votre navigateur et utilisez "Imprimer" → "Enregistrer en PDF" pour créer un PDF
+              </p>
+            </div>
           </div>
         )}
       </div>

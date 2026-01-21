@@ -240,31 +240,36 @@ export const episodes: Episode[] = [
     steps: [
       {
         number: 1,
-        title: 'Créer la structure du document',
-        description: 'Créez un nouveau document Word. Définissez les styles de titre (Titre 1, Titre 2, Titre 3) avec une mise en forme cohérente. Utilisez les styles pour structurer votre document.'
+        title: 'Télécharger et importer le fichier texte',
+        description: 'Téléchargez le fichier Dossier_Evenement.txt. Ouvrez Word et importez ce fichier texte (Fichier > Ouvrir > Sélectionnez le fichier .txt). Le contenu brut s\'affichera avec les titres numérotés (1., 1.1, 2., etc.).'
       },
       {
         number: 2,
+        title: 'Créer et appliquer les styles de titre',
+        description: 'Définissez les styles de titre (Titre 1, Titre 2, Titre 3) avec une mise en forme cohérente. Appliquez Titre 1 aux titres principaux (1., 2., 3., etc.), Titre 2 aux sous-titres (1.1, 1.2, etc.), et Titre 3 aux sous-sous-titres (1.1.1, etc.). Utilisez les styles pour structurer votre document.'
+      },
+      {
+        number: 3,
         title: 'Configurer l\'en-tête et le pied de page',
         description: 'Insérez un en-tête avec le logo de l\'événement (ou le titre) et un pied de page avec la numérotation des pages. Utilisez "Première page différente" si nécessaire.'
       },
       {
-        number: 3,
-        title: 'Rédiger le contenu',
-        description: 'Rédigez les sections : Présentation de l\'événement, Programme, Participants, Partenaires. Utilisez les styles définis pour chaque section.'
+        number: 4,
+        title: 'Mettre en forme le contenu',
+        description: 'Mettez en forme les paragraphes de contenu avec un style approprié. Vérifiez que tous les titres utilisent bien les styles Titre 1, 2, 3. Ajustez les espacements et la mise en forme générale.'
       },
       {
-        number: 4,
+        number: 5,
         title: 'Insérer un tableau récapitulatif',
         description: 'Créez un tableau récapitulatif avec les informations clés : Date, Lieu, Nombre de participants, Horaires principaux. Mettez-le en forme professionnellement.'
       },
       {
-        number: 5,
+        number: 6,
         title: 'Ajouter une table des matières',
         description: 'Insérez une table des matières automatique basée sur vos styles de titre. Mettez-la à jour si vous modifiez le document.'
       },
       {
-        number: 6,
+        number: 7,
         title: 'Finaliser la mise en page',
         description: 'Vérifiez les sauts de page, les espacements, et la cohérence visuelle. Exportez en PDF pour le partage final.'
       }
@@ -288,8 +293,8 @@ export const episodes: Episode[] = [
     ],
     files: [
       {
-        name: 'Dossier_Evenement.docx',
-        path: '/templates/Dossier_Evenement.docx',
+        name: 'Dossier_Evenement.txt',
+        path: '/templates/Dossier_Evenement.txt',
         type: 'download'
       },
       {
@@ -319,7 +324,7 @@ export const episodes: Episode[] = [
       {
         number: 1,
         title: 'Configurer les permissions OneDrive',
-        description: 'Dans OneDrive, sélectionnez un document (par exemple le Dossier_Evenement.docx). Cliquez sur "Partager". Partagez avec mselleki98@gmail.com en donnant les droits de modification (simule l\'équipe projet). Partagez avec ilyass.msellek@sysco.com en lecture seule (simule un relecteur externe). Envoyez les invitations.'
+        description: 'Dans OneDrive, sélectionnez un document (par exemple le Dossier_Evenement.txt que vous aurez importé dans Word). Cliquez sur "Partager". Partagez avec mselleki98@gmail.com en donnant les droits de modification (simule l\'équipe projet). Partagez avec ilyass.msellek@sysco.com en lecture seule (simule un relecteur externe). Envoyez les invitations.'
       },
       {
         number: 2,
@@ -694,7 +699,7 @@ export const episodes: Episode[] = [
       {
         number: 2,
         title: 'Vérifier les documents Word',
-        description: 'Vérifiez que le Dossier_Evenement.docx est complet, mis en forme et exporté en PDF. Vérifiez aussi tous les autres documents Word du projet.'
+        description: 'Vérifiez que le Dossier_Evenement.txt a été importé dans Word, mis en forme avec les styles appropriés et exporté en PDF. Vérifiez aussi tous les autres documents Word du projet.'
       },
       {
         number: 3,

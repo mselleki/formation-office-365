@@ -2,7 +2,8 @@ Structure recommandée pour le dossier projet :
 
 Rising_Stars_Tennis_Day/
 ├── Documents/
-│   ├── Dossier_Evenement.docx
+│   ├── Dossier_Evenement.txt (à importer dans Word et mettre en forme)
+│   ├── Dossier_Evenement.docx (version Word mise en forme)
 │   └── Recapitulatif_Projet.docx
 ├── Planning/
 │   ├── Base_Joueurs.xlsx

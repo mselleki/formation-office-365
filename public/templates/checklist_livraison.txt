@@ -7,7 +7,8 @@ DOCUMENTS EXCEL
 ☐ Tous les fichiers Excel sont à jour et sans erreurs
 
 DOCUMENTS WORD
-☐ Dossier_Evenement.docx - Document complet et mis en forme
+☐ Dossier_Evenement.txt - Fichier texte source téléchargé
+☐ Dossier_Evenement.docx - Document importé dans Word et mis en forme avec styles Titre 1, 2, 3
 ☐ Dossier_Evenement.pdf - Version PDF exportée
 ☐ Recapitulatif_Projet.docx - Document récapitulatif créé
 ☐ Tous les documents ont une table des matières à jour

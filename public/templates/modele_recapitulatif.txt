@@ -25,7 +25,8 @@ LIVRABLES
      Statut : ✓ Terminé
 
 2. DOCUMENTS WORD
-   - Dossier_Evenement.docx / .pdf
+   - Dossier_Evenement.txt (source)
+   - Dossier_Evenement.docx (mis en forme) / .pdf
      Emplacement : [Chemin]
      Responsable : [Nom]
      Statut : ✓ Terminé

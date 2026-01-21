@@ -39,6 +39,13 @@ export default function Header({ isTrainerMode, onToggleTrainerMode, onTrainerAu
               src="/microsoft.png" 
               alt="Microsoft" 
               className="w-8 h-8"
+              onError={(e) => {
+                // Fallback vers SVG si PNG ne charge pas
+                const target = e.target as HTMLImageElement;
+                if (target.src !== '/microsoft.svg') {
+                  target.src = '/microsoft.svg';
+                }
+              }}
             />
             <h1 className="text-xl font-semibold text-gray-800">
               Formation Microsoft 365

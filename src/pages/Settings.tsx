@@ -39,7 +39,10 @@ export default function Settings({ onResetProgress }: SettingsProps) {
           À propos
         </h2>
         <p className="text-gray-700 mb-2">
-          <strong>Rising Stars Tennis Day</strong> - Formation Microsoft 365
+          <strong>Formation Microsoft 365</strong>
+        </p>
+        <p className="text-gray-600 text-sm mb-2">
+          Projet fil rouge : Rising Stars Tennis Day
         </p>
         <p className="text-gray-600 text-sm">
           Site vitrine local pour accompagner une formation Microsoft 365 en présentiel.

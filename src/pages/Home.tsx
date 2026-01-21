@@ -5,10 +5,10 @@ export default function Home() {
     <div className="max-w-4xl mx-auto">
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          Rising Stars Tennis Day
+          Formation Microsoft 365
         </h1>
         <p className="text-xl text-gray-600 mb-2">
-          Formation Microsoft 365
+          Projet fil rouge : Rising Stars Tennis Day
         </p>
       </div>
 

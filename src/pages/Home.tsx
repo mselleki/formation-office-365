@@ -28,20 +28,19 @@ export default function Home() {
         </p>
       </div>
 
-      <div className="bg-indigo-50 border-2 border-indigo-200 rounded-lg shadow-sm p-8 mb-8">
-        <h2 className="text-2xl font-semibold text-indigo-900 mb-4">
-          🤖 Nouveau : Section Intelligence Artificielle
+      <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-8 mb-8">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+          Intelligence Artificielle
         </h2>
-        <p className="text-indigo-800 leading-relaxed mb-4">
-          Découvrez notre nouveau module sur l'IA pour non-techniques ! Apprenez à utiliser l'IA 
-          de manière efficace et responsable dans votre travail quotidien. Démystifiez l'IA, 
-          maîtrisez le prompting, et découvrez les bonnes pratiques.
+        <p className="text-gray-700 leading-relaxed mb-4">
+          Module dédié à l'utilisation de l'IA dans un contexte professionnel. Apprenez les fondamentaux, 
+          maîtrisez le prompting et découvrez les bonnes pratiques pour intégrer l'IA dans votre travail quotidien.
         </p>
         <Link
           to="/exercices"
-          className="inline-block px-6 py-2 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 transition-colors"
+          className="inline-block px-6 py-2 bg-gray-800 text-white rounded-md font-medium hover:bg-gray-900 transition-colors"
         >
-          Découvrir les exercices IA →
+          Accéder aux exercices IA
         </Link>
       </div>
 

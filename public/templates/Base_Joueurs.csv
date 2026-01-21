@@ -1,0 +1,11 @@
+Nom,Prénom,Email,Téléphone,Type,Date de naissance,Niveau de jeu
+Martin,Claire,claire.martin@email.com,0612345678,Joueur,2010-05-15,Intermediaire
+Bernard,Luc,luc.bernard@email.com,0623456789,Joueur,2009-08-22,Debutant
+Dupont,Alice,alice.dupont@email.com,0634567890,Joueur,2011-03-10,Avance
+Leroy,Sophie,sophie.leroy@email.com,0645678901,Joueur,2010-11-05,Intermediaire
+Moreau,Pierre,pierre.moreau@email.com,0656789012,Accompagnant,
+Petit,Marie,marie.petit@email.com,0667890123,Joueur,2009-12-18,Debutant
+Dubois,Jean,jean.dubois@email.com,0678901234,Accompagnant,
+Simon,Emma,emma.simon@email.com,0689012345,Joueur,2010-07-30,Intermediaire
+Michel,Thomas,thomas.michel@email.com,0690123456,Joueur,2011-01-14,Avance
+Garcia,Lucas,lucas.garcia@email.com,0601234567,Joueur,2010-09-25,Debutant

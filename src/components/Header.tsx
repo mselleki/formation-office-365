@@ -35,7 +35,11 @@ export default function Header({ isTrainerMode, onToggleTrainerMode, onTrainerAu
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-3">
-            <span className="text-2xl">🎾</span>
+            <img 
+              src="/office-logo.svg" 
+              alt="Microsoft Office" 
+              className="w-8 h-8"
+            />
             <h1 className="text-xl font-semibold text-gray-800">
               Rising Stars Tennis Day
             </h1>

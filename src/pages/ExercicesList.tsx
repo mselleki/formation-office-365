@@ -11,6 +11,7 @@ export default function ExercicesList() {
 
   const getCategoryColor = (category: ExerciceCategory) => {
     const colors: Record<ExerciceCategory, string> = {
+      IA: 'bg-indigo-100 text-indigo-800',
       Word: 'bg-blue-100 text-blue-800',
       Excel: 'bg-green-100 text-green-800',
       Outlook: 'bg-purple-100 text-purple-800',

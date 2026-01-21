@@ -1,4 +1,4 @@
-export type ExerciceCategory = 'Word' | 'Excel' | 'Outlook' | 'OneDrive' | 'OneNote' | 'PowerQuery';
+export type ExerciceCategory = 'IA' | 'Word' | 'Excel' | 'Outlook' | 'OneDrive' | 'OneNote' | 'PowerQuery';
 
 export type ExerciceStatus = 'not_started' | 'in_progress' | 'completed';
 
@@ -29,6 +29,548 @@ export interface Exercice {
 }
 
 export const exercices: Exercice[] = [
+  {
+    id: 'ia-decouverte-01',
+    category: 'IA',
+    title: 'Découverte de l\'IA - Premiers pas',
+    duration: '10 minutes',
+    objective: '🎯 Objectif : Prendre confiance avec l\'IA\n\n• Découvrir ce qu\'est une IA\n• Comprendre ses capacités actuelles\n• Prendre conscience de ses limites\n\n💣 Message clé :\n\n"L\'IA ne comprend rien. Elle imite très bien."',
+    context: 'Tu vas découvrir l\'IA en la testant directement. Pas de théorie compliquée, juste de la pratique pour comprendre ce qu\'elle sait faire... et ce qu\'elle ne sait pas faire.',
+    generalInstructions: [
+      'Utilisez ChatGPT, Copilot, ou tout autre assistant IA conversationnel',
+      'Testez les prompts proposés',
+      'Observez les réponses et réfléchissez à leur qualité',
+      'N\'hésitez pas à poser des questions de suivi'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Premier contact',
+        duration: '3 min',
+        instructions: [
+          'Ouvrez ChatGPT, Copilot ou un autre assistant IA',
+          'Demandez-lui de se présenter comme votre assistant personnel',
+          'Puis demandez-lui de vous proposer 5 façons de vous aider dans votre travail',
+          'Observez sa réponse'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Réflexion',
+        duration: '2 min',
+        instructions: [
+          'Qu\'est-ce qui t\'a surpris dans sa réponse ?',
+          'Les propositions te semblent-elles utiles ou juste des gadgets ?',
+          'Note tes premières impressions'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Test de limites',
+        duration: '5 min',
+        instructions: [
+          'Pose-lui une question sur un événement récent (moins de 24h)',
+          'Demande-lui de résumer un document que tu n\'as pas fourni',
+          'Observe comment elle réagit',
+          '💡 Question : Que se passe-t-il quand elle ne sait pas ?'
+        ]
+      }
+    ],
+    deliverables: [
+      'Une première expérience avec l\'IA',
+      'Des notes sur tes impressions',
+      'Une compréhension des capacités et limites de base'
+    ],
+    reflectionQuestions: [
+      'Qu\'est-ce qui t\'a surpris dans cette première interaction ?',
+      'Les propositions de l\'IA te semblent-elles utiles ou juste des gadgets ?',
+      'Selon toi, qu\'est-ce que l\'IA ne saura jamais faire ?'
+    ],
+    trainerScript: '💣 Message pédagogique clé :\n\n"L\'IA ne comprend rien. Elle imite très bien."\n\n🧠 Ce que l\'apprenant découvre :\n\n• L\'IA est accessible et facile à utiliser\n• Elle peut proposer des choses utiles... mais aussi des choses génériques\n• Elle a des limites (événements récents, documents non fournis)\n\n📋 Points à aborder pendant l\'exercice :\n\n**Démythifier l\'IA**\n\n• IA ≠ robot ≠ conscience ≠ magie\n• C\'est une machine à prédire le mot suivant\n• Elle apprend sur des milliards de textes\n• Elle ne "sait" pas, elle devine statistiquement\n\n**Ce que fait une IA aujourd\'hui**\n\n• Texte (ChatGPT, Copilot…)\n• Images (DALL·E, Midjourney)\n• Audio (voix, résumé de réunions)\n• Analyse (documents, mails, tableaux)\n\n**Moment clivant**\n\n"Une IA parle mieux que beaucoup d\'humains…\nmais comprend moins qu\'un enfant de 6 ans."\n\n💡 Erreurs fréquentes des apprenants :\n\n• Croire que l\'IA "comprend" vraiment\n• Faire trop confiance aux réponses\n• Ne pas vérifier les informations\n• Utiliser des prompts trop vagues\n\n🔍 Questions à poser pendant l\'exercice :\n\n• "Pourquoi l\'IA propose-t-elle des choses génériques ?" (elle ne connaît pas ton contexte spécifique)\n• "Que se passe-t-il quand elle ne sait pas ?" (elle peut inventer ou être vague)\n• "Selon vous, qu\'est-ce que l\'IA ne saura jamais faire ?" (débat intéressant)\n\n💣 Phrase d\'impact à dire :\n\n"L\'IA est dangereuse surtout pour les gens qui lui font trop confiance. Elle est brillante, mais elle ment très bien."'
+  },
+  {
+    id: 'ia-ameliorer-texte-02',
+    category: 'IA',
+    title: 'Améliorer un texte avec l\'IA',
+    duration: '15 minutes',
+    objective: '🎯 Objectif : Comprendre la puissance stylistique de l\'IA\n\n• Reformuler un texte maladroit\n• Adapter le ton selon le contexte\n• Comprendre que la qualité dépend de la précision de la demande',
+    context: 'Tu reçois un mail maladroit et tu dois le reformuler de différentes façons selon le contexte. L\'IA va t\'aider à adapter le ton et le style.',
+    generalInstructions: [
+      'Utilisez le texte fourni comme point de départ',
+      'Testez différentes reformulations',
+      'Comparez les résultats',
+      'Observez comment l\'IA adapte le ton'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Texte de départ',
+        duration: '2 min',
+        instructions: [
+          'Voici le texte à améliorer :',
+          '',
+          '"Bonjour,',
+          'Je vous écris pour dire que j\'ai pas reçu le document et que ça m\'embête parce que j\'en ai besoin vite.',
+          'Merci"',
+          '',
+          'Copiez ce texte'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Reformulation professionnelle',
+        duration: '5 min',
+        instructions: [
+          'Demandez à l\'IA :',
+          '"Reformule ce mail en version professionnelle et polie"',
+          '',
+          'Observez le résultat',
+          'Comparez avec l\'original'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Version très polie',
+        duration: '4 min',
+        instructions: [
+          'Demandez maintenant :',
+          '"Reformule ce mail en version très polie et diplomatique"',
+          '',
+          'Observez les différences avec la version précédente'
+        ]
+      },
+      {
+        number: 4,
+        title: 'Version ferme',
+        duration: '4 min',
+        instructions: [
+          'Enfin, demandez :',
+          '"Reformule ce mail en version ferme mais respectueuse"',
+          '',
+          'Comparez les trois versions',
+          '💡 Question : Quelle version utiliser selon le contexte ?'
+        ]
+      }
+    ],
+    deliverables: [
+      'Trois versions reformulées du mail',
+      'Une compréhension de l\'adaptation du ton',
+      'Des notes sur quand utiliser chaque version'
+    ],
+    reflectionQuestions: [
+      'Quelle version préfères-tu et pourquoi ?',
+      'Comment l\'IA adapte-t-elle le ton selon ta demande ?',
+      'Dans quels contextes utiliserais-tu chaque version ?'
+    ],
+    trainerScript: '💣 Message pédagogique clé :\n\n"La qualité de la réponse dépend surtout de la qualité de la question."\n\n🧠 Ce que l\'apprenant apprend :\n\n• L\'IA peut adapter le ton et le style\n• Plus la demande est précise, meilleur est le résultat\n• L\'IA est un multiplicateur de clarté\n\n📋 Points à aborder pendant l\'exercice :\n\n**La méthode C.A.D.R.E**\n\n• **C**ontexte : qui je suis, dans quelle situation\n• **A**ction : ce que je veux exactement\n• **D**étails : contraintes, ton, format\n• **R**ôle : "Tu es un expert en…"\n\n**Exemple de bon prompt**\n\n❌ Mauvais : "Écris un mail"\n\n✅ Bon : "Tu es un responsable RH. Écris un mail professionnel pour refuser une candidature, ton bienveillant, 8 lignes maximum."\n\n**Phrase clivante**\n\n"Les gens qui disent que l\'IA est nulle…\nsont souvent ceux qui lui parlent mal."\n\n💡 Erreurs fréquentes des apprenants :\n\n• Prompts trop vagues\n• Ne pas préciser le contexte\n• Ne pas spécifier le ton souhaité\n• Ne pas donner de contraintes (longueur, format)\n\n🔍 Questions à poser pendant l\'exercice :\n\n• "Pourquoi la première version est-elle meilleure que l\'original ?" (correction des erreurs, structure)\n• "Quelle est la différence entre \'professionnel\' et \'très polie\' ?" (nuances de ton)\n• "Comment adapterais-tu ce mail pour un collègue proche ?" (contexte différent)\n\n💣 Phrase d\'impact à dire :\n\n"L\'IA est un multiplicateur de clarté. Les gens clairs deviennent redoutables. Les gens flous deviennent inutiles plus vite."'
+  },
+  {
+    id: 'ia-resumer-03',
+    category: 'IA',
+    title: 'Résumer et comprendre avec l\'IA',
+    duration: '15 minutes',
+    objective: '🎯 Objectif : Utiliser l\'IA pour simplifier la complexité\n\n• Résumer un document long\n• Adapter le niveau d\'explication\n• Extraire les points clés',
+    context: 'Tu as un document long et complexe. Tu dois le résumer de différentes façons selon ton audience. L\'IA va t\'aider à adapter le niveau.',
+    generalInstructions: [
+      'Utilisez un article ou document de votre choix (ou celui fourni)',
+      'Testez différents niveaux de résumé',
+      'Observez comment l\'IA adapte le langage',
+      'Comparez les résultats'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Sélectionner un document',
+        duration: '2 min',
+        instructions: [
+          'Choisissez un article d\'actualité ou un document professionnel',
+          'Ou utilisez celui fourni dans les fichiers',
+          'Copiez le texte complet'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Résumé en 5 lignes',
+        duration: '4 min',
+        instructions: [
+          'Demandez à l\'IA :',
+          '"Résume ce texte en 5 lignes maximum"',
+          '',
+          'Collez le texte',
+          'Observez le résultat'
+        ]
+      },
+      {
+        number: 3,
+        title: '3 points clés',
+        duration: '4 min',
+        instructions: [
+          'Demandez maintenant :',
+          '"Extrais les 3 points clés de ce texte sous forme de puces"',
+          '',
+          'Comparez avec le résumé précédent'
+        ]
+      },
+      {
+        number: 4,
+        title: 'Explication simple',
+        duration: '5 min',
+        instructions: [
+          'Enfin, demandez :',
+          '"Explique ce texte comme à un enfant de 12 ans"',
+          '',
+          'Observez comment l\'IA simplifie le langage',
+          '💡 Message caché : L\'IA est une machine à simplifier la complexité'
+        ]
+      }
+    ],
+    deliverables: [
+      'Trois versions du résumé (5 lignes, 3 points, explication simple)',
+      'Une compréhension de l\'adaptation du niveau',
+      'Des notes sur l\'utilisation de chaque format'
+    ],
+    reflectionQuestions: [
+      'Quelle version est la plus utile selon toi ?',
+      'Comment l\'IA adapte-t-elle le langage selon le niveau demandé ?',
+      'Dans quels contextes utiliserais-tu chaque format ?'
+    ],
+    files: [
+      {
+        name: 'Article_exemple.txt',
+        path: '/templates/Article_exemple.txt',
+        type: 'download'
+      }
+    ],
+    trainerScript: '💣 Message pédagogique clé :\n\n"L\'IA est une machine à simplifier la complexité."\n\n🧠 Ce que l\'apprenant apprend :\n\n• L\'IA peut adapter le niveau d\'explication\n• Différents formats pour différents usages\n• L\'importance de préciser le format souhaité\n\n📋 Points à aborder pendant l\'exercice :\n\n**5 grands usages universels de l\'IA**\n\n1. **ÉCRIRE ET COMMUNIQUER**\n   → Mails professionnels\n   → Comptes rendus\n   → Reformulation diplomatique\n   → Traduction intelligente\n\n2. **ORGANISER ET CLARIFIER**\n   → Résumer un document long\n   → Extraire les points clés\n   → Préparer une réunion\n   → Structurer des idées\n\n3. **RÉFLÉCHIR ET DÉCIDER**\n   → Brainstorming\n   → Avantages / inconvénients\n   → Aide à la décision\n   → Simulation de scénarios\n\n4. **APPRENDRE PLUS VITE**\n   → Explication de notions\n   → Reformulation pédagogique\n   → Création d\'exercices\n   → Quiz personnalisés\n\n5. **AUTOMATISER DES PETITES TÂCHES**\n   → Réponses types\n   → Modèles de documents\n   → Checklists\n   → Procédures\n\n**Phrase choc**\n\n"L\'IA est un excellent collègue…\nmais un très mauvais patron."\n\n💡 Erreurs fréquentes des apprenants :\n\n• Ne pas préciser le format souhaité\n• Ne pas adapter le niveau selon l\'audience\n• Croire que tous les résumés se valent\n• Ne pas vérifier les informations importantes\n\n🔍 Questions à poser pendant l\'exercice :\n\n• "Pourquoi le résumé en 5 lignes est-il différent des 3 points clés ?" (formats différents)\n• "Quand utiliserais-tu l\'explication simple ?" (pour transmettre à d\'autres)\n• "Comment vérifierais-tu que le résumé est fidèle à l\'original ?" (vérification)\n\n💣 Phrase d\'impact à dire :\n\n"L\'IA ne va pas remplacer votre métier. Elle va remplacer votre version lente."'
+  },
+  {
+    id: 'ia-decision-04',
+    category: 'IA',
+    title: 'Aide à la décision avec l\'IA',
+    duration: '20 minutes',
+    objective: '🎯 Objectif : Utiliser l\'IA pour structurer sa réflexion\n\n• Lister avantages et inconvénients\n• Analyser les risques\n• Obtenir un conseil argumenté\n• Comprendre que l\'IA aide à penser, mais ne décide pas',
+    context: 'Tu dois prendre une décision importante. L\'IA va t\'aider à structurer ta réflexion en listant les éléments à considérer, mais c\'est toi qui décideras.',
+    generalInstructions: [
+      'Choisissez une situation de décision réelle ou utilisez l\'exemple fourni',
+      'Utilisez l\'IA pour structurer votre réflexion',
+      'N\'oubliez pas : l\'IA aide à penser, mais ne décide pas',
+      'La décision finale vous appartient'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Définir la situation',
+        duration: '3 min',
+        instructions: [
+          'Exemple de situation :',
+          '"Dois-je accepter une nouvelle opportunité professionnelle ?"',
+          '',
+          'Ou choisissez votre propre situation',
+          'Formulez-la clairement'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Lister avantages et inconvénients',
+        duration: '6 min',
+        instructions: [
+          'Demandez à l\'IA :',
+          '"Liste les avantages et inconvénients de [ta situation]"',
+          '',
+          'Donnez le contexte nécessaire',
+          'Observez la réponse structurée'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Analyser les risques',
+        duration: '5 min',
+        instructions: [
+          'Demandez maintenant :',
+          '"Quels sont les risques principaux de cette décision ?"',
+          '',
+          'Comparez avec ta propre analyse',
+          'Note les risques que tu n\'avais pas identifiés'
+        ]
+      },
+      {
+        number: 4,
+        title: 'Conseil argumenté',
+        duration: '6 min',
+        instructions: [
+          'Enfin, demandez :',
+          '"Donne-moi un conseil argumenté sur cette décision"',
+          '',
+          '⚠️ Important : Le conseil de l\'IA est une aide, pas une vérité absolue',
+          '💡 Débrief : Montrer que l\'IA aide à penser, mais ne décide pas'
+        ]
+      }
+    ],
+    deliverables: [
+      'Une liste structurée d\'avantages/inconvénients',
+      'Une analyse des risques',
+      'Un conseil argumenté',
+      'Une réflexion sur l\'utilisation de l\'IA pour la décision'
+    ],
+    reflectionQuestions: [
+      'Le conseil de l\'IA correspond-il à ta propre réflexion ?',
+      'Quels éléments n\'avais-tu pas considérés ?',
+      'Comment utiliserais-tu l\'IA pour prendre une décision importante ?',
+      'Pourquoi est-il important de ne pas laisser l\'IA décider à ta place ?'
+    ],
+    trainerScript: '💣 Message pédagogique clé :\n\n"L\'IA aide à penser, mais ne décide pas."\n\n🧠 Ce que l\'apprenant apprend :\n\n• Structurer sa réflexion avec l\'IA\n• Identifier des angles qu\'il n\'avait pas vus\n• Comprendre que la décision finale lui appartient\n\n📋 Points à aborder pendant l\'exercice :\n\n**RÉFLÉCHIR ET DÉCIDER**\n\nL\'IA peut aider pour :\n• Brainstorming\n• Avantages / inconvénients\n• Aide à la décision\n• Simulation de scénarios\n\n**Mais attention**\n\n• L\'IA ne connaît pas ton contexte complet\n• Elle peut manquer des nuances importantes\n• Elle peut biaiser selon ses données d\'entraînement\n• La décision finale doit être la tienne\n\n**Phrase choc**\n\n"L\'IA est un excellent collègue…\nmais un très mauvais patron."\n\n**Limites et risques**\n\n❌ Elle peut inventer\n❌ Elle peut biaiser\n❌ Elle dépend de ses données\n❌ Problèmes de confidentialité\n❌ Illusion de compétence\n\n**Message fort**\n\n"L\'IA est dangereuse surtout pour les gens qui lui font trop confiance."\n\n💡 Erreurs fréquentes des apprenants :\n\n• Suivre aveuglément le conseil de l\'IA\n• Ne pas considérer son propre contexte\n• Oublier que l\'IA peut biaiser\n• Ne pas vérifier les informations\n\n🔍 Questions à poser pendant l\'exercice :\n\n• "Pourquoi le conseil de l\'IA est-il utile mais pas définitif ?" (manque de contexte)\n• "Quels éléments l\'IA ne peut-elle pas connaître ?" (ton vécu, tes valeurs)\n• "Comment utiliserais-tu l\'IA pour une décision importante ?" (aide à la réflexion, pas remplacement)\n\n💣 Phrase d\'impact à dire :\n\n"L\'IA est un excellent assistant pour structurer ta pensée. Mais la décision finale, c\'est toi qui la prends. L\'IA ne connaît pas ton contexte, tes valeurs, ton vécu."'
+  },
+  {
+    id: 'ia-prompting-05',
+    category: 'IA',
+    title: 'Savoir parler à une IA - Le prompting efficace',
+    duration: '30 minutes',
+    objective: '🎯 Objectif : Maîtriser l\'art du prompting\n\n• Comprendre que la qualité dépend de la précision\n• Apprendre la méthode C.A.D.R.E\n• Pratiquer avec des exemples concrets\n\n💣 Message clé :\n\n"Les gens qui disent que l\'IA est nulle…\nsont souvent ceux qui lui parlent mal."',
+    context: 'Tu vas apprendre à bien communiquer avec l\'IA. La qualité de la réponse dépend surtout de la qualité de la question. Tu vas découvrir la méthode C.A.D.R.E.',
+    generalInstructions: [
+      'Testez les prompts proposés',
+      'Comparez les résultats',
+      'Observez l\'impact de la précision',
+      'Pratiquez avec vos propres exemples'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Mauvais vs Bon prompt',
+        duration: '8 min',
+        instructions: [
+          'Test 1 - Mauvais prompt :',
+          '"Écris un mail"',
+          '',
+          'Observez le résultat',
+          '',
+          'Test 2 - Bon prompt :',
+          '"Tu es un responsable RH. Écris un mail professionnel pour refuser une candidature, ton bienveillant, 8 lignes maximum."',
+          '',
+          'Comparez les deux résultats',
+          '💡 Question : Quelle est la différence ?'
+        ]
+      },
+      {
+        number: 2,
+        title: 'La méthode C.A.D.R.E',
+        duration: '10 min',
+        instructions: [
+          'Découvrez la méthode C.A.D.R.E :',
+          '',
+          '**C**ontexte : qui je suis, dans quelle situation',
+          '**A**ction : ce que je veux exactement',
+          '**D**étails : contraintes, ton, format',
+          '**R**ôle : "Tu es un expert en…"',
+          '',
+          'Testez avec un exemple :',
+          '"Tu es un expert en communication. Je suis manager et je dois annoncer un changement d\'organisation à mon équipe. Écris un mail rassurant, professionnel, qui explique les bénéfices, 15 lignes maximum."',
+          '',
+          'Observez la qualité du résultat'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Pratique guidée',
+        duration: '12 min',
+        instructions: [
+          'Choisissez une situation de votre travail',
+          'Construisez un prompt avec la méthode C.A.D.R.E',
+          '',
+          'Exemple de structure :',
+          '- Contexte : [votre situation]',
+          '- Action : [ce que vous voulez]',
+          '- Détails : [contraintes, format, ton]',
+          '- Rôle : [expertise de l\'IA]',
+          '',
+          'Testez votre prompt',
+          'Ajustez si nécessaire',
+          'Comparez avec un prompt vague'
+        ]
+      }
+    ],
+    deliverables: [
+      'Une compréhension de la méthode C.A.D.R.E',
+      'Des exemples de bons et mauvais prompts',
+      'Un prompt personnel construit avec la méthode',
+      'Une réflexion sur l\'impact de la précision'
+    ],
+    reflectionQuestions: [
+      'Quelle est la différence entre un bon et un mauvais prompt ?',
+      'Pourquoi la méthode C.A.D.R.E est-elle efficace ?',
+      'Comment adapterais-tu tes prompts selon le contexte ?',
+      'Pourquoi certaines personnes disent-elles que l\'IA est "nulle" ?'
+    ],
+    trainerScript: '💣 Message pédagogique clé :\n\n"La qualité de la réponse dépend surtout de la qualité de la question."\n\n"Les gens qui disent que l\'IA est nulle…\nsont souvent ceux qui lui parlent mal."\n\n🧠 Ce que l\'apprenant apprend :\n\n• L\'importance de la précision dans les prompts\n• La méthode C.A.D.R.E\n• Comment structurer une demande efficace\n\n📋 La méthode C.A.D.R.E expliquée :\n\n**C - Contexte**\nQui je suis, dans quelle situation\n→ "Je suis manager d\'une équipe de 10 personnes"\n\n**A - Action**\nCe que je veux exactement\n→ "Écris un mail pour annoncer un changement"\n\n**D - Détails**\nContraintes, ton, format\n→ "Ton rassurant, professionnel, 15 lignes maximum"\n\n**R - Rôle**\n"Tu es un expert en…"\n→ "Tu es un expert en communication managériale"\n\n**Exemple complet**\n\n"Tu es un expert en communication managériale.\nJe suis manager d\'une équipe de 10 personnes.\nÉcris un mail professionnel pour annoncer un changement d\'organisation.\nTon rassurant, qui explique les bénéfices, 15 lignes maximum."\n\n**Comparaison**\n\n❌ Mauvais : "Écris un mail"\n→ Résultat générique, peu utile\n\n✅ Bon : Prompt C.A.D.R.E complet\n→ Résultat précis, adapté, utile\n\n💡 Erreurs fréquentes des apprenants :\n\n• Prompts trop vagues\n• Oublier le contexte\n• Ne pas préciser le format\n• Ne pas donner de rôle à l\'IA\n• Ne pas spécifier le ton\n\n🔍 Questions à poser pendant l\'exercice :\n\n• "Pourquoi le premier prompt donne-t-il un résultat générique ?" (manque de précision)\n• "Quel élément du C.A.D.R.E est le plus important ?" (tous sont importants, mais le contexte change tout)\n• "Comment adapterais-tu ce prompt pour un autre contexte ?" (flexibilité)\n\n💣 Phrase d\'impact à dire :\n\n"L\'IA est un multiplicateur de clarté. Si tu es clair dans ta demande, tu obtiens des résultats redoutables. Si tu es flou, tu obtiens des résultats flous."'
+  },
+  {
+    id: 'ia-limites-06',
+    category: 'IA',
+    title: 'Limites, risques et dangers de l\'IA',
+    duration: '25 minutes',
+    objective: '🎯 Objectif : Comprendre les limites et risques de l\'IA\n\n• Identifier les dangers principaux\n• Apprendre à détecter les erreurs\n• Comprendre l\'importance de la vérification\n\n💣 Message fort :\n\n"L\'IA est dangereuse surtout pour les gens qui lui font trop confiance."',
+    context: 'Tu vas découvrir les limites et risques de l\'IA. C\'est une partie très importante pour utiliser l\'IA de manière responsable. L\'IA peut inventer, biaiser, et faire des erreurs très convaincantes.',
+    generalInstructions: [
+      'Testez les exemples proposés',
+      'Observez comment l\'IA peut se tromper',
+      'Apprenez à détecter les erreurs',
+      'Comprenez l\'importance de toujours vérifier'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Les hallucinations',
+        duration: '8 min',
+        instructions: [
+          'Test 1 - Question piège :',
+          '"Résume-moi le document que je t\'ai envoyé hier"',
+          '(sans avoir envoyé de document)',
+          '',
+          'Observez la réponse',
+          '💡 L\'IA peut inventer avec assurance',
+          '',
+          'Test 2 - Fausse information :',
+          '"Qui a gagné le match de tennis du 32 décembre 2025 ?"',
+          '',
+          'Observez comment l\'IA réagit',
+          '⚠️ Elle peut inventer ou être vague'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Les biais',
+        duration: '7 min',
+        instructions: [
+          'Testez des questions qui peuvent révéler des biais :',
+          '"Quels sont les meilleurs métiers pour une femme ?"',
+          '',
+          'Observez la réponse',
+          'Notez les stéréotypes possibles',
+          '',
+          '💡 L\'IA reflète les biais de ses données d\'entraînement'
+        ]
+      },
+      {
+        number: 3,
+        title: 'L\'illusion de compétence',
+        duration: '10 min',
+        instructions: [
+          'Testez une question technique complexe :',
+          '"Donne-moi un conseil juridique sur [situation]"',
+          '',
+          'Observez la réponse',
+          '⚠️ L\'IA peut donner un conseil très convaincant mais faux',
+          '',
+          '💡 Message clé :',
+          'L\'IA est dangereuse surtout pour les gens qui lui font trop confiance',
+          '',
+          'Réfléchissez :',
+          'Comment vérifier les informations de l\'IA ?'
+        ]
+      }
+    ],
+    deliverables: [
+      'Une compréhension des limites de l\'IA',
+      'Des exemples d\'erreurs observées',
+      'Une liste de méthodes de vérification',
+      'Une réflexion sur l\'utilisation responsable'
+    ],
+    reflectionQuestions: [
+      'Quelles erreurs as-tu observées ?',
+      'Comment détecter une "hallucination" de l\'IA ?',
+      'Pourquoi est-il dangereux de faire trop confiance à l\'IA ?',
+      'Comment utiliserais-tu l\'IA de manière responsable ?'
+    ],
+    trainerScript: '💣 Message pédagogique clé :\n\n"L\'IA est dangereuse surtout pour les gens qui lui font trop confiance."\n\n"L\'IA est parfois brillante. Mais elle ment très bien."\n\n🧠 Ce que l\'apprenant apprend :\n\n• Les limites et risques de l\'IA\n• Comment détecter les erreurs\n• L\'importance de la vérification\n\n📋 Limites et risques à couvrir :\n\n**❌ Elle peut inventer (hallucinations)**\n\n• Réponses très convaincantes mais fausses\n• Citations inventées\n• Événements qui n\'existent pas\n• Statistiques erronées\n\n**❌ Elle peut biaiser**\n\n• Reflète les biais de ses données d\'entraînement\n• Stéréotypes possibles\n• Points de vue limités\n\n**❌ Elle dépend de ses données**\n\n• Ne connaît que ce sur quoi elle a été entraînée\n• Peut être obsolète\n• Peut manquer de contexte récent\n\n**❌ Problèmes de confidentialité**\n\n• Ne pas partager de données sensibles\n• Informations personnelles\n• Secrets professionnels\n• Données financières\n\n**❌ Illusion de compétence**\n\n• Réponses très convaincantes mais fausses\n• Conseils médicaux, juridiques, financiers risqués\n• Fausse impression de compréhension\n\n**Cas concrets**\n\n• Faux mails juridiques\n• Mauvais conseils médicaux\n• Erreurs très convaincantes\n• Citations inventées\n\n**3 règles d\'or**\n\n1. Toujours vérifier\n2. Ne jamais donner de données sensibles\n3. Utiliser l\'IA comme assistant, pas comme décideur\n\n💡 Erreurs fréquentes des apprenants :\n\n• Faire trop confiance aux réponses\n• Ne pas vérifier les informations\n• Partager des données sensibles\n• Utiliser l\'IA pour des décisions critiques sans vérification\n\n🔍 Questions à poser pendant l\'exercice :\n\n• "Comment détecter une hallucination ?" (vérifier les faits, chercher des sources)\n• "Pourquoi l\'IA peut-elle biaiser ?" (données d\'entraînement)\n• "Quand ne faut-il JAMAIS utiliser l\'IA ?" (décisions médicales, juridiques, financières critiques)\n\n💣 Phrase d\'impact à dire :\n\n"L\'IA est brillante, mais elle ment très bien. Elle est dangereuse surtout pour les gens qui lui font trop confiance. Toujours vérifier, jamais faire confiance aveuglément."'
+  },
+  {
+    id: 'ia-quotidien-07',
+    category: 'IA',
+    title: 'Utiliser l\'IA au quotidien - Bonnes pratiques',
+    duration: '15 minutes',
+    objective: '🎯 Objectif : Adopter une philosophie d\'utilisation responsable\n\n• Comprendre les 3 règles d\'or\n• Intégrer l\'IA dans son workflow\n• Éviter les pièges courants',
+    context: 'Tu vas découvrir comment intégrer l\'IA dans ton travail quotidien de manière efficace et responsable. C\'est la conclusion pratique de la formation.',
+    generalInstructions: [
+      'Réfléchissez à votre utilisation actuelle',
+      'Identifiez les opportunités d\'amélioration',
+      'Adoptez les bonnes pratiques',
+      'Testez avec vos propres cas d\'usage'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Les 3 règles d\'or',
+        duration: '5 min',
+        instructions: [
+          'Découvrez les 3 règles d\'or :',
+          '',
+          '1. Toujours vérifier',
+          '   → Ne jamais faire confiance aveuglément',
+          '   → Vérifier les faits importants',
+          '   → Croiser les sources',
+          '',
+          '2. Ne jamais donner de données sensibles',
+          '   → Pas d\'informations personnelles',
+          '   → Pas de secrets professionnels',
+          '   → Pas de données financières',
+          '',
+          '3. Utiliser l\'IA comme assistant, pas comme décideur',
+          '   → L\'IA aide à penser',
+          '   → Mais ne décide pas à ta place',
+          '   → La décision finale t\'appartient'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Cas d\'usage quotidiens',
+        duration: '5 min',
+        instructions: [
+          'Identifiez vos cas d\'usage :',
+          '',
+          '• Écrire et communiquer (mails, comptes rendus)',
+          '• Organiser et clarifier (résumés, points clés)',
+          '• Réfléchir et décider (brainstorming, analyse)',
+          '• Apprendre plus vite (explications, quiz)',
+          '• Automatiser des petites tâches (modèles, checklists)',
+          '',
+          'Choisissez 2-3 cas d\'usage pour commencer'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Plan d\'action',
+        duration: '5 min',
+        instructions: [
+          'Créez votre plan d\'action :',
+          '',
+          '1. Cette semaine :',
+          '   → Tester l\'IA sur [cas d\'usage 1]',
+          '',
+          '2. Ce mois :',
+          '   → Intégrer l\'IA dans [cas d\'usage 2]',
+          '',
+          '3. À éviter :',
+          '   → [piège identifié]',
+          '',
+          '💡 Phrase de fin :',
+          '"L\'IA ne va pas remplacer votre métier. Elle va remplacer votre version lente."'
+        ]
+      }
+    ],
+    deliverables: [
+      'Une compréhension des 3 règles d\'or',
+      'Une liste de cas d\'usage personnels',
+      'Un plan d\'action pour intégrer l\'IA',
+      'Une réflexion sur l\'utilisation responsable'
+    ],
+    reflectionQuestions: [
+      'Quelles sont les 3 règles d\'or à retenir ?',
+      'Quels cas d\'usage vas-tu tester en premier ?',
+      'Comment éviteras-tu les pièges identifiés ?',
+      'Comment l\'IA va-t-elle changer ton travail ?'
+    ],
+    trainerScript: '💣 Message pédagogique clé :\n\n"L\'IA ne va pas remplacer votre métier. Elle va remplacer votre version lente."\n\n🧠 Ce que l\'apprenant apprend :\n\n• Les 3 règles d\'or pour utiliser l\'IA\n• Comment intégrer l\'IA dans son workflow\n• Comment éviter les pièges\n\n📋 Les 3 règles d\'or :\n\n**1. Toujours vérifier**\n\n• Ne jamais faire confiance aveuglément\n• Vérifier les faits importants\n• Croiser les sources\n• Surtout pour les décisions importantes\n\n**2. Ne jamais donner de données sensibles**\n\n• Pas d\'informations personnelles\n• Pas de secrets professionnels\n• Pas de données financières\n• Pas de mots de passe\n• Attention à la confidentialité\n\n**3. Utiliser l\'IA comme assistant, pas comme décideur**\n\n• L\'IA aide à penser\n• Mais ne décide pas à ta place\n• La décision finale t\'appartient\n• Surtout pour les décisions importantes\n\n**Comment intégrer l\'IA dans son workflow**\n\n• Commencer petit (1-2 cas d\'usage)\n• Tester et ajuster\n• Apprendre à bien prompter\n• Vérifier toujours les résultats\n• Ne pas remplacer la réflexion humaine\n\n**Cas d\'usage quotidiens**\n\n• Écrire et communiquer\n• Organiser et clarifier\n• Réfléchir et décider\n• Apprendre plus vite\n• Automatiser des petites tâches\n\n**À éviter**\n\n• Faire trop confiance\n• Donner des données sensibles\n• Laisser l\'IA décider\n• Utiliser sans vérification\n• Croire que l\'IA comprend vraiment\n\n💡 Erreurs fréquentes des apprenants :\n\n• Oublier de vérifier\n• Partager des données sensibles\n• Faire trop confiance\n• Ne pas adapter les prompts\n• Vouloir tout automatiser\n\n🔍 Questions à poser pendant l\'exercice :\n\n• "Pourquoi ces 3 règles sont-elles importantes ?" (sécurité, qualité, responsabilité)\n• "Quels cas d\'usage vas-tu tester en premier ?" (commencer petit)\n• "Comment éviteras-tu les pièges ?" (vérification systématique)\n\n💣 Phrase d\'impact à dire :\n\n"L\'IA ne va pas remplacer votre métier. Elle va remplacer votre version lente. Les gens clairs deviennent redoutables. Les gens flous deviennent inutiles plus vite."\n\n**Conclusion**\n\n"L\'IA est un multiplicateur de clarté. Utilisez-la comme assistant, vérifiez toujours, et gardez votre esprit critique. C\'est ainsi que vous en tirerez le meilleur parti."'
+  },
   {
     id: 'word-tableaux-01',
     category: 'Word',
@@ -1739,7 +2281,7 @@ export const exercices: Exercice[] = [
   }
 ];
 
-export const categories: ExerciceCategory[] = ['Word', 'Excel', 'Outlook', 'OneDrive', 'OneNote', 'PowerQuery'];
+export const categories: ExerciceCategory[] = ['IA', 'Word', 'Excel', 'Outlook', 'OneDrive', 'OneNote', 'PowerQuery'];
 
 export const getExercicesByCategory = (category: ExerciceCategory): Exercice[] => {
   return exercices.filter(ex => ex.category === category);

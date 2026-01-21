@@ -22,6 +22,7 @@ export default function ExerciceDetail({ isTrainerMode }: ExerciceDetailProps) {
 
   const getCategoryColor = (category: string) => {
     const colors: Record<string, string> = {
+      IA: 'bg-indigo-100 text-indigo-800',
       Word: 'bg-blue-100 text-blue-800',
       Excel: 'bg-green-100 text-green-800',
       Outlook: 'bg-purple-100 text-purple-800',

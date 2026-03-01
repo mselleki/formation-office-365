@@ -13,7 +13,7 @@ export default function PasswordModal({ isOpen, onClose, onSuccess }: PasswordMo
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     
-    if (password === '0000') {
+    if (password === '1234') {
       // Stocker l'authentification dans le localStorage
       localStorage.setItem('formation365-trainer-auth', 'true')
       setPassword('')

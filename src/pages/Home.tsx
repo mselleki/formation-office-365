@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom'
 
-export default function Home() {
+interface HomeProps {
+  isTrainerMode: boolean
+}
+
+export default function Home({ isTrainerMode }: HomeProps) {
   return (
     <div className="max-w-4xl mx-auto">
       <div className="text-center mb-12">
@@ -54,6 +58,66 @@ export default function Home() {
           de base avant de les appliquer dans un contexte réel.
         </p>
       </div>
+
+      {isTrainerMode && (
+        <>
+          <div className="bg-white border border-indigo-200 rounded-lg shadow-sm p-8 mb-8">
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+              Cours
+            </h2>
+            <p className="text-gray-700 leading-relaxed mb-6">
+              Cette section vous aide à structurer le démarrage de la formation avec une progression claire,
+              orientée usage métier et mise en pratique immédiate.
+            </p>
+
+            <div className="mb-6">
+              <h3 className="text-xl font-semibold text-gray-800 mb-3">OneDrive - Fondamentaux à maîtriser</h3>
+              <ul className="list-disc list-inside text-gray-700 space-y-2">
+                <li>Créer une arborescence simple et logique (projet, livrables, archives, ressources).</li>
+                <li>Partager avec les bons droits : lecture, modification, lien interne/externe.</li>
+                <li>Synchroniser correctement avec le poste local et éviter les doublons de versions.</li>
+                <li>Utiliser l’historique des versions pour revenir en arrière en cas d’erreur.</li>
+                <li>Mettre en place des bonnes pratiques de nommage pour faciliter la recherche.</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-3">Excel - Base solide pour bien démarrer</h3>
+              <ul className="list-disc list-inside text-gray-700 space-y-2">
+                <li>Construire un tableau propre : en-têtes clairs, types de données cohérents, filtres.</li>
+                <li>Maîtriser les formules essentielles : SOMME, MOYENNE, SI, NB.SI, RECHERCHEV/XLOOKUP.</li>
+                <li>Utiliser la mise en forme conditionnelle pour repérer rapidement les anomalies.</li>
+                <li>Créer des tableaux croisés dynamiques pour synthétiser les informations du projet.</li>
+                <li>Préparer des fichiers réutilisables (modèles) pour accélérer les prochains épisodes.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="bg-white border border-green-200 rounded-lg shadow-sm p-8 mb-8">
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+              To-Do
+            </h2>
+            <ul className="space-y-3 text-gray-700">
+              <li className="flex items-start gap-3">
+                <span className="mt-1 h-4 w-4 rounded border border-gray-400" />
+                <span>Valider le plan de cours OneDrive (objectifs, démos, exercices guidés).</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-1 h-4 w-4 rounded border border-gray-400" />
+                <span>Préparer 2 jeux de données Excel : initiation et niveau intermédiaire.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-1 h-4 w-4 rounded border border-gray-400" />
+                <span>Définir la progression pédagogique séance par séance (durée et livrables).</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-1 h-4 w-4 rounded border border-gray-400" />
+                <span>Ajouter des critères d’évaluation simples pour chaque exercice clé.</span>
+              </li>
+            </ul>
+          </div>
+        </>
+      )}
 
       <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">
         <Link

@@ -8,10 +8,14 @@ interface ExercicesListProps {
 
 export default function ExercicesList({ exerciseProgress }: ExercicesListProps) {
   const [selectedCategory, setSelectedCategory] = useState<ExerciceCategory | 'Tous'>('Tous')
+  const [selectedStatus, setSelectedStatus] = useState<ExerciceStatus | 'all'>('all')
 
-  const filteredExercices = selectedCategory === 'Tous' 
-    ? exercices 
-    : exercices.filter(ex => ex.category === selectedCategory)
+  const filteredExercices = exercices.filter((exercice) => {
+    const categoryMatch = selectedCategory === 'Tous' || exercice.category === selectedCategory
+    const status = exerciseProgress[exercice.id] || 'not_started'
+    const statusMatch = selectedStatus === 'all' || status === selectedStatus
+    return categoryMatch && statusMatch
+  })
 
   const getCategoryColor = (category: ExerciceCategory) => {
     const colors: Record<ExerciceCategory, string> = {
@@ -55,6 +59,14 @@ export default function ExercicesList({ exerciseProgress }: ExercicesListProps) 
   const completionPercent = totalExercises > 0
     ? Math.round((completedExercises / totalExercises) * 100)
     : 0
+
+  const statusFilterButtonClass = (status: ExerciceStatus | 'all') => {
+    const isActive = selectedStatus === status
+    if (isActive) {
+      return 'px-4 py-2 rounded-full text-sm font-semibold border border-green-300 bg-green-600 text-white shadow-sm'
+    }
+    return 'px-4 py-2 rounded-full text-sm font-medium border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 transition-colors'
+  }
 
   return (
     <div className="max-w-7xl mx-auto">
@@ -111,6 +123,36 @@ export default function ExercicesList({ exerciseProgress }: ExercicesListProps) 
               {category}
             </button>
           ))}
+        </div>
+
+        <h3 className="text-sm font-semibold text-gray-800 mt-6 mb-3">
+          Filtrer par avancement
+        </h3>
+        <div className="flex flex-wrap gap-2">
+          <button
+            onClick={() => setSelectedStatus('all')}
+            className={statusFilterButtonClass('all')}
+          >
+            Tous
+          </button>
+          <button
+            onClick={() => setSelectedStatus('completed')}
+            className={statusFilterButtonClass('completed')}
+          >
+            ✓ Faits
+          </button>
+          <button
+            onClick={() => setSelectedStatus('in_progress')}
+            className={statusFilterButtonClass('in_progress')}
+          >
+            En cours
+          </button>
+          <button
+            onClick={() => setSelectedStatus('not_started')}
+            className={statusFilterButtonClass('not_started')}
+          >
+            Non commencés
+          </button>
         </div>
       </div>
 

@@ -8,6 +8,7 @@ import ExercicesList from './pages/ExercicesList'
 import ExerciceDetail from './pages/ExerciceDetail'
 import ExcelBible from './pages/ExcelBible'
 import Settings from './pages/Settings'
+import Cours from './pages/Cours'
 import { EpisodeStatus } from './content/episodes'
 import { ExerciceStatus } from './content/exercices'
 
@@ -176,6 +177,7 @@ function App() {
                 />
               }
             />
+            <Route path="/cours" element={<Cours />} />
             <Route path="/exercices/excel/bible" element={<ExcelBible />} />
             <Route 
               path="/exercices/:category/:id" 

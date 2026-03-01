@@ -67,6 +67,12 @@ export default function Home({ isTrainerMode }: HomeProps) {
           Cette section vous aide à structurer le démarrage de la formation avec une progression claire,
           orientée usage métier et mise en pratique immédiate.
         </p>
+        <Link
+          to="/cours"
+          className="inline-block mb-6 px-5 py-2 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 transition-colors"
+        >
+          Ouvrir le cours complet
+        </Link>
 
         <div className="mb-6 p-4 bg-indigo-50 rounded-md border border-indigo-100">
           <h3 className="text-lg font-semibold text-indigo-900 mb-2">Parcours recommandé (ordre de travail)</h3>

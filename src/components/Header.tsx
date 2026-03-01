@@ -51,6 +51,12 @@ export default function Header({ isTrainerMode, onToggleTrainerMode, onTrainerAu
             >
               Exercices
             </Link>
+            <Link
+              to="/cours"
+              className="text-gray-600 hover:text-gray-900 transition-colors"
+            >
+              Cours
+            </Link>
             <Link 
               to="/episodes" 
               className="text-gray-600 hover:text-gray-900 transition-colors"

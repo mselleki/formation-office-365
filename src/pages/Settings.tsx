@@ -2,13 +2,21 @@ import { Link } from 'react-router-dom'
 
 interface SettingsProps {
   onResetProgress: () => void
+  onResetExercisesProgress: () => void
 }
 
-export default function Settings({ onResetProgress }: SettingsProps) {
+export default function Settings({ onResetProgress, onResetExercisesProgress }: SettingsProps) {
   const handleReset = () => {
     if (confirm('Êtes-vous sûr de vouloir réinitialiser toute votre progression ? Cette action est irréversible.')) {
       onResetProgress()
       alert('Progression réinitialisée avec succès.')
+    }
+  }
+
+  const handleExerciseReset = () => {
+    if (confirm('Êtes-vous sûr de vouloir réinitialiser la progression des exercices ? Cette action est irréversible.')) {
+      onResetExercisesProgress()
+      alert('Progression des exercices réinitialisée avec succès.')
     }
   }
 
@@ -30,7 +38,13 @@ export default function Settings({ onResetProgress }: SettingsProps) {
           onClick={handleReset}
           className="px-6 py-3 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
         >
-          Réinitialiser la progression
+          Réinitialiser la progression du projet
+        </button>
+        <button
+          onClick={handleExerciseReset}
+          className="ml-3 px-6 py-3 bg-orange-600 text-white rounded-md hover:bg-orange-700 transition-colors"
+        >
+          Réinitialiser les exercices
         </button>
       </div>
 

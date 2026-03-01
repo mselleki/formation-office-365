@@ -59,41 +59,110 @@ export default function Home({ isTrainerMode }: HomeProps) {
         </p>
       </div>
 
+      <div className="bg-white border border-indigo-200 rounded-lg shadow-sm p-8 mb-8">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+          Cours
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Cette section vous aide à structurer le démarrage de la formation avec une progression claire,
+          orientée usage métier et mise en pratique immédiate.
+        </p>
+
+        <div className="mb-6 p-4 bg-indigo-50 rounded-md border border-indigo-100">
+          <h3 className="text-lg font-semibold text-indigo-900 mb-2">Parcours recommandé (ordre de travail)</h3>
+          <p className="text-indigo-900 text-sm leading-relaxed">
+            1) OneDrive et gestion documentaire - 2) Word et communication professionnelle - 3) Excel et analyse
+            opérationnelle - 4) Outlook et coordination - 5) OneNote et capitalisation - 6) Power Query pour
+            l'automatisation des données - 7) IA pour accélérer la production.
+          </p>
+        </div>
+
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-gray-800 mb-3">OneDrive - Fondamentaux à maîtriser</h3>
+          <ul className="list-disc list-inside text-gray-700 space-y-2">
+            <li>Créer une arborescence simple et logique (projet, livrables, archives, ressources).</li>
+            <li>Partager avec les bons droits : lecture, modification, lien interne/externe.</li>
+            <li>Synchroniser correctement avec le poste local et éviter les doublons de versions.</li>
+            <li>Utiliser l’historique des versions pour revenir en arrière en cas d’erreur.</li>
+            <li>Mettre en place des bonnes pratiques de nommage pour faciliter la recherche.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="text-xl font-semibold text-gray-800 mb-3">Excel - Base solide pour bien démarrer</h3>
+          <ul className="list-disc list-inside text-gray-700 space-y-2">
+            <li>Construire un tableau propre : en-têtes clairs, types de données cohérents, filtres.</li>
+            <li>Maîtriser les formules essentielles : SOMME, MOYENNE, SI, NB.SI, RECHERCHEV/XLOOKUP.</li>
+            <li>Utiliser la mise en forme conditionnelle pour repérer rapidement les anomalies.</li>
+            <li>Créer des tableaux croisés dynamiques pour synthétiser les informations du projet.</li>
+            <li>Préparer des fichiers réutilisables (modèles) pour accélérer les prochains épisodes.</li>
+          </ul>
+        </div>
+
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-gray-800 mb-3">Word - Production de documents professionnels</h3>
+          <ul className="list-disc list-inside text-gray-700 space-y-2">
+            <li>Structurer un document avec les styles (Titre 1, Titre 2, Normal) pour garantir la cohérence.</li>
+            <li>Créer des tableaux lisibles et des mises en forme réutilisables (modèles).</li>
+            <li>Utiliser le mode Révision : commentaires, suivi des modifications, validation finale.</li>
+            <li>Mettre en place un publipostage simple pour les communications personnalisées.</li>
+          </ul>
+        </div>
+
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-gray-800 mb-3">Outlook - Coordination et suivi d'activité</h3>
+          <ul className="list-disc list-inside text-gray-700 space-y-2">
+            <li>Organiser la boîte mail avec règles, catégories et dossiers prioritaires.</li>
+            <li>Planifier des réunions efficaces (ordre du jour, participants, créneaux).</li>
+            <li>Suivre les actions avec drapeaux, tâches et rappels.</li>
+            <li>Adopter des standards de communication clairs et actionnables.</li>
+          </ul>
+        </div>
+
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-gray-800 mb-3">OneNote - Organisation de la connaissance</h3>
+          <ul className="list-disc list-inside text-gray-700 space-y-2">
+            <li>Structurer un notebook par sections et pages alignées sur les rituels projet.</li>
+            <li>Transformer des notes brutes en plans d'action exploitables.</li>
+            <li>Utiliser des tags pour retrouver rapidement les points clés et décisions.</li>
+            <li>Centraliser comptes-rendus, décisions, risques et actions en un seul endroit.</li>
+          </ul>
+        </div>
+
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-gray-800 mb-3">Power Query - Fiabilisation et automatisation</h3>
+          <ul className="list-disc list-inside text-gray-700 space-y-2">
+            <li>Importer des sources hétérogènes (CSV/Excel) avec des types de données propres.</li>
+            <li>Appliquer des transformations reproductibles plutôt que des corrections manuelles.</li>
+            <li>Fusionner des tables avec des clés fiables et vérifier la qualité de jointure.</li>
+            <li>Documenter les étapes pour rendre le traitement auditable et maintenable.</li>
+          </ul>
+        </div>
+
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-gray-800 mb-3">IA - Accélération des tâches à faible risque</h3>
+          <ul className="list-disc list-inside text-gray-700 space-y-2">
+            <li>Rédiger de meilleurs prompts avec contexte, action, contraintes et format attendu.</li>
+            <li>Réécrire, synthétiser et préparer des brouillons de documents plus rapidement.</li>
+            <li>Valider systématiquement les sorties IA avant diffusion opérationnelle.</li>
+            <li>Appliquer les règles de confidentialité sur les données sensibles.</li>
+          </ul>
+        </div>
+
+        <div className="p-4 bg-gray-50 rounded-md border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-800 mb-2">Livrables attendus en fin de parcours</h3>
+          <ul className="list-disc list-inside text-gray-700 space-y-1">
+            <li>Un espace OneDrive structuré et partagé correctement.</li>
+            <li>Un kit documentaire Word (modèle, courrier type, document révisé).</li>
+            <li>Un tableau Excel propre avec indicateurs utiles au pilotage.</li>
+            <li>Un processus Outlook/OneNote clair pour suivre décisions et actions.</li>
+            <li>Un flux Power Query simple et réutilisable.</li>
+          </ul>
+        </div>
+      </div>
+
       {isTrainerMode && (
-        <>
-          <div className="bg-white border border-indigo-200 rounded-lg shadow-sm p-8 mb-8">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-              Cours
-            </h2>
-            <p className="text-gray-700 leading-relaxed mb-6">
-              Cette section vous aide à structurer le démarrage de la formation avec une progression claire,
-              orientée usage métier et mise en pratique immédiate.
-            </p>
-
-            <div className="mb-6">
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">OneDrive - Fondamentaux à maîtriser</h3>
-              <ul className="list-disc list-inside text-gray-700 space-y-2">
-                <li>Créer une arborescence simple et logique (projet, livrables, archives, ressources).</li>
-                <li>Partager avec les bons droits : lecture, modification, lien interne/externe.</li>
-                <li>Synchroniser correctement avec le poste local et éviter les doublons de versions.</li>
-                <li>Utiliser l’historique des versions pour revenir en arrière en cas d’erreur.</li>
-                <li>Mettre en place des bonnes pratiques de nommage pour faciliter la recherche.</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">Excel - Base solide pour bien démarrer</h3>
-              <ul className="list-disc list-inside text-gray-700 space-y-2">
-                <li>Construire un tableau propre : en-têtes clairs, types de données cohérents, filtres.</li>
-                <li>Maîtriser les formules essentielles : SOMME, MOYENNE, SI, NB.SI, RECHERCHEV/XLOOKUP.</li>
-                <li>Utiliser la mise en forme conditionnelle pour repérer rapidement les anomalies.</li>
-                <li>Créer des tableaux croisés dynamiques pour synthétiser les informations du projet.</li>
-                <li>Préparer des fichiers réutilisables (modèles) pour accélérer les prochains épisodes.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="bg-white border border-green-200 rounded-lg shadow-sm p-8 mb-8">
+        <div className="bg-white border border-green-200 rounded-lg shadow-sm p-8 mb-8">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">
               To-Do
             </h2>
@@ -116,7 +185,6 @@ export default function Home({ isTrainerMode }: HomeProps) {
               </li>
             </ul>
           </div>
-        </>
       )}
 
       <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">

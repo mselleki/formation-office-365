@@ -1,11 +1,17 @@
 import { useParams, Link } from 'react-router-dom'
-import { getExerciceById } from '../content/exercices'
+import { getExerciceById, ExerciceStatus } from '../content/exercices'
 
 interface ExerciceDetailProps {
   isTrainerMode: boolean
+  exerciseStatus: Record<string, ExerciceStatus>
+  onUpdateExerciseProgress: (exerciseId: string, status: ExerciceStatus) => void
 }
 
-export default function ExerciceDetail({ isTrainerMode }: ExerciceDetailProps) {
+export default function ExerciceDetail({
+  isTrainerMode,
+  exerciseStatus,
+  onUpdateExerciseProgress
+}: ExerciceDetailProps) {
   const { id } = useParams<{ category: string; id: string }>()
   const exercice = id ? getExerciceById(id) : undefined
 
@@ -32,6 +38,8 @@ export default function ExerciceDetail({ isTrainerMode }: ExerciceDetailProps) {
     }
     return colors[category] || 'bg-gray-100 text-gray-800'
   }
+
+  const currentStatus: ExerciceStatus = exercice ? (exerciseStatus[exercice.id] || 'not_started') : 'not_started'
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -78,6 +86,27 @@ export default function ExerciceDetail({ isTrainerMode }: ExerciceDetailProps) {
             </div>
           </div>
         )}
+      </div>
+
+      <div className="bg-white rounded-lg shadow-sm p-8 mb-6">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+          Suivi de progression
+        </h2>
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+          <label htmlFor="exercise-status" className="text-gray-700 font-medium">
+            Statut de cet exercice :
+          </label>
+          <select
+            id="exercise-status"
+            value={currentStatus}
+            onChange={(e) => onUpdateExerciseProgress(exercice.id, e.target.value as ExerciceStatus)}
+            className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
+          >
+            <option value="not_started">Non commencé</option>
+            <option value="in_progress">En cours</option>
+            <option value="completed">Terminé</option>
+          </select>
+        </div>
       </div>
 
       <div className="bg-white rounded-lg shadow-sm p-8 mb-6">

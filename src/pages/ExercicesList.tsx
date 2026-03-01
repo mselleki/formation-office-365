@@ -1,8 +1,12 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { exercices, categories, ExerciceCategory } from '../content/exercices'
+import { exercices, categories, ExerciceCategory, ExerciceStatus } from '../content/exercices'
 
-export default function ExercicesList() {
+interface ExercicesListProps {
+  exerciseProgress: Record<string, ExerciceStatus>
+}
+
+export default function ExercicesList({ exerciseProgress }: ExercicesListProps) {
   const [selectedCategory, setSelectedCategory] = useState<ExerciceCategory | 'Tous'>('Tous')
 
   const filteredExercices = selectedCategory === 'Tous' 
@@ -22,6 +26,36 @@ export default function ExercicesList() {
     return colors[category]
   }
 
+  const getStatusLabel = (status: ExerciceStatus) => {
+    switch (status) {
+      case 'completed':
+        return 'Terminé'
+      case 'in_progress':
+        return 'En cours'
+      default:
+        return 'Non commencé'
+    }
+  }
+
+  const getStatusColor = (status: ExerciceStatus) => {
+    switch (status) {
+      case 'completed':
+        return 'bg-green-100 text-green-800'
+      case 'in_progress':
+        return 'bg-yellow-100 text-yellow-800'
+      default:
+        return 'bg-gray-100 text-gray-700'
+    }
+  }
+
+  const totalExercises = exercices.length
+  const completedExercises = exercices.reduce((count, exercice) => {
+    return exerciseProgress[exercice.id] === 'completed' ? count + 1 : count
+  }, 0)
+  const completionPercent = totalExercises > 0
+    ? Math.round((completedExercises / totalExercises) * 100)
+    : 0
+
   return (
     <div className="max-w-7xl mx-auto">
       <div className="mb-8">
@@ -31,6 +65,22 @@ export default function ExercicesList() {
         <p className="text-gray-600">
           Pratiquez les outils Microsoft 365 avec des exercices concrets avant de commencer le projet fil rouge.
         </p>
+      </div>
+
+      <div className="bg-white rounded-lg shadow-sm p-6 mb-8 border border-gray-200">
+        <h2 className="text-lg font-semibold text-gray-900 mb-3">
+          Progression des exercices
+        </h2>
+        <div className="flex items-center justify-between text-sm text-gray-700 mb-2">
+          <span>{completedExercises} / {totalExercises} exercices terminés</span>
+          <span>{completionPercent}%</span>
+        </div>
+        <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
+          <div
+            className="h-full bg-green-600 transition-all"
+            style={{ width: `${completionPercent}%` }}
+          />
+        </div>
       </div>
 
       <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
@@ -72,9 +122,14 @@ export default function ExercicesList() {
             className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border border-gray-200"
           >
             <div className="flex items-start justify-between mb-4">
-              <span className={`px-3 py-1 rounded-full text-xs font-medium ${getCategoryColor(exercice.category)}`}>
-                {exercice.category}
-              </span>
+              <div className="flex gap-2">
+                <span className={`px-3 py-1 rounded-full text-xs font-medium ${getCategoryColor(exercice.category)}`}>
+                  {exercice.category}
+                </span>
+                <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(exerciseProgress[exercice.id] || 'not_started')}`}>
+                  {getStatusLabel(exerciseProgress[exercice.id] || 'not_started')}
+                </span>
+              </div>
               <span className="text-sm text-gray-500">⏱️ {exercice.duration}</span>
             </div>
 

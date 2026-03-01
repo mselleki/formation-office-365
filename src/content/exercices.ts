@@ -2645,6 +2645,206 @@ export const exercices: Exercice[] = [
       }
     ],
     trainerScript: '💣 Message pédagogique clé :\n\n"Un mauvais type sur une clé détruit une jointure sans prévenir."\n\n🧠 Ce que l\'apprenant apprend :\n\n• Principe des clés\n• Différence entre jointure gauche, droite et interne\n• Risque des types incohérents\n\n📋 Correction détaillée étape par étape :\n\n**Étape 1 – Importer les deux fichiers**\n\n• Données → Obtenir des données → Depuis un fichier → Depuis un texte/CSV\n• Importer PowerQuery_Ex3_Employes.csv\n  → Renommer la requête : "Employes"\n  → Colonnes : Matricule, Nom, Service\n• Importer PowerQuery_Ex3_Salaires.csv\n  → Renommer la requête : "Salaires"\n  → Colonnes : Matricule, Salaire\n• ⚠️ Important : chaque fichier devient une requête séparée\n• Vérifier que les deux requêtes apparaissent dans le volet gauche\n\n**Étape 2 – Vérifier les types des clés**\n\n• Dans la requête Employes :\n  → Vérifier que Matricule est en texte (icône ABC)\n  → Si ce n\'est pas le cas : changer le type → Texte\n• Dans la requête Salaires :\n  → Vérifier que Matricule est en texte (icône ABC)\n  → Si ce n\'est pas le cas : changer le type → Texte\n• ⚠️ **CRUCIAL** : Les deux colonnes Matricule doivent avoir le même type\n• Si un Matricule est "E001" (texte) et l\'autre 1 (nombre), la jointure échouera\n\n**Étape 3 – Fusionner les requêtes**\n\n• Sélectionner la requête "Employes" (table de gauche)\n• Accueil → Fusionner des requêtes\n• Dans la fenêtre de fusion :\n  → Table supérieure : Employes\n  → Table inférieure : Salaires\n  → Sélectionner la colonne Matricule dans les deux tables\n  → Type de jointure : **Gauche (Left outer)**\n  → ⚠️ Gauche = garde tous les employés, même sans salaire\n• Cliquer sur OK\n• Résultat : une nouvelle colonne "Salaires" apparaît (de type Table)\n\n**Explication des types de jointure** :\n\n• **Gauche (Left outer)** :\n  → Garde toutes les lignes de la table de gauche (Employes)\n  → Ajoute les colonnes de la table de droite (Salaires) si correspondance\n  → Si pas de correspondance → valeurs null\n  → ✅ Utilisé ici : on veut tous les employés\n\n• **Droite (Right outer)** :\n  → Garde toutes les lignes de la table de droite (Salaires)\n  → Ajoute les colonnes de la table de gauche (Employes) si correspondance\n  → Si pas de correspondance → valeurs null\n\n• **Interne (Inner)** :\n  → Garde uniquement les lignes avec correspondance dans les deux tables\n  → Si un employé n\'a pas de salaire → exclu\n  → Si un salaire n\'a pas d\'employé → exclu\n\n**Étape 4 – Développer la colonne fusionnée**\n\n• La colonne "Salaires" contient des tables (icône de table)\n• Cliquer sur l\'icône de développement (flèche double) en haut de la colonne\n• Dans la fenêtre :\n  → Décocher "Matricule" (déjà présent dans la table)\n  → Cocher "Salaire"\n  → Décocher "Utiliser le nom de colonne d\'origine comme préfixe"\n  → Cliquer sur OK\n• Résultat : la colonne "Salaires" disparaît, remplacée par "Salaire"\n\n**Étape 5 – Vérification finale**\n\n• Le tableau final doit contenir :\n  → Matricule | Nom | Service | Salaire\n• Vérifier que chaque employé a son salaire :\n  → E001 → 3200 ✓\n  → E002 → 4100 ✓\n  → E003 → 3800 ✓\n  → etc.\n• Vérifier qu\'il n\'y a pas de doublons\n• Vérifier qu\'aucun salaire n\'est décalé\n• Charger dans Excel\n\n🎯 Points pédagogiques à aborder :\n\n1. **Pourquoi les types doivent être identiques ?**\n   → Power Query compare les valeurs pour faire la jointure\n   → "E001" (texte) ≠ 1 (nombre)\n   → Même si visuellement similaires, types différents = pas de correspondance\n   → ⚠️ Erreur silencieuse : la jointure semble réussir mais ne trouve rien\n\n2. **Jointure gauche vs droite vs interne**\n   → Gauche : tous les employés, même sans salaire\n   → Droite : tous les salaires, même sans employé\n   → Interne : seulement les correspondances\n   → Le choix dépend du besoin métier\n\n3. **Clé primaire et clé étrangère**\n   → Matricule = clé primaire dans Employes (unique)\n   → Matricule = clé étrangère dans Salaires (référence)\n   → Une clé doit être unique dans la table principale\n   → ⚠️ Si un Matricule apparaît deux fois dans Employes → doublons dans le résultat\n\n💡 Erreurs fréquentes des apprenants :\n\n• Oublier de vérifier les types avant la fusion\n• Choisir le mauvais type de jointure\n• Oublier de développer la colonne fusionnée\n• Ne pas décocher "Matricule" lors du développement (doublon)\n• Ne pas vérifier que les salaires correspondent aux bons employés\n\n🔍 Questions à poser pendant l\'exercice :\n\n• "Pourquoi Matricule doit-il être du même type dans les deux tables ?" (comparaison)\n• "Que se passerait-il si un employé n\'avait pas de salaire ?" (null avec jointure gauche)\n• "Que se passerait-il si un salaire n\'avait pas d\'employé correspondant ?" (exclu avec jointure gauche)\n• "Pourquoi choisir une jointure gauche plutôt qu\'interne ?" (garder tous les employés)\n\n💣 Scénario de test (bonus) :\n\nPour tester la jointure gauche :\n• Ajouter un employé E008 sans salaire dans le fichier Employes\n• Recharger la requête\n• Vérifier que E008 apparaît avec Salaire = null\n\nPour tester la jointure interne :\n• Changer le type de jointure en Interne\n• Vérifier que E008 disparaît (pas de correspondance)\n\n💣 Phrase d\'impact à dire :\n\n"Une jointure, c\'est comme un mariage : il faut que les clés correspondent, sinon ça ne matche pas. Et un mauvais type, c\'est comme un nom mal orthographié : ça ressemble, mais ça ne fonctionne pas."'
+  },
+  {
+    id: 'word-publipostage-02',
+    category: 'Word',
+    title: 'Publipostage simple - courrier client',
+    duration: '35 minutes',
+    objective: 'À la fin de l\'exercice, l\'apprenant doit savoir :\n• créer une lettre modèle dans Word\n• connecter une source de données (Excel)\n• insérer des champs de fusion\n• générer et relire les courriers fusionnés',
+    context: 'Vous devez envoyer un courrier personnalisé à plusieurs participants du Rising Stars Tennis Day. Le contenu de base est identique, mais le nom, la date et le créneau changent selon la personne.',
+    generalInstructions: [
+      'Ouvrez Word et créez un nouveau document',
+      'Utilisez un ton professionnel et clair',
+      'Vérifiez la mise en page avant fusion finale',
+      'Relisez au moins 3 courriers générés'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Préparer la lettre type',
+        duration: '10 min',
+        instructions: [
+          'Rédigez un courrier d\'invitation standard',
+          'Ajoutez l\'en-tête avec date, objet et formule d\'appel',
+          'Laissez la place pour le nom du participant et son créneau',
+          'Évitez les formulations ambiguës'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Connecter le fichier de données',
+        duration: '8 min',
+        instructions: [
+          'Dans l\'onglet Publipostage, cliquez sur "Sélection des destinataires"',
+          'Choisissez "Utiliser une liste existante"',
+          'Sélectionnez le fichier Excel des participants',
+          'Validez la feuille contenant les colonnes Nom, Date, Créneau'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Insérer les champs de fusion',
+        duration: '7 min',
+        instructions: [
+          'Insérez les champs « Nom », « Date » et « Créneau » dans le texte',
+          'Vérifiez les espaces et la ponctuation autour des champs',
+          'Prévisualisez les résultats pour contrôler la lisibilité'
+        ]
+      },
+      {
+        number: 4,
+        title: 'Finaliser et générer',
+        duration: '10 min',
+        instructions: [
+          'Générez tous les documents fusionnés',
+          'Corrigez les retours à la ligne ou coupures visuelles si nécessaire',
+          'Exportez le résultat final en PDF'
+        ]
+      }
+    ],
+    deliverables: [
+      'Une lettre type propre et réutilisable',
+      'Des champs de fusion correctement configurés',
+      'Un document final avec les courriers personnalisés',
+      'Une version PDF prête à envoyer'
+    ],
+    reflectionQuestions: [
+      'Quels risques apparaissent si les colonnes Excel sont mal nommées ?',
+      'Pourquoi prévisualiser avant de générer tous les courriers ?',
+      'Comment rendre ce publipostage réutilisable pour un prochain événement ?'
+    ]
+  },
+  {
+    id: 'word-modele-03',
+    category: 'Word',
+    title: 'Créer un modèle Word professionnel',
+    duration: '30 minutes',
+    objective: 'À la fin de l\'exercice, l\'apprenant doit savoir :\n• structurer un document avec les styles Word\n• définir une charte simple (titres, paragraphes, tableaux)\n• créer un modèle réutilisable (.dotx)\n• gagner du temps sur les futurs documents',
+    context: 'L\'équipe doit produire des comptes-rendus homogènes. Vous devez construire un modèle Word commun pour éviter les documents incohérents.',
+    generalInstructions: [
+      'Créez un document propre sans mise en forme manuelle excessive',
+      'Privilégiez les styles Word plutôt que les modifications locales',
+      'Nom du fichier modèle : Modele_CompteRendu_RisingStars.dotx'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Construire la structure',
+        duration: '8 min',
+        instructions: [
+          'Ajoutez un titre principal, des titres de niveau 1 et 2',
+          'Créez une section "Décisions", une section "Actions", une section "Risques"',
+          'Ajoutez un tableau simple pour le plan d\'action'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Configurer les styles',
+        duration: '10 min',
+        instructions: [
+          'Personnalisez les styles Titre, Titre 1, Titre 2 et Normal',
+          'Fixez une police, des espacements et des couleurs cohérents',
+          'Appliquez les styles à tout le document'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Ajouter des blocs réutilisables',
+        duration: '6 min',
+        instructions: [
+          'Insérez un en-tête avec nom du projet et date',
+          'Préparez des zones vides pour les informations variables',
+          'Ajoutez une checklist de fin de réunion'
+        ]
+      },
+      {
+        number: 4,
+        title: 'Enregistrer en modèle',
+        duration: '6 min',
+        instructions: [
+          'Enregistrez le document au format .dotx',
+          'Créez un nouveau document à partir du modèle',
+          'Vérifiez que les styles et sections sont bien récupérés'
+        ]
+      }
+    ],
+    deliverables: [
+      'Un modèle Word .dotx fonctionnel',
+      'Une charte visuelle cohérente',
+      'Un exemple de document généré à partir du modèle'
+    ],
+    reflectionQuestions: [
+      'Quels gains concrets apporte un modèle à une équipe ?',
+      'Pourquoi les styles sont-ils plus robustes que la mise en forme manuelle ?',
+      'Quelles sections faudrait-il ajouter pour votre propre contexte métier ?'
+    ]
+  },
+  {
+    id: 'word-revision-04',
+    category: 'Word',
+    title: 'Révision et collaboration avec commentaires',
+    duration: '25 minutes',
+    objective: 'À la fin de l\'exercice, l\'apprenant doit savoir :\n• activer le suivi des modifications\n• commenter précisément un document\n• accepter/refuser des changements de façon structurée\n• produire une version finale propre',
+    context: 'Vous recevez un document relu par plusieurs collègues. Vous devez traiter les retours et livrer une version finale validée.',
+    generalInstructions: [
+      'Travaillez avec le mode Révision activé',
+      'Gardez des commentaires factuels et orientés action',
+      'Nettoyez le document avant livraison finale'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Activer les outils de révision',
+        duration: '5 min',
+        instructions: [
+          'Ouvrez le document Word',
+          'Activez "Suivi des modifications"',
+          'Affichez les commentaires et marques de révision'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Ajouter des commentaires utiles',
+        duration: '7 min',
+        instructions: [
+          'Commentez au moins 3 passages ambigus',
+          'Proposez une reformulation claire pour chaque passage',
+          'Évitez les commentaires vagues'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Traiter les modifications',
+        duration: '8 min',
+        instructions: [
+          'Passez en revue les changements un par un',
+          'Acceptez ce qui améliore la clarté',
+          'Refusez les modifications qui dégradent le fond ou la forme',
+          'Ajoutez un commentaire de justification en cas de refus important'
+        ]
+      },
+      {
+        number: 4,
+        title: 'Finaliser la version livrable',
+        duration: '5 min',
+        instructions: [
+          'Supprimez les marques de révision visibles',
+          'Vérifiez orthographe et cohérence finale',
+          'Enregistrez la version finale prête à diffusion'
+        ]
+      }
+    ],
+    deliverables: [
+      'Un document avec commentaires de revue pertinents',
+      'Une revue de modifications justifiée',
+      'Une version finale propre sans marques'
+    ],
+    reflectionQuestions: [
+      'Comment différencier une correction de forme et une correction de fond ?',
+      'Pourquoi justifier certains refus de modifications ?',
+      'Que faut-il vérifier avant d\'envoyer une version finale ?'
+    ]
   }
 ];
 

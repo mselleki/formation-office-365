@@ -9,6 +9,7 @@ import ExerciceDetail from './pages/ExerciceDetail'
 import ExcelBible from './pages/ExcelBible'
 import Settings from './pages/Settings'
 import { EpisodeStatus } from './content/episodes'
+import { ExerciceStatus } from './content/exercices'
 
 export interface ProgressState {
   status: EpisodeStatus
@@ -18,6 +19,7 @@ export interface ProgressState {
 export interface AppState {
   isTrainerMode: boolean
   progress: Record<number, ProgressState>
+  exerciseProgress: Record<string, ExerciceStatus>
 }
 
 function App() {
@@ -34,11 +36,16 @@ function App() {
       if (parsed.isTrainerMode && !isTrainerAuthenticated()) {
         parsed.isTrainerMode = false
       }
-      return parsed
+      return {
+        isTrainerMode: parsed.isTrainerMode ?? false,
+        progress: parsed.progress ?? {},
+        exerciseProgress: parsed.exerciseProgress ?? {}
+      }
     }
     return {
       isTrainerMode: false,
-      progress: {}
+      progress: {},
+      exerciseProgress: {}
     }
   })
 
@@ -100,6 +107,49 @@ function App() {
     }))
   }
 
+  const resetExercisesProgress = () => {
+    const exerciseProgressKeys = [
+      'formation365-exercises-progress',
+      'formation365-exercise-progress',
+      'formation365-exercices-progress',
+      'formation365-exercice-progress'
+    ]
+
+    exerciseProgressKeys.forEach((key) => {
+      localStorage.removeItem(key)
+    })
+
+    const savedState = localStorage.getItem('formation365-state')
+    if (!savedState) {
+      return
+    }
+
+    try {
+      const parsed = JSON.parse(savedState)
+      const sanitized = { ...parsed }
+      delete sanitized.exerciseProgress
+      delete sanitized.exercisesProgress
+      localStorage.setItem('formation365-state', JSON.stringify(sanitized))
+    } catch {
+      // Si l'état est invalide, on n'empêche pas la réinitialisation des clés dédiées.
+    }
+
+    setAppState(prev => ({
+      ...prev,
+      exerciseProgress: {}
+    }))
+  }
+
+  const updateExerciseProgress = (exerciseId: string, status: ExerciceStatus) => {
+    setAppState(prev => ({
+      ...prev,
+      exerciseProgress: {
+        ...prev.exerciseProgress,
+        [exerciseId]: status
+      }
+    }))
+  }
+
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-gray-50">
@@ -118,13 +168,22 @@ function App() {
                 />
               }
             />
-            <Route path="/exercices" element={<ExercicesList />} />
+            <Route
+              path="/exercices"
+              element={
+                <ExercicesList
+                  exerciseProgress={appState.exerciseProgress}
+                />
+              }
+            />
             <Route path="/exercices/excel/bible" element={<ExcelBible />} />
             <Route 
               path="/exercices/:category/:id" 
               element={
                 <ExerciceDetail 
                   isTrainerMode={appState.isTrainerMode}
+                  exerciseStatus={appState.exerciseProgress}
+                  onUpdateExerciseProgress={updateExerciseProgress}
                 />
               } 
             />
@@ -152,6 +211,7 @@ function App() {
               element={
                 <Settings 
                   onResetProgress={resetProgress}
+                  onResetExercisesProgress={resetExercisesProgress}
                 />
               } 
             />

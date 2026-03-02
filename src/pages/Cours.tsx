@@ -1,4 +1,11 @@
 import { Link } from 'react-router-dom'
+import {
+  oneDriveFull,
+  wordFull,
+  excelFull,
+  outlookFull,
+  oneNoteFull
+} from '../content/coursTexte'
 
 const oneDriveCourseSections = [
   {
@@ -646,14 +653,14 @@ export default function Cours() {
         </p>
 
         <div className="space-y-5">
-          {oneDriveCourseSections.map((section) => (
+          {oneDriveFull.map((section) => (
             <section key={section.title} className="p-5 bg-cyan-50/40 rounded-lg border border-cyan-100">
               <h3 className="text-lg font-semibold text-cyan-900 mb-3">{section.title}</h3>
-              <ul className="list-disc list-inside text-gray-700 space-y-1.5">
-                {section.items.map((item) => (
-                  <li key={item}>{item}</li>
+              <div className="text-gray-700 space-y-3">
+                {section.paragraphs.map((para, i) => (
+                  <p key={i} className="leading-relaxed">{para}</p>
                 ))}
-              </ul>
+              </div>
             </section>
           ))}
         </div>
@@ -672,14 +679,14 @@ export default function Cours() {
         </p>
 
         <div className="space-y-5">
-          {wordCourseSections.map((section) => (
+          {wordFull.map((section) => (
             <section key={section.title} className="p-5 bg-blue-50/40 rounded-lg border border-blue-100">
               <h3 className="text-lg font-semibold text-blue-900 mb-3">{section.title}</h3>
-              <ul className="list-disc list-inside text-gray-700 space-y-1.5">
-                {section.items.map((item) => (
-                  <li key={item}>{item}</li>
+              <div className="text-gray-700 space-y-3">
+                {section.paragraphs.map((para, i) => (
+                  <p key={i} className="leading-relaxed">{para}</p>
                 ))}
-              </ul>
+              </div>
             </section>
           ))}
         </div>
@@ -698,14 +705,14 @@ export default function Cours() {
         </p>
 
         <div className="space-y-5">
-          {excelCourseSections.map((section) => (
+          {excelFull.map((section) => (
             <section key={section.title} className="p-5 bg-green-50/40 rounded-lg border border-green-100">
               <h3 className="text-lg font-semibold text-green-900 mb-3">{section.title}</h3>
-              <ul className="list-disc list-inside text-gray-700 space-y-1.5">
-                {section.items.map((item) => (
-                  <li key={item}>{item}</li>
+              <div className="text-gray-700 space-y-3">
+                {section.paragraphs.map((para, i) => (
+                  <p key={i} className="leading-relaxed">{para}</p>
                 ))}
-              </ul>
+              </div>
             </section>
           ))}
         </div>
@@ -724,14 +731,14 @@ export default function Cours() {
         </p>
 
         <div className="space-y-5">
-          {outlookCourseSections.map((section) => (
+          {outlookFull.map((section) => (
             <section key={section.title} className="p-5 bg-purple-50/40 rounded-lg border border-purple-100">
               <h3 className="text-lg font-semibold text-purple-900 mb-3">{section.title}</h3>
-              <ul className="list-disc list-inside text-gray-700 space-y-1.5">
-                {section.items.map((item) => (
-                  <li key={item}>{item}</li>
+              <div className="text-gray-700 space-y-3">
+                {section.paragraphs.map((para, i) => (
+                  <p key={i} className="leading-relaxed">{para}</p>
                 ))}
-              </ul>
+              </div>
             </section>
           ))}
         </div>
@@ -750,14 +757,14 @@ export default function Cours() {
         </p>
 
         <div className="space-y-5">
-          {oneNoteCourseSections.map((section) => (
+          {oneNoteFull.map((section) => (
             <section key={section.title} className="p-5 bg-pink-50/40 rounded-lg border border-pink-100">
               <h3 className="text-lg font-semibold text-pink-900 mb-3">{section.title}</h3>
-              <ul className="list-disc list-inside text-gray-700 space-y-1.5">
-                {section.items.map((item) => (
-                  <li key={item}>{item}</li>
+              <div className="text-gray-700 space-y-3">
+                {section.paragraphs.map((para, i) => (
+                  <p key={i} className="leading-relaxed">{para}</p>
                 ))}
-              </ul>
+              </div>
             </section>
           ))}
         </div>

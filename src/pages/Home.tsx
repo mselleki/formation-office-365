@@ -32,22 +32,6 @@ export default function Home({ isTrainerMode }: HomeProps) {
         </p>
       </div>
 
-      <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-8 mb-8">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-          Intelligence Artificielle
-        </h2>
-        <p className="text-gray-700 leading-relaxed mb-4">
-          Module dédié à l'utilisation de l'IA dans un contexte professionnel. Apprenez les fondamentaux, 
-          maîtrisez le prompting et découvrez les bonnes pratiques pour intégrer l'IA dans votre travail quotidien.
-        </p>
-        <Link
-          to="/exercices"
-          className="inline-block px-6 py-2 bg-gray-800 text-white rounded-md font-medium hover:bg-gray-900 transition-colors"
-        >
-          Accéder aux exercices IA
-        </Link>
-      </div>
-
       <div className="bg-white rounded-lg shadow-sm p-8 mb-8">
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">
           Par où commencer ?
@@ -59,6 +43,7 @@ export default function Home({ isTrainerMode }: HomeProps) {
         </p>
       </div>
 
+      {isTrainerMode && (
       <div className="bg-white border border-indigo-200 rounded-lg shadow-sm p-8 mb-8">
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">
           Cours
@@ -166,6 +151,7 @@ export default function Home({ isTrainerMode }: HomeProps) {
           </ul>
         </div>
       </div>
+      )}
 
       {isTrainerMode && (
         <div className="bg-white border border-green-200 rounded-lg shadow-sm p-8 mb-8">

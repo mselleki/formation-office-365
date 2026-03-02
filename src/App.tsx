@@ -177,7 +177,7 @@ function App() {
                 />
               }
             />
-            <Route path="/cours" element={<Cours />} />
+            <Route path="/cours" element={<Cours isTrainerMode={appState.isTrainerMode} />} />
             <Route path="/exercices/excel/bible" element={<ExcelBible />} />
             <Route 
               path="/exercices/:category/:id" 

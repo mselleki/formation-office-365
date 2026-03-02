@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import {
   oneDriveFull,
   wordFull,
@@ -7,6 +7,15 @@ import {
   outlookFull,
   oneNoteFull
 } from '../content/coursTexte'
+
+interface CoursProps {
+  isTrainerMode: boolean
+}
+
+export default function Cours({ isTrainerMode }: CoursProps) {
+  if (!isTrainerMode) {
+    return <Navigate to="/" replace />
+  }
 
 const oneDriveCourseSections = [
   {

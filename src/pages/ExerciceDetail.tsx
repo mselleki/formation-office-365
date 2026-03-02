@@ -88,24 +88,57 @@ export default function ExerciceDetail({
         )}
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm p-8 mb-6">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-          Suivi de progression
-        </h2>
-        <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-          <label htmlFor="exercise-status" className="text-gray-700 font-medium">
-            Statut de cet exercice :
-          </label>
-          <select
-            id="exercise-status"
-            value={currentStatus}
-            onChange={(e) => onUpdateExerciseProgress(exercice.id, e.target.value as ExerciceStatus)}
-            className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
+      <div
+        className={`rounded-xl border-l-4 bg-white p-6 shadow-sm mb-6 ${
+          currentStatus === 'completed'
+            ? 'border-l-green-500'
+            : currentStatus === 'in_progress'
+              ? 'border-l-amber-500'
+              : 'border-l-gray-300'
+        }`}
+      >
+        <div className="flex items-center gap-2 mb-4">
+          <span
+            className={`flex h-9 w-9 items-center justify-center rounded-lg text-lg ${
+              currentStatus === 'completed'
+                ? 'bg-green-100 text-green-600'
+                : currentStatus === 'in_progress'
+                  ? 'bg-amber-100 text-amber-600'
+                  : 'bg-gray-100 text-gray-500'
+            }`}
           >
-            <option value="not_started">Non commencé</option>
-            <option value="in_progress">En cours</option>
-            <option value="completed">Terminé</option>
-          </select>
+            {currentStatus === 'completed' ? '✓' : currentStatus === 'in_progress' ? '◐' : '○'}
+          </span>
+          <h2 className="text-xl font-semibold text-gray-900">
+            Suivi de progression
+          </h2>
+        </div>
+        <p className="text-sm text-gray-500 mb-4">
+          Indiquez où vous en êtes sur cet exercice.
+        </p>
+        <div className="flex flex-wrap gap-2" role="group" aria-label="Statut de l'exercice">
+          {[
+            { value: 'not_started' as ExerciceStatus, label: 'Non commencé' },
+            { value: 'in_progress' as ExerciceStatus, label: 'En cours' },
+            { value: 'completed' as ExerciceStatus, label: 'Terminé' }
+          ].map(({ value, label }) => (
+            <button
+              key={value}
+              type="button"
+              onClick={() => onUpdateExerciseProgress(exercice.id, value)}
+              className={`rounded-lg px-4 py-2.5 text-sm font-medium transition-all ${
+                currentStatus === value
+                  ? value === 'completed'
+                    ? 'bg-green-600 text-white shadow-sm'
+                    : value === 'in_progress'
+                      ? 'bg-amber-500 text-white shadow-sm'
+                      : 'bg-gray-700 text-white shadow-sm'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              }`}
+            >
+              {label}
+            </button>
+          ))}
         </div>
       </div>
 

@@ -12,11 +12,6 @@ interface CoursProps {
   isTrainerMode: boolean
 }
 
-export default function Cours({ isTrainerMode }: CoursProps) {
-  if (!isTrainerMode) {
-    return <Navigate to="/" replace />
-  }
-
 const oneDriveCourseSections = [
   {
     title: '1) Objectifs pédagogiques',
@@ -636,7 +631,11 @@ const modules = [
   }
 ]
 
-export default function Cours() {
+export default function Cours({ isTrainerMode }: CoursProps) {
+  if (!isTrainerMode) {
+    return <Navigate to="/" replace />
+  }
+
   return (
     <div className="max-w-6xl mx-auto">
       <div className="bg-white rounded-lg shadow-sm p-8 mb-8">

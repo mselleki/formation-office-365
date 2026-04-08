@@ -2845,6 +2845,238 @@ export const exercices: Exercice[] = [
       'Pourquoi justifier certains refus de modifications ?',
       'Que faut-il vérifier avant d\'envoyer une version finale ?'
     ]
+  },
+  {
+    id: 'outlook-tri-regles-01',
+    category: 'Outlook',
+    title: 'Trier et prioriser : règles + catégories',
+    duration: '25 minutes',
+    objective:
+      '🎯 Objectif : reprendre le contrôle de la boîte de réception\n\n' +
+      '• Créer une organisation simple (dossiers + catégories)\n' +
+      '• Mettre en place 2 à 3 règles robustes\n' +
+      '• Distinguer information / action / attente\n\n' +
+      '💣 Message clé :\n\n' +
+      'Une boîte mail non structurée est une liste de tâches déguisée.',
+    context:
+      'Vous recevez trop de mails et vous perdez du temps à retrouver l\'information. ' +
+      'L\'objectif est d\'installer un système minimal, maintenable, et qui réduit la charge mentale.',
+    generalInstructions: [
+      'Travaillez sur votre boîte Outlook (desktop ou web)',
+      'Créez un système que vous pouvez garder après la formation',
+      'Limitez volontairement le nombre de règles (max 3)'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Créer 4 dossiers de base',
+        duration: '5 min',
+        instructions: [
+          'Créez 4 dossiers : "À traiter", "En attente", "Référence", "Archives".',
+          'Ne créez pas plus de niveaux pour l\'instant.',
+          'Objectif : séparer action vs stockage.'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Définir 3 catégories',
+        duration: '5 min',
+        instructions: [
+          'Créez 3 catégories (couleurs) : "Projet", "Urgent", "Info".',
+          'Catégories = lecture rapide. Dossiers = rangement.'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Créer 2 règles simples',
+        duration: '10 min',
+        instructions: [
+          'Règle 1 : si l\'objet contient "[Rising Stars]" → appliquer catégorie "Projet".',
+          'Règle 2 : si l\'expéditeur est une liste/newsletter → déplacer vers "Référence".',
+          'Vérifiez que les règles ne déplacent pas des mails actionnables par erreur.'
+        ]
+      },
+      {
+        number: 4,
+        title: 'Appliquer le tri sur 15 mails',
+        duration: '5 min',
+        instructions: [
+          'Prenez 15 mails récents.',
+          'Classez-les : action → "À traiter", attente → "En attente", à conserver → "Référence", fini → "Archives".',
+          'Ajoutez une catégorie "Urgent" si une action a une échéance immédiate.'
+        ]
+      }
+    ],
+    deliverables: [
+      '4 dossiers de base créés (À traiter, En attente, Référence, Archives)',
+      '3 catégories prêtes (Projet, Urgent, Info)',
+      '2 règles actives et testées',
+      '15 mails triés selon le système'
+    ],
+    reflectionQuestions: [
+      'Qu\'est-ce qui doit rester dans la boîte de réception vs être déplacé ?',
+      'Quelle règle risque de créer des erreurs si elle est trop large ?',
+      'Quel est ton critère simple pour qualifier un mail "actionnable" ?'
+    ],
+    trainerScript:
+      '✅ Correction (mode formateur)\n\n' +
+      'Objectif pédagogique : installer un système minimal, pas une usine à gaz.\n\n' +
+      '1) Dossiers\n' +
+      '- À traiter : uniquement ce qui demande une action.\n' +
+      '- En attente : action déléguée / réponse attendue / blocage externe.\n' +
+      '- Référence : information utile mais non actionnable.\n' +
+      '- Archives : terminé.\n\n' +
+      '2) Catégories\n' +
+      '- Projet : pour regrouper sans déplacer.\n' +
+      '- Urgent : pour les échéances courtes.\n' +
+      '- Info : pour lecture sans action.\n\n' +
+      '3) Règles (2 max ici)\n' +
+      '- Les règles doivent être précises (ex. mot-clé stable dans l\'objet) et ne pas déplacer des mails importants.\n' +
+      '- Insister sur le risque : une règle de déplacement trop large = perte d\'information.\n\n' +
+      'Point à challenger : "Pourquoi créer 20 dossiers ne résout rien ?" → complexité > bénéfice.\n'
+  },
+  {
+    id: 'outlook-reunion-invitation-02',
+    category: 'Outlook',
+    title: 'Planifier une réunion utile (invitation + agenda)',
+    duration: '20 minutes',
+    objective:
+      '🎯 Objectif : transformer une réunion en résultat\n\n' +
+      '• Créer une invitation claire (objectif, livrable, durée)\n' +
+      '• Limiter les participants au strict nécessaire\n' +
+      '• Ajouter un ordre du jour actionnable',
+    context:
+      'Vous devez organiser une réunion de pilotage "Rising Stars Tennis Day". ' +
+      'La réunion doit aboutir à des décisions et des actions concrètes.',
+    generalInstructions: [
+      'Créer une invitation Outlook (desktop ou web)',
+      'Rester concis : 30 minutes maximum',
+      'L\'agenda doit tenir en 6 lignes'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Créer l\'invitation',
+        duration: '5 min',
+        instructions: [
+          'Créez une réunion de 30 minutes.',
+          'Objet : "Pilotage Rising Stars — décisions semaine".',
+          'Ajoutez uniquement les participants nécessaires.'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Écrire un agenda actionnable',
+        duration: '10 min',
+        instructions: [
+          'Dans le corps : ajoutez Objectif + Livrable attendu (ex. "liste d’actions datées").',
+          'Ajoutez un agenda court : 1) statut, 2) risques, 3) décisions, 4) prochaines actions.',
+          'Ajoutez 1 question de préparation à envoyer aux participants.'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Paramétrer les options',
+        duration: '5 min',
+        instructions: [
+          'Activez une réunion Teams si votre environnement le permet.',
+          'Définissez un rappel (10 min).',
+          'Envoyez l\'invitation.'
+        ]
+      }
+    ],
+    deliverables: [
+      'Une invitation envoyée avec objet clair',
+      'Un agenda court et orienté décisions',
+      'Un livrable attendu explicite (actions datées, décisions)'
+    ],
+    reflectionQuestions: [
+      'Quel participant peux-tu retirer sans dégrader la qualité de la réunion ?',
+      'Quel est le livrable minimal d\'une réunion utile ?',
+      'Qu\'est-ce qui fait qu\'une réunion devient une perte de temps ?'
+    ],
+    trainerScript:
+      '✅ Correction (mode formateur)\n\n' +
+      'L\'invitation doit répondre à 3 questions : pourquoi, quoi, qui.\n\n' +
+      'Template attendu (à copier/coller) :\n' +
+      '- Objectif : prendre 2 décisions et sortir une liste d’actions datées.\n' +
+      '- Livrable : CR court + Actions (Qui/Quoi/Quand).\n' +
+      '- Agenda :\n' +
+      '  1) Statut (5 min)\n' +
+      '  2) Risques / points bloquants (10 min)\n' +
+      '  3) Décisions à arbitrer (10 min)\n' +
+      '  4) Actions & prochaines étapes (5 min)\n\n' +
+      'Point clé : réduire les participants → augmente la clarté et la vitesse de décision.\n'
+  },
+  {
+    id: 'outlook-suivi-actions-03',
+    category: 'Outlook',
+    title: 'Suivre les actions : drapeaux, tâches et rappels',
+    duration: '25 minutes',
+    objective:
+      '🎯 Objectif : ne plus perdre une action dans un mail\n\n' +
+      '• Transformer un mail en action suivable\n' +
+      '• Utiliser drapeaux + rappels de façon cohérente\n' +
+      '• Mettre en place une mini-revue quotidienne (5 min)',
+    context:
+      'On vous envoie des demandes par mail (documents à produire, validations, réponses attendues). ' +
+      'Sans système, les actions se perdent et la charge mentale explose.',
+    generalInstructions: [
+      'Choisissez 5 mails réels (ou récents) qui demandent une action',
+      'Ne gardez pas les actions uniquement "dans la tête"',
+      'L\'objectif est la fiabilité, pas la perfection'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Qualifier 5 mails actionnables',
+        duration: '5 min',
+        instructions: [
+          'Identifiez 5 mails qui demandent une action.',
+          'Pour chacun : notez en 1 phrase l\'action attendue et l\'échéance.'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Marquer et planifier',
+        duration: '10 min',
+        instructions: [
+          'Ajoutez un drapeau "suivi" sur chaque mail.',
+          'Ajoutez un rappel (date/heure) sur au moins 3 mails.',
+          'Catégorisez "Urgent" si nécessaire.'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Mettre en place la revue quotidienne',
+        duration: '10 min',
+        instructions: [
+          'Créez un créneau quotidien de 5 minutes dans le calendrier : "Revue actions Outlook".',
+          'Définissez une règle : tout mail actionnable doit être drapé OU transformé en tâche.',
+          'Testez la recherche / vue des éléments drapés.'
+        ]
+      }
+    ],
+    deliverables: [
+      '5 mails qualifiés avec action + échéance',
+      '5 mails drapés, 3 avec rappel',
+      'Un créneau récurrent de revue quotidienne'
+    ],
+    reflectionQuestions: [
+      'Dans quels cas un drapeau suffit, et dans quels cas il faut une tâche ?',
+      'Quelle est ta fréquence minimale de revue pour rester fiable ?',
+      'Quel est ton signal d\'alarme qu\'un système est trop compliqué ?'
+    ],
+    trainerScript:
+      '✅ Correction (mode formateur)\n\n' +
+      'But : externaliser la mémoire et fiabiliser le suivi.\n\n' +
+      'Méthode attendue :\n' +
+      '- Action rapide : drapeau + rappel.\n' +
+      '- Action multi-étapes : créer une tâche (ou to-do) avec sous-étapes.\n\n' +
+      'Rituel : 5 minutes / jour\n' +
+      '- Ouvrir la liste des éléments marqués.\n' +
+      '- Fermer / replanifier / déléguer.\n\n' +
+      'Erreur fréquente : utiliser les drapeaux sans jamais revoir la liste → ça redevient du bruit.\n'
   }
 ];
 

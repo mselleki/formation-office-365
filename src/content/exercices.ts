@@ -1,4 +1,12 @@
-export type ExerciceCategory = 'IA' | 'Word' | 'Excel' | 'Outlook' | 'OneDrive' | 'OneNote' | 'PowerQuery';
+export type ExerciceCategory =
+  | 'IA'
+  | 'Word'
+  | 'Excel'
+  | 'Outlook'
+  | 'PowerPoint'
+  | 'OneDrive'
+  | 'OneNote'
+  | 'PowerQuery';
 
 export type ExerciceStatus = 'not_started' | 'in_progress' | 'completed';
 
@@ -3347,10 +3355,243 @@ export const exercices: Exercice[] = [
       '- Verbe + livrable + échéance.\n' +
       '- Checklist pour actions longues.\n\n' +
       'Critère de qualité : on doit pouvoir exécuter le suivi sans rouvrir 10 mails.\n'
+  },
+  {
+    id: 'powerpoint-structure-masque-01',
+    category: 'PowerPoint',
+    title: 'Deck propre : structure + masques (sans bricolage)',
+    duration: '40 minutes',
+    objective:
+      '🎯 Objectif : produire un support propre, cohérent et maintenable\n\n' +
+      '• Comprendre la différence entre diapositives et masques\n' +
+      '• Construire une structure de deck (plan + sections)\n' +
+      '• Appliquer une charte via Masque des diapositives (pas à la main)\n\n' +
+      '💣 Message clé :\n\n' +
+      'Un deck “joli” mais non maintenable est un piège : tu payes la dette en fin de projet.',
+    context:
+      'Vous devez créer une présentation de projet pour le Rising Stars Tennis Day. ' +
+      'L’objectif est de produire un deck réutilisable, cohérent, et rapide à faire évoluer.',
+    generalInstructions: [
+      'Travaillez sur PowerPoint Desktop',
+      'Interdiction de “tout aligner à la main” : on utilise les dispositions',
+      'Visez une charte simple (polices, couleurs, marges, titres)'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Définir le plan (structure)',
+        duration: '10 min',
+        instructions: [
+          'Créez une structure en 4 sections : Contexte, Objectifs, Plan d’action, Prochaines étapes.',
+          'Ajoutez une diapo “Titre” et une diapo “Sommaire”.',
+          'Objectif : un deck lisible même sans narration.'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Créer/ajuster le Masque des diapositives',
+        duration: '15 min',
+        instructions: [
+          'Ouvrez Affichage → Masque des diapositives.',
+          'Définissez : police titres + police texte, couleurs principales, pied de page (optionnel).',
+          'Créez/ajustez 3 dispositions : Titre, Titre+contenu, Deux colonnes.',
+          'Fermez le masque.'
+        ],
+        tips: [
+          'Si tu modifies 20 diapos “à la main”, tu as raté le masque.',
+          'Les dispositions = vitesse + cohérence.'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Construire 8 diapositives avec les dispositions',
+        duration: '15 min',
+        instructions: [
+          'Créez 8 diapos : 1) Titre, 2) Sommaire, 3) Contexte, 4) Objectifs, 5) Planning, 6) Rôles, 7) Risques, 8) Prochaines étapes.',
+          'Utilisez uniquement les dispositions du masque.',
+          'Vérifiez : alignements, marges, tailles de titres cohérentes.'
+        ]
+      }
+    ],
+    deliverables: [
+      'Un deck de 8 diapositives structuré en sections',
+      'Un Masque des diapositives avec 3 dispositions utilisables',
+      'Une cohérence visuelle sans mise en forme “au feeling”'
+    ],
+    reflectionQuestions: [
+      'Quelle partie du deck doit être standardisée (toujours) vs spécifique (par diapo) ?',
+      'À quel moment un masque mal fait devient un frein ?',
+      'Quelle règle simple t’évite le bricolage (alignements, marges, tailles) ?'
+    ],
+    trainerScript:
+      '✅ Correction (mode formateur)\n\n' +
+      'Attendu : un deck maintenable.\n\n' +
+      'Points de contrôle :\n' +
+      '- Masque : polices + couleurs + dispositions.\n' +
+      '- Pas de “micro-ajustements” incohérents sur chaque diapo.\n' +
+      '- Plan clair : sections + sommaire.\n\n' +
+      'Erreur fréquente : corriger les titres à la main sur 10 diapos → doit être fait dans le masque.\n'
+  },
+  {
+    id: 'powerpoint-storytelling-02',
+    category: 'PowerPoint',
+    title: 'Storytelling : 1 message par slide (et pas une page Word)',
+    duration: '35 minutes',
+    objective:
+      '🎯 Objectif : faire passer un message, pas afficher du texte\n\n' +
+      '• Écrire un titre “message” (conclusion) plutôt qu’un titre “thème”\n' +
+      '• Réduire le texte et rendre la slide scannable\n' +
+      '• Utiliser visuels simples (icônes, schémas, 1 graphique)\n\n' +
+      '💣 Message clé :\n\n' +
+      'Si la slide a besoin d’être lue, ce n’est plus une slide : c’est un document.',
+    context:
+      'Vous présentez l’avancement du projet. Votre audience doit comprendre en 30 secondes : où on en est, ce qui bloque, et ce qu’on décide.',
+    generalInstructions: [
+      'PowerPoint Desktop',
+      'Max 6 lignes de texte par slide',
+      'Titre = conclusion (verbe + fait)'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Transformer 4 slides “thème” en slides “message”',
+        duration: '15 min',
+        instructions: [
+          'Prenez 4 slides de votre deck.',
+          'Changez les titres pour qu’ils portent un message.',
+          'Ex : “Planning” → “Le planning est validé, mais 2 jalons sont à risque”.',
+          'Réduisez le corps de texte à des puces courtes.'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Rendre 2 slides visuelles',
+        duration: '15 min',
+        instructions: [
+          'Pour 2 slides, remplacez du texte par :',
+          '• un schéma simple (3 blocs max), OU',
+          '• une timeline, OU',
+          '• un graphique unique (lisible).',
+          'Objectif : lecture immédiate.'
+        ],
+        tips: [
+          'Un graphique par slide, pas trois.',
+          'Si tu ajoutes une légende de 10 lignes, tu es allé trop loin.'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Test de scan (30 secondes)',
+        duration: '5 min',
+        instructions: [
+          'Passez les slides en mode trieuse.',
+          'En 30 secondes, notez les 4 messages clés (sans lire les paragraphes).',
+          'Si tu n’y arrives pas, les titres ne portent pas assez le message.'
+        ]
+      }
+    ],
+    deliverables: [
+      '4 titres orientés message',
+      '2 slides “visuelles” (schéma/timeline/graphique)',
+      'Un deck scannable (messages compréhensibles en mode trieuse)'
+    ],
+    reflectionQuestions: [
+      'Quel est ton critère pour supprimer du texte ?',
+      'Dans quels cas tu dois produire un document séparé (Word/OneNote) plutôt que surcharger les slides ?',
+      'Quel est le danger des titres “thème” ?'
+    ],
+    trainerScript:
+      '✅ Correction (mode formateur)\n\n' +
+      'Règles attendues :\n' +
+      '- Titre = conclusion / message.\n' +
+      '- Une slide = une idée.\n' +
+      '- Limite texte : 6 lignes (ordre de grandeur).\n\n' +
+      'Test simple : en mode trieuse, les titres racontent l’histoire.\n'
+  },
+  {
+    id: 'powerpoint-livrable-export-03',
+    category: 'PowerPoint',
+    title: 'Livrable final : check qualité + export PDF',
+    duration: '25 minutes',
+    objective:
+      '🎯 Objectif : livrer un support “pro” sans surprise\n\n' +
+      '• Vérifier cohérence (polices, alignements, contrastes)\n' +
+      '• Gérer les images (compression, ratio)\n' +
+      '• Exporter en PDF propre (et léger)\n\n' +
+      '💣 Message clé :\n\n' +
+      'La qualité se joue dans les 10 dernières minutes… et c’est là que tout le monde bâcle.',
+    context:
+      'Vous devez envoyer un support à une direction / un client. Le PDF doit être lisible, léger et fidèle.',
+    generalInstructions: [
+      'PowerPoint Desktop',
+      'Visez un PDF < 5 Mo si possible',
+      'Une seule version livrée, clairement nommée'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Check qualité en 10 points',
+        duration: '10 min',
+        instructions: [
+          'Vérifiez : titres alignés, tailles cohérentes, marges régulières.',
+          'Vérifiez : contraste texte/fond, lisibilité à distance.',
+          'Vérifiez : cohérence des couleurs (pas de “rainbow”).',
+          'Vérifiez : images nettes, pas étirées.',
+          'Vérifiez : numérotation / pied de page si utilisé.'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Optimiser les images',
+        duration: '10 min',
+        instructions: [
+          'Compressez les images si le fichier est lourd.',
+          'Supprimez les zones rognées inutiles si nécessaire.',
+          'Objectif : éviter un PDF de 40 Mo.'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Exporter le PDF et nommer proprement',
+        duration: '5 min',
+        instructions: [
+          'Exportez en PDF.',
+          'Nommez le fichier : AAAA-MM-JJ_RisingStars_Deck_vX.pdf.',
+          'Ouvrez le PDF et vérifiez 2 slides au hasard (polices, images, alignements).'
+        ]
+      }
+    ],
+    deliverables: [
+      'Un deck relu avec check qualité',
+      'Un PDF exporté et vérifié',
+      'Un nommage versionné et propre'
+    ],
+    reflectionQuestions: [
+      'Quel est ton top 3 des défauts les plus visibles en présentation ?',
+      'Qu’est-ce qui fait “amateur” immédiatement ?',
+      'Comment tu arbitres taille du fichier vs qualité des images ?'
+    ],
+    trainerScript:
+      '✅ Correction (mode formateur)\n\n' +
+      'Checklist minimale (à exiger) :\n' +
+      '- Alignements et marges cohérents.\n' +
+      '- Contraste OK, police lisible.\n' +
+      '- 1 style visuel, pas 12.\n' +
+      '- Images non étirées + compression si nécessaire.\n' +
+      '- Export PDF vérifié.\n'
   }
 ];
 
-export const categories: ExerciceCategory[] = ['IA', 'Word', 'Excel', 'Outlook', 'OneDrive', 'OneNote', 'PowerQuery'];
+export const categories: ExerciceCategory[] = [
+  'IA',
+  'Word',
+  'Excel',
+  'Outlook',
+  'PowerPoint',
+  'OneDrive',
+  'OneNote',
+  'PowerQuery'
+];
 
 export const getExercicesByCategory = (category: ExerciceCategory): Exercice[] => {
   return exercices.filter(ex => ex.category === category);

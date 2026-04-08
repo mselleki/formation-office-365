@@ -32,6 +32,7 @@ export default function ExerciceDetail({
       Word: 'bg-blue-100 text-blue-800',
       Excel: 'bg-green-100 text-green-800',
       Outlook: 'bg-purple-100 text-purple-800',
+      PowerPoint: 'bg-red-100 text-red-800',
       OneDrive: 'bg-cyan-100 text-cyan-800',
       OneNote: 'bg-pink-100 text-pink-800',
       PowerQuery: 'bg-orange-100 text-orange-800'

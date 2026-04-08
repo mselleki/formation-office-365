@@ -3077,6 +3077,276 @@ export const exercices: Exercice[] = [
       '- Ouvrir la liste des éléments marqués.\n' +
       '- Fermer / replanifier / déléguer.\n\n' +
       'Erreur fréquente : utiliser les drapeaux sans jamais revoir la liste → ça redevient du bruit.\n'
+  },
+  {
+    id: 'outlook-quicksteps-todo-04',
+    category: 'Outlook',
+    title: 'Quick Steps + To Do : transformer un mail en action en 1 clic',
+    duration: '35 minutes',
+    objective:
+      '🎯 Objectif : industrialiser le traitement des demandes\n\n' +
+      '• Créer 2 Quick Steps (routage + planification)\n' +
+      '• Transformer un mail en tâche To Do (suivi fiable)\n' +
+      '• Standardiser la qualification : action vs info vs attente\n\n' +
+      '💣 Message clé :\n\n' +
+      'Si créer une action prend plus de 10 secondes, tu ne le feras pas.',
+    context:
+      'Dans un contexte projet, une grande partie des actions arrive par mail. ' +
+      'Sans automatisation, on marque “plus tard” et on oublie. Ici, on met en place un flux ultra rapide avec Quick Steps + To Do.',
+    generalInstructions: [
+      'Outlook Desktop (Windows) requis',
+      'Microsoft To Do installé / compte connecté',
+      'Créer seulement 2 Quick Steps pour rester maintenable'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Préparer le modèle mental',
+        duration: '5 min',
+        instructions: [
+          'Définissez vos 3 états : Action / Attente / Info.',
+          'Décidez : Action = tâche To Do obligatoire ; Attente = dossier + rappel ; Info = référence.',
+          'Objectif : éliminer les mails “entre deux”.'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Créer Quick Step “Action → To Do + À traiter”',
+        duration: '15 min',
+        instructions: [
+          'Créez un Quick Step nommé : "Action (To Do)".',
+          'Actions attendues :',
+          '• Marquer le message (drapeau) + catégorie "Urgent" si besoin',
+          '• Déplacer vers le dossier "À traiter"',
+          '• Ajouter un texte standard au début du sujet (ex. "ACTION - ")',
+          'Ensuite, créez la tâche To Do associée (depuis Outlook : drapeau / tâches / ou intégration selon votre configuration).'
+        ],
+        tips: [
+          'Le Quick Step sert à “ranger + marquer” ; la tâche To Do sert à “suivre”.',
+          'Si votre Outlook ne “crée” pas automatiquement une tâche To Do, l’objectif est de rendre la création de tâche un réflexe immédiat (drapeau → To Do).'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Créer Quick Step “Attente → En attente + rappel”',
+        duration: '10 min',
+        instructions: [
+          'Créez un Quick Step nommé : "Attente".',
+          'Actions :',
+          '• Catégorie "Info" ou "Projet" (au choix)',
+          '• Déplacer vers "En attente"',
+          '• Ajouter un rappel (ex. J+2) sur le message',
+          'Objectif : ne pas relancer “au feeling”.'
+        ]
+      },
+      {
+        number: 4,
+        title: 'Test en conditions réelles sur 10 mails',
+        duration: '5 min',
+        instructions: [
+          'Prenez 10 mails récents.',
+          'Appliquez Action / Attente / Info.',
+          'Pour chaque mail “Action”, créez une tâche To Do explicite : verbe + résultat + échéance.',
+          'Ex : "Envoyer CR pilotage (PDF) — jeudi 17h".'
+        ]
+      }
+    ],
+    deliverables: [
+      '2 Quick Steps créés et nommés',
+      '10 mails traités avec le système',
+      'Au moins 5 tâches To Do créées avec échéance'
+    ],
+    reflectionQuestions: [
+      'Qu’est-ce qui t’empêche le plus souvent de transformer un mail en tâche ?',
+      'Quel wording de tâche To Do te rend le plus efficace (verbe + résultat + échéance) ?',
+      'Quelle règle simple évite de surcharger To Do ?'
+    ],
+    trainerScript:
+      '✅ Correction (mode formateur)\n\n' +
+      'Objectif : réduire la friction à zéro.\n\n' +
+      'Attendu : 2 Quick Steps maximum.\n' +
+      '- Action (To Do) : ranger + signal + création de tâche.\n' +
+      '- Attente : ranger + rappel daté.\n\n' +
+      'Critère de qualité (tâches) :\n' +
+      '- Doit commencer par un verbe.\n' +
+      '- Doit contenir un livrable observable.\n' +
+      '- Doit contenir une échéance ou un prochain point de revue.\n\n' +
+      'Erreur fréquente : drapeau sans revue quotidienne → on accumule de la dette.\n'
+  },
+  {
+    id: 'outlook-delegation-suivi-05',
+    category: 'Outlook',
+    title: 'Déléguer proprement : mail de délégation + trace + relance',
+    duration: '30 minutes',
+    objective:
+      '🎯 Objectif : déléguer sans perdre le contrôle\n\n' +
+      '• Écrire un mail de délégation clair (contexte, action, échéance, format)\n' +
+      '• Créer une tâche To Do de suivi (relance)\n' +
+      '• Mettre le mail dans "En attente" avec rappel\n\n' +
+      '💣 Message clé :\n\n' +
+      'Déléguer sans échéance, c’est abandonner.',
+    context:
+      'Vous devez déléguer une action (ex. préparer une liste participants, vérifier un budget, valider un document) dans le cadre du projet Rising Stars. ' +
+      'L’exercice vise à rendre la délégation “traçable” et “relançable”.',
+    generalInstructions: [
+      'Outlook Desktop',
+      'To Do connecté',
+      'Tout doit être relançable sans fouiller 200 mails'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Choisir une délégation réelle',
+        duration: '5 min',
+        instructions: [
+          'Choisissez une action délégable (simple, livrable clair).',
+          'Définissez : livrable + format + date limite.',
+          'Ex : "Envoyer la liste d’inscrits (Excel) — mardi 12h".'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Rédiger le mail de délégation (template)',
+        duration: '10 min',
+        instructions: [
+          'Rédigez un mail court (10 lignes max) avec :',
+          '• Contexte en 1 phrase',
+          '• Action attendue (verbe) + livrable',
+          '• Échéance',
+          '• Critère de qualité (ex. colonnes attendues, version, source)',
+          '• “Si blocage : me prévenir avant …”'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Rendre la délégation suivable (Outlook + To Do)',
+        duration: '10 min',
+        instructions: [
+          'Déplacez le mail envoyé dans "En attente".',
+          'Ajoutez un rappel (ex. J-1 de l’échéance).',
+          'Créez une tâche To Do “Relancer X si pas de réponse” avec une date.',
+          'Ajoutez le lien / référence du mail dans la tâche (ou un mot-clé de recherche).'
+        ]
+      },
+      {
+        number: 4,
+        title: 'Simuler la relance',
+        duration: '5 min',
+        instructions: [
+          'Écrivez un brouillon de relance en 3 lignes : contexte + demande + nouvelle échéance.',
+          'Objectif : relancer sans agressivité, mais sans flou.'
+        ]
+      }
+    ],
+    deliverables: [
+      'Un mail de délégation structuré',
+      'Le mail classé en "En attente" avec rappel',
+      'Une tâche To Do de relance datée',
+      'Une relance courte prête'
+    ],
+    reflectionQuestions: [
+      'Quel élément manque le plus souvent dans tes délégations (format, échéance, critères) ?',
+      'Quel est ton signal pour relancer (date fixe vs “à l’instinct”) ?',
+      'Quand est-ce qu’il faut escalader plutôt que relancer ?'
+    ],
+    trainerScript:
+      '✅ Correction (mode formateur)\n\n' +
+      'Template attendu (mail de délégation) :\n' +
+      '- Contexte : …\n' +
+      '- Action attendue : …\n' +
+      '- Livrable : … (format)\n' +
+      '- Échéance : …\n' +
+      '- Critères : …\n' +
+      '- Blocage : me prévenir avant …\n\n' +
+      'Attendu côté suivi :\n' +
+      '- Mail dans En attente + rappel.\n' +
+      '- Tâche To Do “Relancer …” datée.\n\n' +
+      'Erreur fréquente : “Tu peux regarder ?” → pas de livrable, pas d’échéance.\n'
+  },
+  {
+    id: 'outlook-reunion-cr-actions-06',
+    category: 'Outlook',
+    title: 'Réunion → compte-rendu → actions To Do (workflow complet)',
+    duration: '45 minutes',
+    objective:
+      '🎯 Objectif : sortir d’une réunion avec un système de suivi\n\n' +
+      '• Envoyer un CR court (Décisions + Actions)\n' +
+      '• Convertir les actions en tâches To Do datées\n' +
+      '• Planifier la prochaine revue\n\n' +
+      '💣 Message clé :\n\n' +
+      'Une réunion sans actions datées est un échange d’opinions.',
+    context:
+      'Vous venez de tenir une réunion de pilotage. Vous devez produire un compte-rendu exploitable et mettre en place le suivi des actions dans To Do.',
+    generalInstructions: [
+      'Outlook Desktop',
+      'To Do connecté',
+      'CR court (max 12 lignes) + actions structurées'
+    ],
+    steps: [
+      {
+        number: 1,
+        title: 'Préparer le CR (structure standard)',
+        duration: '10 min',
+        instructions: [
+          'Rédigez un CR avec 2 blocs :',
+          '• Décisions (2 à 4 puces)',
+          '• Actions (3 à 6 lignes au format : Qui | Quoi | Quand)',
+          'Gardez le CR court et actionnable.'
+        ]
+      },
+      {
+        number: 2,
+        title: 'Envoyer le mail de CR',
+        duration: '10 min',
+        instructions: [
+          'Objet : "CR Pilotage Rising Stars — décisions + actions".',
+          'Corps : CR structuré.',
+          'Ajoutez les personnes concernées uniquement.',
+          'Envoyez.'
+        ]
+      },
+      {
+        number: 3,
+        title: 'Créer les tâches To Do depuis les actions',
+        duration: '15 min',
+        instructions: [
+          'Pour chaque action dont vous êtes responsable : créez une tâche To Do.',
+          'Format tâche : verbe + livrable + date.',
+          'Ex : "Finaliser budget (v2) — vendredi 16h".',
+          'Ajoutez au moins 1 sous-tâche (checklist) pour une action complexe.'
+        ]
+      },
+      {
+        number: 4,
+        title: 'Planifier la revue',
+        duration: '10 min',
+        instructions: [
+          'Ajoutez un créneau récurrent de 10 minutes : "Revue actions projet".',
+          'À la fin de ce créneau, vous devez : fermer / replanifier / relancer.',
+          'Objectif : rendre le suivi “inévitable”.'
+        ]
+      }
+    ],
+    deliverables: [
+      'Un CR envoyé (Décisions + Actions)',
+      '3 à 5 tâches To Do créées avec échéances',
+      'Au moins 1 action avec checklist (sous-tâches)',
+      'Un créneau de revue récurrent planifié'
+    ],
+    reflectionQuestions: [
+      'Comment savoir si un CR est “actionnable” ?',
+      'Quel est le minimum viable de suivi pour ne rien perdre ?',
+      'Quelle est la différence entre “activité” et “livrable” dans une tâche ?'
+    ],
+    trainerScript:
+      '✅ Correction (mode formateur)\n\n' +
+      'CR attendu :\n' +
+      '- Décisions : 2-4 puces.\n' +
+      '- Actions : format Qui | Quoi | Quand.\n\n' +
+      'Tâches To Do :\n' +
+      '- Verbe + livrable + échéance.\n' +
+      '- Checklist pour actions longues.\n\n' +
+      'Critère de qualité : on doit pouvoir exécuter le suivi sans rouvrir 10 mails.\n'
   }
 ];
 
